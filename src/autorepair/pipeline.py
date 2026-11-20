@@ -5,6 +5,7 @@ import json
 import logging
 from pathlib import Path
 
+from autorepair.chunking import chunk_document
 from autorepair.config import Config
 from autorepair.engine import process
 from autorepair.models import Document, Issue, Result
@@ -174,6 +175,15 @@ def export(results: list[Result], cfg: Config, output: Path) -> str:
     )
     (folder / "knowledge.jsonl").write_text(
         "".join(r.document.model_dump_json() + "\n" for r in results if r.status == "passed"),
+        encoding="utf-8",
+    )
+    (folder / "knowledge-chunks.jsonl").write_text(
+        "".join(
+            c.model_dump_json() + "\n"
+            for r in results
+            if r.status == "passed"
+            for c in chunk_document(r.document)
+        ),
         encoding="utf-8",
     )
     (folder / "quality-report.md").write_text(report_markdown(results), encoding="utf-8")

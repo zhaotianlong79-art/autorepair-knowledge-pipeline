@@ -45,14 +45,43 @@ def render_knowledge(store: Store, brand: str):
     if not hits:
         st.info("正式知识库没有匹配证据。请检查品牌、关键词及文档审核状态。")
     for hit in hits:
-        st.markdown(f"**{hit['source_name']} · {hit['doc_id']} / {hit['block_id']}**")
+        st.markdown(f"**{hit['source_name']} · {hit['doc_id']} / {hit['chunk_id']}**")
         st.caption(" / ".join(hit["section_path"]) or hit["section"] or "未标注章节")
         st.code(hit["text"], language=None)
         st.caption(
             f"车型 {hit['model']} · 年份 {hit['year_range']} · 来源运行 {hit['source_run_id']} · 相关性 {hit['score']}"
         )
+        st.caption(
+            f"来源块 {', '.join(hit['source_block_ids'])} · 页码 {hit['pages'] or '未提供'} · 步骤 {', '.join(hit['step_ids']) or '无'}"
+        )
+        if hit["oversized"]:
+            st.caption("此块保留完整表格、图像或警告，超过常规长度限制。")
+        if hit["related_blocks"]:
+            with st.expander("关联警告、步骤及图表上下文"):
+                st.caption("关联依据章节和阅读顺序推断，需对照原文确认适用关系。")
+                for related in hit["related_blocks"]:
+                    st.caption(
+                        f"{related['block_id']} · {related['kind']} · {', '.join(related['reasons'])}"
+                    )
+                    st.code(related["text"], language=None)
+                    if related["image_src"]:
+                        st.caption(f"图片资源 {related['image_src']}")
+                    st.json(related["location"])
         with st.expander("来源位置与版本"):
-            st.json({k: hit[k] for k in ["brand", "source_hash", "rules_hash", "location"]})
+            st.json(
+                {
+                    k: hit[k]
+                    for k in [
+                        "brand",
+                        "source_hash",
+                        "rules_hash",
+                        "location",
+                        "parts",
+                        "chunk_config",
+                        "chunk_config_hash",
+                    ]
+                }
+            )
     st.caption(
         "分数用于相关性排序，不代表答案正确概率。当前采用关键词检索，语义检索和问答按计划后续实现。"
     )

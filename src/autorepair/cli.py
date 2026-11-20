@@ -31,6 +31,10 @@ def main():
     catalog.add_argument("--brand", required=True)
     catalog.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
     catalog.add_argument("--status", choices=["passed", "review", "failed"])
+    chunks = commands.add_parser("chunks", help="查看当前正式知识库的章节切块与关联")
+    chunks.add_argument("--brand", required=True)
+    chunks.add_argument("--doc-id")
+    chunks.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
     args = parser.parse_args()
     if args.command == "process":
         try:
@@ -78,6 +82,8 @@ def main():
             store = Store(args.database)
             if args.command == "catalog":
                 output = store.list_documents(args.brand, status=args.status)
+            elif args.command == "chunks":
+                output = [c.model_dump() for c in store.chunks(args.brand, args.doc_id)]
             elif args.run:
                 output = search(
                     store.load_run(args.run),

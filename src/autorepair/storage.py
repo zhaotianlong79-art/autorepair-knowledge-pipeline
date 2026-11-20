@@ -1,11 +1,13 @@
 """SQLite persistence with per-brand upserts and run-scoped provenance."""
 
+import hashlib
 import json
 import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 from uuid import uuid4
 
+from autorepair.chunking import DEFAULT, Chunk, chunk_document
 from autorepair.config import Config
 from autorepair.models import Document, Result
 
@@ -19,6 +21,13 @@ class Store:
                 "SELECT 1 FROM sqlite_master WHERE type='table' AND name='document_catalog'"
             ).fetchone()
             db.executescript("""
+            CREATE TABLE IF NOT EXISTS knowledge_chunks (
+              brand TEXT NOT NULL, doc_id TEXT NOT NULL, chunk_id TEXT NOT NULL,
+              payload TEXT NOT NULL, PRIMARY KEY (brand, doc_id, chunk_id));
+            CREATE TABLE IF NOT EXISTS document_chunk_state (
+              brand TEXT NOT NULL, doc_id TEXT NOT NULL, document_hash TEXT NOT NULL,
+              config_hash TEXT NOT NULL, chunk_count INTEGER NOT NULL,
+              PRIMARY KEY (brand, doc_id));
             CREATE TABLE IF NOT EXISTS document_catalog (
               brand TEXT NOT NULL, doc_id TEXT NOT NULL, source_name TEXT NOT NULL,
               source_hash TEXT NOT NULL, model TEXT NOT NULL, year_range TEXT NOT NULL,
@@ -60,6 +69,51 @@ class Store:
                             "",
                             "",
                         )
+
+            self._ensure_chunks(db)
+
+    @staticmethod
+    def _replace_chunks(db, doc, payload):
+        chunks = chunk_document(doc)
+        db.execute(
+            "DELETE FROM knowledge_chunks WHERE brand=? AND doc_id=?", (doc.brand, doc.doc_id)
+        )
+        db.executemany(
+            "INSERT INTO knowledge_chunks VALUES (?, ?, ?, ?)",
+            [(doc.brand, doc.doc_id, c.chunk_id, c.model_dump_json()) for c in chunks],
+        )
+        db.execute(
+            "INSERT OR REPLACE INTO document_chunk_state VALUES (?, ?, ?, ?, ?)",
+            (
+                doc.brand,
+                doc.doc_id,
+                hashlib.sha256(payload.encode()).hexdigest(),
+                DEFAULT.digest,
+                len(chunks),
+            ),
+        )
+
+    def _ensure_chunks(self, db):
+        # Rebuild only derived data; never alter approval state or historical payloads.
+        approved = "SELECT 1 FROM documents d JOIN document_catalog c ON c.brand=d.brand AND c.doc_id=d.doc_id WHERE d.brand={table}.brand AND d.doc_id={table}.doc_id AND c.status='passed'"
+        for table in ["knowledge_chunks", "document_chunk_state"]:
+            db.execute(f"DELETE FROM {table} WHERE NOT EXISTS ({approved.format(table=table)})")
+        rows = db.execute(
+            "SELECT d.brand, d.doc_id, d.payload, s.document_hash, s.config_hash, s.chunk_count "
+            "FROM documents d JOIN document_catalog c ON c.brand=d.brand AND c.doc_id=d.doc_id "
+            "LEFT JOIN document_chunk_state s ON s.brand=d.brand AND s.doc_id=d.doc_id "
+            "WHERE c.status='passed'"
+        ).fetchall()
+        for brand, doc_id, payload, digest, config_hash, count in rows:
+            actual = db.execute(
+                "SELECT count(*) FROM knowledge_chunks WHERE brand=? AND doc_id=?", (brand, doc_id)
+            ).fetchone()[0]
+            if (
+                digest != hashlib.sha256(payload.encode()).hexdigest()
+                or config_hash != DEFAULT.digest
+                or actual != count
+            ):
+                self._replace_chunks(db, Document.model_validate_json(payload), payload)
 
     @staticmethod
     def _catalog(db, result, run_id, rules_hash, created):
@@ -134,16 +188,24 @@ class Store:
                         ),
                     )
                 if result.status == "passed":
+                    payload = doc.model_dump_json()
                     db.execute(
                         "INSERT OR REPLACE INTO documents VALUES (?, ?, ?)",
-                        (doc.brand, doc.doc_id, doc.model_dump_json()),
+                        (doc.brand, doc.doc_id, payload),
                     )
+                    self._replace_chunks(db, doc, payload)
                 else:
                     # A failed reprocessing run must invalidate its stale approved version.
                     db.execute(
                         "DELETE FROM documents WHERE brand = ? AND doc_id = ?",
                         (doc.brand, doc.doc_id),
                     )
+                if result.status != "passed":
+                    for table in ["knowledge_chunks", "document_chunk_state"]:
+                        db.execute(
+                            f"DELETE FROM {table} WHERE brand=? AND doc_id=?",
+                            (doc.brand, doc.doc_id),
+                        )
                 for block in doc.blocks:
                     for target in set(block.links):
                         db.execute(
@@ -191,30 +253,44 @@ class Store:
             for payload, rules, reviews in rows
         ]
 
-    def search(self, query: str, brand: str, *, original=False, k=5) -> list[dict]:
-        from autorepair.search import search
-
-        # One read snapshot keeps publication state and provenance consistent.
+    def chunks(self, brand: str, doc_id: str | None = None) -> list[Chunk]:
         with self.connect() as db:
+            return self._load_chunks(db, brand, doc_id)
+
+    @staticmethod
+    def _load_chunks(db, brand, doc_id=None):
+        rows = db.execute(
+            "SELECT k.payload FROM knowledge_chunks k JOIN documents d ON d.brand=k.brand AND d.doc_id=k.doc_id "
+            "JOIN document_catalog c ON c.brand=k.brand AND c.doc_id=k.doc_id "
+            "WHERE k.brand=? AND c.status='passed'"
+            + (" AND k.doc_id=?" if doc_id is not None else "")
+            + " ORDER BY k.doc_id, k.rowid",
+            (brand, doc_id) if doc_id is not None else (brand,),
+        ).fetchall()
+        return [Chunk.model_validate_json(payload) for (payload,) in rows]
+
+    def search(self, query: str, brand: str, *, original=False, k=5) -> list[dict]:
+        from autorepair.search import search_chunks
+
+        # Explicit transaction gives document content, derived chunks and approval provenance one snapshot.
+        with self.connect() as db:
+            db.execute("BEGIN")
             rows = db.execute(
-                "SELECT d.payload, c.run_id, c.rules_hash, c.reviews FROM documents d "
+                "SELECT d.payload, c.run_id, c.rules_hash FROM documents d "
                 "JOIN document_catalog c ON c.brand=d.brand AND c.doc_id=d.doc_id "
                 "WHERE d.brand=? AND c.status='passed' ORDER BY d.doc_id",
                 (brand,),
             ).fetchall()
-        results = [
-            Result(
-                document=Document.model_validate_json(payload),
-                rules_hash=rules,
-                reviews=json.loads(reviews),
-            )
-            for payload, _, rules, reviews in rows
-        ]
+            chunks = self._load_chunks(db, brand)
+        docs = [Document.model_validate_json(payload) for payload, _, _ in rows]
+        documents = {(d.brand, d.doc_id): d for d in docs}
         provenance = {
-            r.document.doc_id: dict(source_run_id=row[1], rules_hash=row[2])
-            for r, row in zip(results, rows, strict=True)
+            doc.doc_id: dict(source_run_id=row[1], rules_hash=row[2])
+            for doc, row in zip(docs, rows, strict=True)
         }
+        if original:
+            chunks = [c for doc in docs for c in chunk_document(doc, original=True)]
         return [
             {**hit, **provenance[hit["doc_id"]]}
-            for hit in search(results, query, brand, original=original, k=k)
+            for hit in search_chunks(documents, chunks, query, k=k)
         ]

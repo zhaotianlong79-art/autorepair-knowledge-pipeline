@@ -8,6 +8,7 @@ from pathlib import Path
 
 import streamlit as st
 
+from autorepair.chunking import chunk_document
 from autorepair.config import load_config
 from autorepair.knowledge_ui import render_knowledge
 from autorepair.pipeline import confirm_completeness, export, markdown, report_markdown, run
@@ -150,6 +151,15 @@ with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
     archive.writestr(
         "knowledge.jsonl",
         "".join(r.document.model_dump_json() + "\n" for r in results if r.status == "passed"),
+    )
+    archive.writestr(
+        "knowledge-chunks.jsonl",
+        "".join(
+            c.model_dump_json() + "\n"
+            for r in results
+            if r.status == "passed"
+            for c in chunk_document(r.document)
+        ),
     )
     archive.writestr(
         "results.json", json.dumps([r.model_dump() for r in results], ensure_ascii=False, indent=2)
