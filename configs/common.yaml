@@ -1,0 +1,31 @@
+brand: common
+rules:
+  - {id: structure, action: structure}
+  - {id: terminology, action: terms}
+  - {id: references, action: references}
+  - {id: tools, action: tools}
+  - {id: components, action: components}
+  - {id: style, action: style}
+  - {id: long_tail, action: long_tail}
+  - {id: privacy, action: pii}
+  - {id: retrieval, action: retrieval}
+terms:
+  - canonical: 氧传感器
+    aliases: [O₂ sensor, oxygen sensor]
+    kind: component
+    entity_id: oxygen-sensor
+  - canonical: 扭矩扳手
+    aliases: [torque wrench]
+    kind: tool
+    entity_id: torque-wrench
+  - canonical: 故障诊断码
+    aliases: [diagnostic trouble code]
+    kind: term
+    entity_id: dtc
+  - canonical: 间歇性接触不良
+    aliases: [intermittent poor contact]
+    kind: long_tail
+    entity_id: intermittent-contact
+protected_terms: [P0300, ABS]
+known_terms: [制动压力传感器]
+declared_documents: []

@@ -1,0 +1,77 @@
+{
+  "document": {
+    "schema_version": "1.0",
+    "doc_id": "doc-1385f949fa7c",
+    "brand": "aurora",
+    "model": "unknown",
+    "year_range": "unknown",
+    "source_name": "html_complex.html",
+    "source_hash": "1385f949fa7cb3a22d5c0e592357886918bf107e035cbf1bbc450bfb57901961",
+    "parser": "html-dom/1",
+    "blocks": [
+      {
+        "block_id": "b0001",
+        "kind": "heading",
+        "original": "Complex table",
+        "text": "Complex table",
+        "location": {
+          "dom": "/html[1]/body[1]/h1[1]"
+        },
+        "section": "Complex table",
+        "links": []
+      },
+      {
+        "block_id": "b0002",
+        "kind": "table",
+        "original": "| System | Component | Value |\n| --- | --- | --- |\n| Brake | Unit A | A|B |\n| Unit B | LINE_C303 LINE_D404 |  |",
+        "text": "| System | Component | Value |\n| --- | --- | --- |\n| Brake | Unit A | A|B |\n| Unit B | LINE_C303 LINE_D404 | |",
+        "location": {
+          "dom": "/html[1]/body[1]/table[1]"
+        },
+        "section": "Complex table",
+        "links": []
+      },
+      {
+        "block_id": "b0003",
+        "kind": "paragraph",
+        "original": "COMPLEX_END",
+        "text": "COMPLEX_END",
+        "location": {
+          "dom": "/html[1]/body[1]/p[1]"
+        },
+        "section": "Complex table",
+        "links": []
+      }
+    ],
+    "issues": [
+      {
+        "code": "html.table_span",
+        "severity": "warning",
+        "message": "合并单元格需对照原表复核",
+        "block_id": ""
+      }
+    ],
+    "expected_blocks": 3,
+    "component_mentions": []
+  },
+  "rules_hash": "ed50bb10374deb206b55d24e31377825505b5f75712bede1019d33de27ae67df",
+  "changes": [
+    {
+      "rule_id": "structure",
+      "rule_version": "1",
+      "block_id": "b0002",
+      "before": "| System | Component | Value |\n| --- | --- | --- |\n| Brake | Unit A | A|B |\n| Unit B | LINE_C303 LINE_D404 |  |",
+      "after": "| System | Component | Value |\n| --- | --- | --- |\n| Brake | Unit A | A|B |\n| Unit B | LINE_C303 LINE_D404 | |"
+    }
+  ],
+  "issues": [
+    {
+      "code": "html.table_span",
+      "severity": "warning",
+      "message": "合并单元格需对照原表复核",
+      "block_id": ""
+    }
+  ],
+  "status": "review",
+  "reviews": []
+}

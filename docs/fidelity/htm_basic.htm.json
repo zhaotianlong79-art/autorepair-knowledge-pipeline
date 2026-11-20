@@ -1,0 +1,122 @@
+{
+  "document": {
+    "schema_version": "1.0",
+    "doc_id": "doc-d0c4b3cd6aab",
+    "brand": "aurora",
+    "model": "unknown",
+    "year_range": "unknown",
+    "source_name": "htm_basic.htm",
+    "source_hash": "d0c4b3cd6aab13efe9c2e12d73fc5fb677b40f1e7df0e80cf3b74186bf830ec9",
+    "parser": "html-dom/1",
+    "blocks": [
+      {
+        "block_id": "b0001",
+        "kind": "heading",
+        "original": "Chapter 1 Service",
+        "text": "Chapter 1 Service",
+        "location": {
+          "dom": "/html[1]/body[1]/h1[1]"
+        },
+        "section": "Chapter 1 Service",
+        "links": []
+      },
+      {
+        "block_id": "b0002",
+        "kind": "paragraph",
+        "original": "INTRO_A101",
+        "text": "INTRO_A101",
+        "location": {
+          "dom": "/html[1]/body[1]/p[1]"
+        },
+        "section": "Chapter 1 Service",
+        "links": []
+      },
+      {
+        "block_id": "b0003",
+        "kind": "heading",
+        "original": "1.1 Inspection",
+        "text": "1.1 Inspection",
+        "location": {
+          "dom": "/html[1]/body[1]/h2[1]"
+        },
+        "section": "1.1 Inspection",
+        "links": []
+      },
+      {
+        "block_id": "b0004",
+        "kind": "paragraph",
+        "original": "BODY_B202",
+        "text": "BODY_B202",
+        "location": {
+          "dom": "/html[1]/body[1]/p[2]"
+        },
+        "section": "1.1 Inspection",
+        "links": []
+      },
+      {
+        "block_id": "b0005",
+        "kind": "heading",
+        "original": "1.1.1 Torque",
+        "text": "1.1.1 Torque",
+        "location": {
+          "dom": "/html[1]/body[1]/h3[1]"
+        },
+        "section": "1.1.1 Torque",
+        "links": []
+      },
+      {
+        "block_id": "b0006",
+        "kind": "table",
+        "original": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Sensor Alpha | PN-F101 | 35 Nm |\n| Valve Beta | PN-F202 | 12.5 Nm |",
+        "text": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Sensor Alpha | PN-F101 | 35 Nm |\n| Valve Beta | PN-F202 | 12.5 Nm |",
+        "location": {
+          "dom": "/html[1]/body[1]/table[1]"
+        },
+        "section": "1.1.1 Torque",
+        "links": []
+      },
+      {
+        "block_id": "b0007",
+        "kind": "paragraph",
+        "original": "TAIL_Z909",
+        "text": "TAIL_Z909",
+        "location": {
+          "dom": "/html[1]/body[1]/p[3]"
+        },
+        "section": "1.1.1 Torque",
+        "links": []
+      }
+    ],
+    "issues": [],
+    "expected_blocks": 7,
+    "component_mentions": [
+      {
+        "part_number": "PN-F101",
+        "descriptions": [],
+        "evidence": "| Sensor Alpha | PN-F101 | 35 Nm |",
+        "block_id": "b0006",
+        "location": {
+          "dom": "/html[1]/body[1]/table[1]"
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-F202",
+        "descriptions": [],
+        "evidence": "| Valve Beta | PN-F202 | 12.5 Nm |",
+        "block_id": "b0006",
+        "location": {
+          "dom": "/html[1]/body[1]/table[1]"
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      }
+    ]
+  },
+  "rules_hash": "ed50bb10374deb206b55d24e31377825505b5f75712bede1019d33de27ae67df",
+  "changes": [],
+  "issues": [],
+  "status": "passed",
+  "reviews": []
+}

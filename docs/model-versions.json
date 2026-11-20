@@ -1,0 +1,21 @@
+{
+  "packages": {
+    "docling": "2.151.1",
+    "docling-core": "2.107.1",
+    "docling-ibm-models": "4.0.4",
+    "rapidocr": "3.10.0",
+    "onnxruntime": "1.32.0",
+    "torch": "2.15.0",
+    "transformers": "5.23.0",
+    "streamlit": "1.67.0",
+    "pydantic": "2.14.4"
+  },
+  "hub_revisions": {
+    "docling-project/docling-layout-heron": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8"
+  },
+  "ocr_bundled_weights": {
+    "models/PP-OCRv6_det_small.onnx": "090f04abcd9d9a7498bc4ebf677e4cb9bdce1fe4197ddb7e529f1ef44e1ff94f",
+    "models/ch_ppocr_mobile_v2.0_cls_mobile.onnx": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c",
+    "models/PP-OCRv6_rec_small.onnx": "6f327246b50388f3c176ae304bd95767ea6dc0c9ae92153ef8cbe210b3c14884"
+  }
+}

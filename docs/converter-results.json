@@ -1,0 +1,153 @@
+{
+  "platform": "macOS-26.7.1-arm64-arm-64bit",
+  "cpu_only": true,
+  "cases": [
+    {
+      "file": "examples/dev/aurora/05-service.docx",
+      "parser": "docling/2.151.1",
+      "seconds": 38.259,
+      "blocks": 3,
+      "tables": 1,
+      "anchor_checks": {
+        "WARNING": true,
+        "oxygen sensor": true,
+        "35": true,
+        "PN-A100": true
+      },
+      "status": "review",
+      "issues": [
+        "parse.completeness"
+      ],
+      "text": "Demonstration repair data\nWARNING: Never remove BCM while powered. Part PN-A100.\n| Component     | Torque   | Tool          |\n|---------------|----------|---------------|\n| oxygen sensor | 35 Nm    | torque wrench |"
+    },
+    {
+      "file": "examples/dev/aurora/06-service.pdf",
+      "parser": "docling/2.151.1",
+      "seconds": 30.786,
+      "blocks": 3,
+      "tables": 1,
+      "anchor_checks": {
+        "WARNING": true,
+        "oxygen sensor": true,
+        "35": true,
+        "PN-A100": true
+      },
+      "status": "review",
+      "issues": [
+        "parse.completeness",
+        "term.unknown"
+      ],
+      "text": "DEMONSTRATION SERVICE MANUAL\nWARNING: Never remove BCM while powered.\n| Component     | Torque   | Part number   |\n|---------------|----------|---------------|\n| oxygen sensor | 35 Nm    | PN-A100       |"
+    },
+    {
+      "file": "examples/dev/atlas/05-service.docx",
+      "parser": "docling/2.151.1",
+      "seconds": 0.009,
+      "blocks": 3,
+      "tables": 1,
+      "anchor_checks": {
+        "WARNING": true,
+        "oxygen sensor": true,
+        "35": true,
+        "PN-B200": true
+      },
+      "status": "review",
+      "issues": [
+        "parse.completeness"
+      ],
+      "text": "Demonstration repair data\nWARNING: Never remove BCM while powered. Part PN-B200.\n| Component     | Torque   | Tool          |\n|---------------|----------|---------------|\n| oxygen sensor | 35 Nm    | torque wrench |"
+    },
+    {
+      "file": "examples/dev/atlas/06-service.pdf",
+      "parser": "docling/2.151.1",
+      "seconds": 0.391,
+      "blocks": 3,
+      "tables": 1,
+      "anchor_checks": {
+        "WARNING": true,
+        "oxygen sensor": true,
+        "35": true,
+        "PN-B200": true
+      },
+      "status": "review",
+      "issues": [
+        "parse.completeness",
+        "term.unknown"
+      ],
+      "text": "DEMONSTRATION SERVICE MANUAL\nWARNING: Never remove BCM while powered.\n| Component     | Torque   | Part number   |\n|---------------|----------|---------------|\n| oxygen sensor | 35 Nm    | PN-B200       |"
+    },
+    {
+      "file": "examples/holdout/aurora/05-service.docx",
+      "parser": "docling/2.151.1",
+      "seconds": 0.008,
+      "blocks": 3,
+      "tables": 1,
+      "anchor_checks": {
+        "WARNING": true,
+        "oxygen sensor": true,
+        "42": true,
+        "PN-A100": true
+      },
+      "status": "review",
+      "issues": [
+        "parse.completeness"
+      ],
+      "text": "Demonstration repair data\nWARNING: Never remove BCM while powered. Part PN-A100.\n| Component     | Torque   | Tool          |\n|---------------|----------|---------------|\n| oxygen sensor | 42 Nm    | torque wrench |"
+    },
+    {
+      "file": "examples/holdout/aurora/06-service.pdf",
+      "parser": "docling/2.151.1",
+      "seconds": 6.532,
+      "blocks": 1,
+      "tables": 0,
+      "anchor_checks": {
+        "WARNING": true,
+        "oxygen sensor": true,
+        "42": true,
+        "PN-A100": true
+      },
+      "status": "review",
+      "issues": [
+        "parse.completeness"
+      ],
+      "text": "SCANNED DEMONSTRATION WARNING: Never remove BCM while powered. oxygen sensor torque: 42 Nm Part number: PN-A100 Tool: torque wrench"
+    },
+    {
+      "file": "examples/holdout/atlas/05-service.docx",
+      "parser": "docling/2.151.1",
+      "seconds": 0.009,
+      "blocks": 3,
+      "tables": 1,
+      "anchor_checks": {
+        "WARNING": true,
+        "oxygen sensor": true,
+        "42": true,
+        "PN-B200": true
+      },
+      "status": "review",
+      "issues": [
+        "parse.completeness"
+      ],
+      "text": "Demonstration repair data\nWARNING: Never remove BCM while powered. Part PN-B200.\n| Component     | Torque   | Tool          |\n|---------------|----------|---------------|\n| oxygen sensor | 42 Nm    | torque wrench |"
+    },
+    {
+      "file": "examples/holdout/atlas/06-service.pdf",
+      "parser": "docling/2.151.1",
+      "seconds": 0.517,
+      "blocks": 1,
+      "tables": 0,
+      "anchor_checks": {
+        "WARNING": true,
+        "oxygen sensor": true,
+        "42": true,
+        "PN-B200": true
+      },
+      "status": "review",
+      "issues": [
+        "parse.completeness"
+      ],
+      "text": "SCANNED DEMONSTRATION WARNING: Never remove BCM while powered. oxygen sensor torque: 42 Nm Part number: PN-B200 Tool: torque wrench"
+    }
+  ],
+  "peak_rss_mib": 2096.8
+}

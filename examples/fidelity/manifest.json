@@ -1,0 +1,1300 @@
+[
+  {
+    "file": "html_basic.html",
+    "group": "HTML",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "htm_basic.htm",
+    "group": "HTM",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "html_complex.html",
+    "group": "HTML",
+    "tokens": [
+      "Brake",
+      "Unit A",
+      "Unit B",
+      "A|B",
+      "LINE_C303",
+      "LINE_D404",
+      "COMPLEX_END"
+    ],
+    "headings": [
+      [
+        1,
+        "Complex table"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "System",
+          "Component",
+          "Value"
+        ],
+        [
+          "Brake",
+          "Unit A",
+          "A|B"
+        ],
+        [
+          "Brake",
+          "Unit B",
+          "LINE_C303 LINE_D404"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "html_nested.html",
+    "group": "HTML",
+    "tokens": [
+      "LOOSE_FRONT",
+      "PARA_MIDDLE",
+      "LOOSE_TAIL",
+      "STEP_PARENT",
+      "STEP_CHILD",
+      "STEP_SECOND",
+      "LINK_BACK",
+      "LINK_EXTERNAL",
+      "FIGURE_ALT_707"
+    ],
+    "headings": [
+      [
+        1,
+        "Nested document"
+      ],
+      [
+        2,
+        "Nested list"
+      ]
+    ],
+    "tables": [],
+    "links": [
+      "#top",
+      "https://example.com/manual"
+    ],
+    "list_depth": 2,
+    "forbidden": [
+      "HIDDEN_EXCLUDED"
+    ]
+  },
+  {
+    "file": "json_content_html.json",
+    "group": "JSON",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ],
+    "json_field": "content_html"
+  },
+  {
+    "file": "json_html.json",
+    "group": "JSON",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ],
+    "json_field": "html"
+  },
+  {
+    "file": "json_body.json",
+    "group": "JSON",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ],
+    "json_field": "body"
+  },
+  {
+    "file": "json_content.json",
+    "group": "JSON",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ],
+    "json_field": "content"
+  },
+  {
+    "file": "json_zh.json",
+    "group": "JSON",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ],
+    "json_field": "正文"
+  },
+  {
+    "file": "json_array.json",
+    "group": "JSON",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm",
+      "RECORD_TWO_END"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ],
+      [
+        1,
+        "Second record"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "json_records.json",
+    "group": "JSON",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm",
+      "RECORD_TWO_END"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ],
+      [
+        1,
+        "Second record"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "json_normalized.json",
+    "group": "JSON",
+    "tokens": [
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "docx_basic.docx",
+    "group": "DOCX",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "docx_merged.docx",
+    "group": "DOCX",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "Brake",
+      "Unit A",
+      "Unit B",
+      "A|B",
+      "LINE_C303",
+      "LINE_D404"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "System",
+          "Component",
+          "Value"
+        ],
+        [
+          "Brake",
+          "Unit A",
+          "A|B"
+        ],
+        [
+          "Brake",
+          "Unit B",
+          "LINE_C303 LINE_D404"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "docx_picture.docx",
+    "group": "DOCX",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm",
+      "FIGURE_IMAGE_808"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "pdf_digital.pdf",
+    "group": "数字PDF",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "pdf_multipage.pdf",
+    "group": "数字PDF",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm",
+      "PAGE_TWO_222",
+      "PN-F303",
+      "88 Nm",
+      "PN-F404",
+      "5 Nm",
+      "FINAL_PAGE_END_999"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ],
+      [
+        1,
+        "Chapter 2 Continuation"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ],
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Pump Gamma",
+          "PN-F303",
+          "88 Nm"
+        ],
+        [
+          "Relay Delta",
+          "PN-F404",
+          "5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "pdf_cjk.pdf",
+    "group": "数字PDF",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm",
+      "前轮传感器",
+      "后轮阀门"
+    ],
+    "headings": [
+      [
+        1,
+        "第一章 维修准备"
+      ],
+      [
+        2,
+        "1.1 检查步骤"
+      ],
+      [
+        3,
+        "1.1.1 扭矩参数"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "部件",
+          "部件号",
+          "扭矩"
+        ],
+        [
+          "前轮传感器",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "后轮阀门",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ]
+  },
+  {
+    "file": "pdf_scan_en.pdf",
+    "group": "扫描PDF",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Chapter 1 Service"
+      ],
+      [
+        2,
+        "1.1 Inspection"
+      ],
+      [
+        3,
+        "1.1.1 Torque"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Sensor Alpha",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "Valve Beta",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ],
+    "ocr": true
+  },
+  {
+    "file": "pdf_scan_zh.pdf",
+    "group": "扫描PDF",
+    "tokens": [
+      "INTRO_A101",
+      "BODY_B202",
+      "TAIL_Z909",
+      "PN-F101",
+      "PN-F202",
+      "35 Nm",
+      "12.5 Nm",
+      "前轮传感器",
+      "后轮阀门"
+    ],
+    "headings": [
+      [
+        1,
+        "第一章 维修准备"
+      ],
+      [
+        2,
+        "1.1 检查步骤"
+      ],
+      [
+        3,
+        "1.1.1 扭矩参数"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "部件",
+          "部件号",
+          "扭矩"
+        ],
+        [
+          "前轮传感器",
+          "PN-F101",
+          "35 Nm"
+        ],
+        [
+          "后轮阀门",
+          "PN-F202",
+          "12.5 Nm"
+        ]
+      ]
+    ],
+    "ocr": true
+  },
+  {
+    "file": "pdf_crosspage.pdf",
+    "group": "数字PDF",
+    "tokens": [
+      "TABLE_START_001",
+      "TABLE_END_036",
+      "Component 01",
+      "PN-X001",
+      "1.5 Nm",
+      "Component 02",
+      "PN-X002",
+      "2.5 Nm",
+      "Component 03",
+      "PN-X003",
+      "3.5 Nm",
+      "Component 04",
+      "PN-X004",
+      "4.5 Nm",
+      "Component 05",
+      "PN-X005",
+      "5.5 Nm",
+      "Component 06",
+      "PN-X006",
+      "6.5 Nm",
+      "Component 07",
+      "PN-X007",
+      "7.5 Nm",
+      "Component 08",
+      "PN-X008",
+      "8.5 Nm",
+      "Component 09",
+      "PN-X009",
+      "9.5 Nm",
+      "Component 10",
+      "PN-X010",
+      "10.5 Nm",
+      "Component 11",
+      "PN-X011",
+      "11.5 Nm",
+      "Component 12",
+      "PN-X012",
+      "12.5 Nm",
+      "Component 13",
+      "PN-X013",
+      "13.5 Nm",
+      "Component 14",
+      "PN-X014",
+      "14.5 Nm",
+      "Component 15",
+      "PN-X015",
+      "15.5 Nm",
+      "Component 16",
+      "PN-X016",
+      "16.5 Nm",
+      "Component 17",
+      "PN-X017",
+      "17.5 Nm",
+      "Component 18",
+      "PN-X018",
+      "18.5 Nm",
+      "Component 19",
+      "PN-X019",
+      "19.5 Nm",
+      "Component 20",
+      "PN-X020",
+      "20.5 Nm",
+      "Component 21",
+      "PN-X021",
+      "21.5 Nm",
+      "Component 22",
+      "PN-X022",
+      "22.5 Nm",
+      "Component 23",
+      "PN-X023",
+      "23.5 Nm",
+      "Component 24",
+      "PN-X024",
+      "24.5 Nm",
+      "Component 25",
+      "PN-X025",
+      "25.5 Nm",
+      "Component 26",
+      "PN-X026",
+      "26.5 Nm",
+      "Component 27",
+      "PN-X027",
+      "27.5 Nm",
+      "Component 28",
+      "PN-X028",
+      "28.5 Nm",
+      "Component 29",
+      "PN-X029",
+      "29.5 Nm",
+      "Component 30",
+      "PN-X030",
+      "30.5 Nm",
+      "Component 31",
+      "PN-X031",
+      "31.5 Nm",
+      "Component 32",
+      "PN-X032",
+      "32.5 Nm",
+      "Component 33",
+      "PN-X033",
+      "33.5 Nm",
+      "Component 34",
+      "PN-X034",
+      "34.5 Nm",
+      "Component 35",
+      "PN-X035",
+      "35.5 Nm",
+      "Component 36",
+      "PN-X036",
+      "36.5 Nm"
+    ],
+    "headings": [
+      [
+        1,
+        "Cross-page table"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "Component",
+          "Part number",
+          "Torque"
+        ],
+        [
+          "Component 01",
+          "PN-X001",
+          "1.5 Nm"
+        ],
+        [
+          "Component 02",
+          "PN-X002",
+          "2.5 Nm"
+        ],
+        [
+          "Component 03",
+          "PN-X003",
+          "3.5 Nm"
+        ],
+        [
+          "Component 04",
+          "PN-X004",
+          "4.5 Nm"
+        ],
+        [
+          "Component 05",
+          "PN-X005",
+          "5.5 Nm"
+        ],
+        [
+          "Component 06",
+          "PN-X006",
+          "6.5 Nm"
+        ],
+        [
+          "Component 07",
+          "PN-X007",
+          "7.5 Nm"
+        ],
+        [
+          "Component 08",
+          "PN-X008",
+          "8.5 Nm"
+        ],
+        [
+          "Component 09",
+          "PN-X009",
+          "9.5 Nm"
+        ],
+        [
+          "Component 10",
+          "PN-X010",
+          "10.5 Nm"
+        ],
+        [
+          "Component 11",
+          "PN-X011",
+          "11.5 Nm"
+        ],
+        [
+          "Component 12",
+          "PN-X012",
+          "12.5 Nm"
+        ],
+        [
+          "Component 13",
+          "PN-X013",
+          "13.5 Nm"
+        ],
+        [
+          "Component 14",
+          "PN-X014",
+          "14.5 Nm"
+        ],
+        [
+          "Component 15",
+          "PN-X015",
+          "15.5 Nm"
+        ],
+        [
+          "Component 16",
+          "PN-X016",
+          "16.5 Nm"
+        ],
+        [
+          "Component 17",
+          "PN-X017",
+          "17.5 Nm"
+        ],
+        [
+          "Component 18",
+          "PN-X018",
+          "18.5 Nm"
+        ],
+        [
+          "Component 19",
+          "PN-X019",
+          "19.5 Nm"
+        ],
+        [
+          "Component 20",
+          "PN-X020",
+          "20.5 Nm"
+        ],
+        [
+          "Component 21",
+          "PN-X021",
+          "21.5 Nm"
+        ],
+        [
+          "Component 22",
+          "PN-X022",
+          "22.5 Nm"
+        ],
+        [
+          "Component 23",
+          "PN-X023",
+          "23.5 Nm"
+        ],
+        [
+          "Component 24",
+          "PN-X024",
+          "24.5 Nm"
+        ],
+        [
+          "Component 25",
+          "PN-X025",
+          "25.5 Nm"
+        ],
+        [
+          "Component 26",
+          "PN-X026",
+          "26.5 Nm"
+        ],
+        [
+          "Component 27",
+          "PN-X027",
+          "27.5 Nm"
+        ],
+        [
+          "Component 28",
+          "PN-X028",
+          "28.5 Nm"
+        ],
+        [
+          "Component 29",
+          "PN-X029",
+          "29.5 Nm"
+        ],
+        [
+          "Component 30",
+          "PN-X030",
+          "30.5 Nm"
+        ],
+        [
+          "Component 31",
+          "PN-X031",
+          "31.5 Nm"
+        ],
+        [
+          "Component 32",
+          "PN-X032",
+          "32.5 Nm"
+        ],
+        [
+          "Component 33",
+          "PN-X033",
+          "33.5 Nm"
+        ],
+        [
+          "Component 34",
+          "PN-X034",
+          "34.5 Nm"
+        ],
+        [
+          "Component 35",
+          "PN-X035",
+          "35.5 Nm"
+        ],
+        [
+          "Component 36",
+          "PN-X036",
+          "36.5 Nm"
+        ]
+      ]
+    ],
+    "table_mode": "continuation"
+  },
+  {
+    "file": "pdf_merged.pdf",
+    "group": "数字PDF",
+    "tokens": [
+      "Brake",
+      "Unit A",
+      "Unit B",
+      "A|B",
+      "LINE_C303",
+      "LINE_D404",
+      "MERGED_END_555"
+    ],
+    "headings": [
+      [
+        1,
+        "Merged PDF table"
+      ]
+    ],
+    "tables": [
+      [
+        [
+          "System",
+          "Component",
+          "Value"
+        ],
+        [
+          "Brake",
+          "Unit A",
+          "A|B"
+        ],
+        [
+          "Brake",
+          "Unit B",
+          "LINE_C303 LINE_D404"
+        ]
+      ]
+    ]
+  }
+]

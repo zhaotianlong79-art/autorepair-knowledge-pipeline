@@ -1,0 +1,6 @@
+brand: aurora
+terms:
+  - canonical: 制动控制模块
+    aliases: [BCM]
+    kind: component
+    entity_id: brake-control

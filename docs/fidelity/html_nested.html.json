@@ -1,0 +1,113 @@
+{
+  "document": {
+    "schema_version": "1.0",
+    "doc_id": "doc-1b1439974821",
+    "brand": "aurora",
+    "model": "unknown",
+    "year_range": "unknown",
+    "source_name": "html_nested.html",
+    "source_hash": "1b1439974821e7faa3fb53fb064d177159dec8f4d5b0737004d70197fe1e8e86",
+    "parser": "html-dom/1",
+    "blocks": [
+      {
+        "block_id": "b0001",
+        "kind": "heading",
+        "original": "Nested document",
+        "text": "Nested document",
+        "location": {
+          "dom": "/html[1]/body[1]/h1[1]"
+        },
+        "section": "top",
+        "links": []
+      },
+      {
+        "block_id": "b0002",
+        "kind": "paragraph",
+        "original": "LOOSE_FRONT",
+        "text": "LOOSE_FRONT",
+        "location": {
+          "dom": "/html[1]/body[1]/div[1]/text()[2]"
+        },
+        "section": "top",
+        "links": []
+      },
+      {
+        "block_id": "b0003",
+        "kind": "paragraph",
+        "original": "PARA_MIDDLE",
+        "text": "PARA_MIDDLE",
+        "location": {
+          "dom": "/html[1]/body[1]/div[1]/p[1]"
+        },
+        "section": "top",
+        "links": []
+      },
+      {
+        "block_id": "b0004",
+        "kind": "paragraph",
+        "original": "LOOSE_TAIL",
+        "text": "LOOSE_TAIL",
+        "location": {
+          "dom": "/html[1]/body[1]/div[1]/text()[4]"
+        },
+        "section": "top",
+        "links": []
+      },
+      {
+        "block_id": "b0005",
+        "kind": "heading",
+        "original": "Nested list",
+        "text": "Nested list",
+        "location": {
+          "dom": "/html[1]/body[1]/h2[1]"
+        },
+        "section": "sub",
+        "links": []
+      },
+      {
+        "block_id": "b0006",
+        "kind": "list",
+        "original": "STEP_PARENT STEP_CHILD",
+        "text": "STEP_PARENT STEP_CHILD",
+        "location": {
+          "dom": "/html[1]/body[1]/ol[1]/li[1]"
+        },
+        "section": "sub",
+        "links": []
+      },
+      {
+        "block_id": "b0007",
+        "kind": "list",
+        "original": "STEP_SECOND",
+        "text": "STEP_SECOND",
+        "location": {
+          "dom": "/html[1]/body[1]/ol[1]/li[2]"
+        },
+        "section": "sub",
+        "links": []
+      },
+      {
+        "block_id": "b0008",
+        "kind": "paragraph",
+        "original": "LINK_BACK and LINK_EXTERNAL",
+        "text": "LINK_BACK and LINK_EXTERNAL",
+        "location": {
+          "dom": "/html[1]/body[1]/p[1]"
+        },
+        "section": "sub",
+        "links": [
+          "#top",
+          "https://example.com/manual"
+        ]
+      }
+    ],
+    "issues": [],
+    "expected_blocks": 8,
+    "component_mentions": []
+  },
+  "rules_hash": "ed50bb10374deb206b55d24e31377825505b5f75712bede1019d33de27ae67df",
+  "changes": [],
+  "issues": [],
+  "status": "passed",
+  "reviews": []
+}

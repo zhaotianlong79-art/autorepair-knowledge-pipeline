@@ -1,0 +1,6 @@
+brand: atlas
+terms:
+  - canonical: 车身控制模块
+    aliases: [BCM]
+    kind: component
+    entity_id: body-control

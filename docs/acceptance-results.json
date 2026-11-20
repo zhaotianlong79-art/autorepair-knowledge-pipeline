@@ -1,0 +1,887 @@
+{
+  "scope": "24 original demonstration fixtures exist; retrieval metrics below cover only the 8 HTML/JSON holdout files. Candidate retrieval includes review documents and does not imply approval for ingestion.",
+  "queries": [
+    {
+      "brand": "aurora",
+      "query": "氧传感器",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "氧传感器",
+      "before_hit": false,
+      "before_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0002",
+          "text": "氧传感器 应使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-A100 |"
+        },
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "扭矩扳手",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "扭矩扳手",
+      "before_hit": false,
+      "before_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| oxygen sensor | 42 Nm | PN-A100 |"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0002",
+          "text": "氧传感器 应使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0002",
+          "text": "警告：不得带电拆卸 制动控制模块。使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-A100 |"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "故障诊断码",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "P0300",
+      "before_hit": false,
+      "before_top5": [],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 故障诊断码 P0300。"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "间歇性接触不良",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "间歇性接触不良",
+      "before_hit": false,
+      "before_top5": [],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0005",
+          "text": "检测 间歇性接触不良。"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "42 Nm",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "42 Nm",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| oxygen sensor | 42 Nm | PN-A100 |"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-A100 |"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "P0300",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "P0300",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 diagnostic trouble code P0300。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 故障诊断码 P0300。"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "返回演示维修手册",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "返回演示维修手册",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0006",
+          "text": "返回演示维修手册"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0001",
+          "text": "演示维修手册"
+        },
+        {
+          "source": "04-extra.json",
+          "block_id": "b0001",
+          "text": "扩展维修记录"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0006",
+          "text": "返回演示维修手册"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0001",
+          "text": "演示维修手册"
+        },
+        {
+          "source": "04-extra.json",
+          "block_id": "b0001",
+          "text": "扩展维修记录"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "氧传感器 扭矩扳手",
+      "expected_source": "03-procedure.json",
+      "expected_evidence": "氧传感器",
+      "before_hit": false,
+      "before_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| oxygen sensor | 42 Nm | PN-A100 |"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0002",
+          "text": "氧传感器 应使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-A100 |"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0002",
+          "text": "警告：不得带电拆卸 制动控制模块。使用 扭矩扳手。"
+        },
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "12 V",
+      "expected_source": "03-procedure.json",
+      "expected_evidence": "12 V",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0003",
+          "text": "部件号 PN-A100。检测电压 12 V。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0003",
+          "text": "部件号 PN-A100。检测电压 12 V。"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "传感器更换流程",
+      "expected_source": "03-procedure.json",
+      "expected_evidence": "传感器更换流程",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        },
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0002",
+          "text": "氧传感器 应使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-A100 |"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "扩展维修记录",
+      "expected_source": "04-extra.json",
+      "expected_evidence": "扩展维修记录",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "04-extra.json",
+          "block_id": "b0001",
+          "text": "扩展维修记录"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0001",
+          "text": "演示维修手册"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0006",
+          "text": "返回演示维修手册"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "04-extra.json",
+          "block_id": "b0001",
+          "text": "扩展维修记录"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0001",
+          "text": "演示维修手册"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0006",
+          "text": "返回演示维修手册"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "警告不得忽略",
+      "expected_source": "04-extra.json",
+      "expected_evidence": "警告不得忽略",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "04-extra.json",
+          "block_id": "b0002",
+          "text": "BCM 对应 制动控制模块，警告不得忽略。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0002",
+          "text": "警告：不得带电拆卸 BCM。使用 torque wrench。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "04-extra.json",
+          "block_id": "b0002",
+          "text": "制动控制模块 对应 制动控制模块，警告不得忽略。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0002",
+          "text": "警告：不得带电拆卸 制动控制模块。使用 扭矩扳手。"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "XCU",
+      "expected_source": "02-review.html",
+      "expected_evidence": "XCU",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0002",
+          "text": "XCU 需要人工确认。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0002",
+          "text": "XCU 需要人工确认。"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "连接检查",
+      "expected_source": "02-review.html",
+      "expected_evidence": "连接检查",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0001",
+          "text": "连接检查"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 diagnostic trouble code P0300。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0001",
+          "text": "连接检查"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 故障诊断码 P0300。"
+        }
+      ]
+    },
+    {
+      "brand": "aurora",
+      "query": "查看缺失章节",
+      "expected_source": "02-review.html",
+      "expected_evidence": "查看缺失章节",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0003",
+          "text": "查看缺失章节"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0003",
+          "text": "查看缺失章节"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "氧传感器",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "氧传感器",
+      "before_hit": false,
+      "before_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0002",
+          "text": "氧传感器 应使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-B200 |"
+        },
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "扭矩扳手",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "扭矩扳手",
+      "before_hit": false,
+      "before_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| oxygen sensor | 42 Nm | PN-B200 |"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0002",
+          "text": "氧传感器 应使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0002",
+          "text": "警告：不得带电拆卸 车身控制模块。使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-B200 |"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "故障诊断码",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "P0300",
+      "before_hit": false,
+      "before_top5": [],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 故障诊断码 P0300。"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "间歇性接触不良",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "间歇性接触不良",
+      "before_hit": false,
+      "before_top5": [],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0005",
+          "text": "检测 间歇性接触不良。"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "42 Nm",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "42 Nm",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| oxygen sensor | 42 Nm | PN-B200 |"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-B200 |"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "P0300",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "P0300",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 diagnostic trouble code P0300。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 故障诊断码 P0300。"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "返回演示维修手册",
+      "expected_source": "01-manual.html",
+      "expected_evidence": "返回演示维修手册",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0006",
+          "text": "返回演示维修手册"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0001",
+          "text": "演示维修手册"
+        },
+        {
+          "source": "04-extra.json",
+          "block_id": "b0001",
+          "text": "扩展维修记录"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "01-manual.html",
+          "block_id": "b0006",
+          "text": "返回演示维修手册"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0001",
+          "text": "演示维修手册"
+        },
+        {
+          "source": "04-extra.json",
+          "block_id": "b0001",
+          "text": "扩展维修记录"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "氧传感器 扭矩扳手",
+      "expected_source": "03-procedure.json",
+      "expected_evidence": "氧传感器",
+      "before_hit": false,
+      "before_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| oxygen sensor | 42 Nm | PN-B200 |"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0002",
+          "text": "氧传感器 应使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-B200 |"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0002",
+          "text": "警告：不得带电拆卸 车身控制模块。使用 扭矩扳手。"
+        },
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "12 V",
+      "expected_source": "03-procedure.json",
+      "expected_evidence": "12 V",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0003",
+          "text": "部件号 PN-B200。检测电压 12 V。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0003",
+          "text": "部件号 PN-B200。检测电压 12 V。"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "传感器更换流程",
+      "expected_source": "03-procedure.json",
+      "expected_evidence": "传感器更换流程",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0001",
+          "text": "传感器更换流程"
+        },
+        {
+          "source": "03-procedure.json",
+          "block_id": "b0002",
+          "text": "氧传感器 应使用 扭矩扳手。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0003",
+          "text": "| 部件 | 扭矩 | 部件号 |\n| --- | --- | --- |\n| 氧传感器 | 42 Nm | PN-B200 |"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "扩展维修记录",
+      "expected_source": "04-extra.json",
+      "expected_evidence": "扩展维修记录",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "04-extra.json",
+          "block_id": "b0001",
+          "text": "扩展维修记录"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0001",
+          "text": "演示维修手册"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0006",
+          "text": "返回演示维修手册"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "04-extra.json",
+          "block_id": "b0001",
+          "text": "扩展维修记录"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0001",
+          "text": "演示维修手册"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0006",
+          "text": "返回演示维修手册"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "警告不得忽略",
+      "expected_source": "04-extra.json",
+      "expected_evidence": "警告不得忽略",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "04-extra.json",
+          "block_id": "b0002",
+          "text": "BCM 对应 车身控制模块，警告不得忽略。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0002",
+          "text": "警告：不得带电拆卸 BCM。使用 torque wrench。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "04-extra.json",
+          "block_id": "b0002",
+          "text": "车身控制模块 对应 车身控制模块，警告不得忽略。"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0002",
+          "text": "警告：不得带电拆卸 车身控制模块。使用 扭矩扳手。"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "XCU",
+      "expected_source": "02-review.html",
+      "expected_evidence": "XCU",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0002",
+          "text": "XCU 需要人工确认。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0002",
+          "text": "XCU 需要人工确认。"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "连接检查",
+      "expected_source": "02-review.html",
+      "expected_evidence": "连接检查",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0001",
+          "text": "连接检查"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 diagnostic trouble code P0300。"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0001",
+          "text": "连接检查"
+        },
+        {
+          "source": "01-manual.html",
+          "block_id": "b0004",
+          "text": "检查 故障诊断码 P0300。"
+        }
+      ]
+    },
+    {
+      "brand": "atlas",
+      "query": "查看缺失章节",
+      "expected_source": "02-review.html",
+      "expected_evidence": "查看缺失章节",
+      "before_hit": true,
+      "before_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0003",
+          "text": "查看缺失章节"
+        }
+      ],
+      "after_hit": true,
+      "after_top5": [
+        {
+          "source": "02-review.html",
+          "block_id": "b0003",
+          "text": "查看缺失章节"
+        }
+      ]
+    }
+  ],
+  "brands": {
+    "aurora": {
+      "questions": 15,
+      "before_hits": 10,
+      "after_hits": 15,
+      "passed_documents": 2,
+      "review_documents": 2
+    },
+    "atlas": {
+      "questions": 15,
+      "before_hits": 10,
+      "after_hits": 15,
+      "passed_documents": 2,
+      "review_documents": 2
+    }
+  },
+  "protected_blocks": {
+    "unchanged": 34,
+    "total": 34
+  },
+  "detected_issue_codes": {
+    "content.duplicate": 2,
+    "term.unknown": 2,
+    "reference.broken": 2,
+    "json.unknown_fields": 2
+  }
+}
