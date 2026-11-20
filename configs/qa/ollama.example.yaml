@@ -1,0 +1,6 @@
+# 仅在显式选择 Ollama 问答时使用；本项目不会启动服务或下载此模型。
+# 自行确认指定服务可接收问题及脱敏后的正式证据。
+endpoint: http://127.0.0.1:11434/api/chat
+model: qwen3:4b
+# api_key_env: AUTOREPAIR_QA_TOKEN  # 如服务需要认证，只填写环境变量名
+# timeout_seconds: 60

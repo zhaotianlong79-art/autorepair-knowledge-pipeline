@@ -5,6 +5,7 @@ import streamlit as st
 from autorepair.evidence_ui import evidence_panel, render_images, render_table
 from autorepair.lifecycle_ui import lifecycle_controls
 from autorepair.metadata_ui import correction_fields, filter_fields
+from autorepair.qa_ui import render_qa
 from autorepair.storage import Store
 
 
@@ -96,6 +97,7 @@ def render_knowledge(store: Store, brand: str):
     )
     if not query.strip():
         return
+    render_qa(store, brand, query, filters, mode)
     try:
         with st.spinner("正在检索"):
             hits = store.search(query, brand, filters=filters, mode=mode)
@@ -106,7 +108,7 @@ def render_knowledge(store: Store, brand: str):
         st.info("正式知识库没有匹配证据。请检查品牌、关键词及文档审核状态。")
     if hits and mode != "bm25":
         st.caption(
-            "语义相似度及融合分数仅用于候选排序，不能证明答案存在或资料适用。请核对原文；当前不生成问答。"
+            "语义相似度及融合分数仅用于候选排序，不能证明答案存在或资料适用。请核对原文；问答需在「带引用问答」中显式点击。"
         )
     for hit in hits:
         st.markdown(f"**{hit['source_name']} · {hit['doc_id']} / {hit['chunk_id']}**")
@@ -170,4 +172,4 @@ def render_knowledge(store: Store, brand: str):
                     ]
                 }
             )
-    st.caption("分数用于相关性排序，不代表答案正确概率。问答按计划后续实现。")
+    st.caption("分数用于相关性排序，不代表答案正确概率。可在「带引用问答」中核对完整证据摘录。")

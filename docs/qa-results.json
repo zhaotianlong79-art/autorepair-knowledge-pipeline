@@ -1,0 +1,82 @@
+{
+  "scope": "Self-authored pipeline and protocol acceptance; no real LLM quality claim, no user data cleanup.",
+  "passed": true,
+  "checks": 18,
+  "results": [
+    {
+      "name": "aurora-pending-image-not-published",
+      "passed": true
+    },
+    {
+      "name": "aurora-numeric-source-quote",
+      "passed": true,
+      "status": "answered"
+    },
+    {
+      "name": "aurora-scope-and-provenance",
+      "passed": true
+    },
+    {
+      "name": "aurora-warning-table-steps",
+      "passed": true
+    },
+    {
+      "name": "aurora-html-no-invented-page",
+      "passed": true
+    },
+    {
+      "name": "aurora-no-answer",
+      "passed": true
+    },
+    {
+      "name": "atlas-pending-image-not-published",
+      "passed": true
+    },
+    {
+      "name": "atlas-numeric-source-quote",
+      "passed": true,
+      "status": "answered"
+    },
+    {
+      "name": "atlas-scope-and-provenance",
+      "passed": true
+    },
+    {
+      "name": "atlas-warning-table-steps",
+      "passed": true
+    },
+    {
+      "name": "atlas-html-no-invented-page",
+      "passed": true
+    },
+    {
+      "name": "atlas-no-answer",
+      "passed": true
+    },
+    {
+      "name": "require-vehicle-scope",
+      "passed": true
+    },
+    {
+      "name": "wrong-model-excluded",
+      "passed": true
+    },
+    {
+      "name": "ollama-http-protocol-simulation",
+      "passed": true,
+      "real_model": false
+    },
+    {
+      "name": "invalid-reference-blocked",
+      "passed": true
+    },
+    {
+      "name": "conflicting-parameters-refused",
+      "passed": true
+    },
+    {
+      "name": "withdrawn-no-answer",
+      "passed": true
+    }
+  ]
+}

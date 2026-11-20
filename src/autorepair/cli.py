@@ -152,6 +152,14 @@ def main():
     semantic_index.add_argument("--reason", default="")
     model = commands.add_parser("semantic-model", help="查看固定模型配置，显式下载到本地缓存")
     model.add_argument("--download", action="store_true")
+    ask = commands.add_parser("ask", help="基于当前正式证据摘录回答，附来源和页码")
+    ask.add_argument("question")
+    ask.add_argument("--brand", required=True)
+    ask.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
+    ask.add_argument("--mode", choices=["bm25", "semantic", "hybrid"], default="bm25")
+    ask.add_argument("--engine", choices=["extractive", "ollama"], default="extractive")
+    ask.add_argument("--qa-config", type=Path, help="显式 Ollama 配置文件；不允许在文件中填写密钥")
+    filter_args(ask)
     args = parser.parse_args()
     if args.command == "semantic-model":
         from dataclasses import asdict
@@ -237,7 +245,28 @@ def main():
                 or (args.command == "semantic-index" and args.mode == "check")
                 else Store(args.database)
             )
-            if args.command == "semantic-index":
+            if args.command == "ask":
+                from autorepair.qa import answer
+                from autorepair.qa_provider import OllamaSelector, load_qa_config
+
+                if args.engine == "ollama" and args.qa_config is None:
+                    parser.error("Ollama 问答须显式提供 --qa-config")
+                if args.engine == "extractive" and args.qa_config is not None:
+                    parser.error("--qa-config 仅用于显式选择的 Ollama 模式")
+                selector = (
+                    OllamaSelector(load_qa_config(args.qa_config))
+                    if args.engine == "ollama"
+                    else None
+                )
+                output = answer(
+                    store,
+                    args.question,
+                    args.brand,
+                    filters=read_filter(args),
+                    retrieval_mode=args.mode,
+                    selector=selector,
+                )
+            elif args.command == "semantic-index":
                 output = store.maintain_semantic_index(
                     args.brand, mode=args.mode, actor=args.actor, reason=args.reason
                 )
