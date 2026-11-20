@@ -9,34 +9,44 @@ from pathlib import Path
 import streamlit as st
 
 from autorepair.config import load_config
+from autorepair.knowledge_ui import render_knowledge
 from autorepair.pipeline import confirm_completeness, export, markdown, report_markdown, run
 from autorepair.search import search
+from autorepair.storage import Store
 
 ROOT = Path(__file__).parent
 st.set_page_config(page_title="维修知识加工工作台", page_icon="🔧", layout="wide")
 st.title("维修知识加工工作台")
 st.caption("品牌规则 · 来源追踪 · 质量门禁。演示材料使用虚构品牌与自制参数，不用于实际维修。")
 with st.sidebar:
-    st.subheader("加工设置")
-    brand = st.selectbox("品牌", ["aurora", "atlas"], key="brand")
-    source = st.radio("输入方式", ["内置演示", "上传文件"])
-    ocr = st.checkbox(
-        "扫描 PDF 识别", value=False, help="需要 Docling 与模型缓存，首次运行会下载模型。"
+    workspace = st.radio("工作区", ["文档加工", "知识库"], key="workspace")
+    st.subheader("加工设置" if workspace == "文档加工" else "知识库范围")
+    brands = sorted(p.stem for p in (ROOT / "configs/brands").glob("*.yaml"))
+    brand = st.selectbox(
+        "品牌", brands, index=brands.index("aurora") if "aurora" in brands else 0, key="brand"
     )
-    uploaded = (
-        st.file_uploader(
-            "选择文档", type=["html", "htm", "json", "pdf", "docx"], accept_multiple_files=True
+    if workspace == "文档加工":
+        source = st.radio("输入方式", ["内置演示", "上传文件"])
+        ocr = st.checkbox(
+            "扫描 PDF 识别", value=False, help="需要 Docling 与模型缓存，首次运行会下载模型。"
         )
-        if source == "上传文件"
-        else []
-    )
-    demo = (
-        st.selectbox("演示范围", ["静态 HTML 与 JSON", "全部格式含 PDF 和 DOCX"])
-        if source == "内置演示"
-        else ""
-    )
-    start = st.button("开始加工", type="primary", width="stretch")
-    st.caption("只有通过门禁的文档进入正式 JSONL；待复核材料单独保存。")
+        uploaded = (
+            st.file_uploader(
+                "选择文档", type=["html", "htm", "json", "pdf", "docx"], accept_multiple_files=True
+            )
+            if source == "上传文件"
+            else []
+        )
+        demo = (
+            st.selectbox("演示范围", ["静态 HTML 与 JSON", "全部格式含 PDF 和 DOCX"])
+            if source == "内置演示"
+            else ""
+        )
+        start = st.button("开始加工", type="primary", width="stretch")
+        st.caption("只有通过门禁的文档进入正式 JSONL；待复核材料单独保存。")
+if workspace == "知识库":
+    render_knowledge(Store(ROOT / "artifacts/knowledge.sqlite"), brand)
+    st.stop()
 if start:
     try:
         cfg = load_config(ROOT / "configs", brand)

@@ -1,0 +1,58 @@
+"""Independent catalog and current approved corpus search for the local workbench."""
+
+import streamlit as st
+
+from autorepair.storage import Store
+
+
+def render_knowledge(store: Store, brand: str):
+    st.subheader("知识库")
+    st.caption("跨批次累计的当前文档。正式检索仅包含通过项；历史运行仍可在命令行显式查询。")
+    entries = store.list_documents(brand)
+    columns = st.columns(3)
+    for col, status, label in zip(
+        columns, ["passed", "review", "failed"], ["正式文档", "待复核", "失败"], strict=True
+    ):
+        col.metric(label, sum(e["status"] == status for e in entries))
+    if not entries:
+        st.info("当前品牌尚无入库记录。先在「文档加工」中处理文件，通过项会自动进入正式知识库。")
+        return
+    selected_status = st.selectbox(
+        "目录状态", ["全部", "passed", "review", "failed"], key="catalog-status"
+    )
+    visible = [e for e in entries if selected_status == "全部" or e["status"] == selected_status]
+    st.dataframe(
+        [
+            {
+                "文档 ID": e["doc_id"],
+                "来源文件": e["source_name"],
+                "车型": e["model"],
+                "年份": e["year_range"],
+                "状态": e["status"],
+                "来源运行": e["run_id"],
+                "更新时间": e["updated_at"],
+            }
+            for e in visible
+        ],
+        width="stretch",
+    )
+    query = st.text_input(
+        "查询正式知识库", key="knowledge-query", placeholder="术语、部件号、故障码或问题关键词"
+    )
+    if not query.strip():
+        return
+    hits = store.search(query, brand)
+    if not hits:
+        st.info("正式知识库没有匹配证据。请检查品牌、关键词及文档审核状态。")
+    for hit in hits:
+        st.markdown(f"**{hit['source_name']} · {hit['doc_id']} / {hit['block_id']}**")
+        st.caption(" / ".join(hit["section_path"]) or hit["section"] or "未标注章节")
+        st.code(hit["text"], language=None)
+        st.caption(
+            f"车型 {hit['model']} · 年份 {hit['year_range']} · 来源运行 {hit['source_run_id']} · 相关性 {hit['score']}"
+        )
+        with st.expander("来源位置与版本"):
+            st.json({k: hit[k] for k in ["brand", "source_hash", "rules_hash", "location"]})
+    st.caption(
+        "分数用于相关性排序，不代表答案正确概率。当前采用关键词检索，语义检索和问答按计划后续实现。"
+    )

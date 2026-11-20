@@ -20,13 +20,17 @@ def main():
     ingest.add_argument("--output", type=Path, default=Path("artifacts"))
     ingest.add_argument("--ocr", action="store_true")
     ingest.add_argument("--models", help="Docling 预下载模型目录")
-    lookup = commands.add_parser("search", help="检索已保存运行中的来源证据")
+    lookup = commands.add_parser("search", help="默认检索正式知识库；--run 可查询历史批次")
     lookup.add_argument("query")
-    lookup.add_argument("--run", required=True)
+    lookup.add_argument("--run", help="历史运行 ID；不填则查询当前正式知识库")
     lookup.add_argument("--brand", required=True)
     lookup.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
     lookup.add_argument("--include-review", action="store_true")
     lookup.add_argument("--original", action="store_true")
+    catalog = commands.add_parser("catalog", help="列出品牌知识库文档及最近状态")
+    catalog.add_argument("--brand", required=True)
+    catalog.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
+    catalog.add_argument("--status", choices=["passed", "review", "failed"])
     args = parser.parse_args()
     if args.command == "process":
         try:
@@ -70,17 +74,25 @@ def main():
         except (ValueError, FileNotFoundError) as exc:
             parser.error(str(exc))
     else:
-        results = Store(args.database).load_run(args.run)
-        print(
-            json.dumps(
-                search(
-                    results,
+        try:
+            store = Store(args.database)
+            if args.command == "catalog":
+                output = store.list_documents(args.brand, status=args.status)
+            elif args.run:
+                output = search(
+                    store.load_run(args.run),
                     args.query,
                     args.brand,
                     original=args.original,
                     include_review=args.include_review,
-                ),
-                ensure_ascii=False,
-                indent=2,
-            )
-        )
+                )
+                for hit in output:
+                    hit["source_run_id"] = args.run
+                    hit["historical"] = True
+            else:
+                if args.include_review:
+                    parser.error("正式知识库不包含待复核文档；演示查询请显式指定 --run")
+                output = store.search(args.query, args.brand, original=args.original)
+            print(json.dumps(output, ensure_ascii=False, indent=2))
+        except (KeyError, ValueError) as exc:
+            parser.error(str(exc))

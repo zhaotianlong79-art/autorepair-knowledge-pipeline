@@ -2,7 +2,7 @@
 
 汽车维修知识加工与质量校验平台。将 HTML、JSON 内嵌 HTML、DOCX、PDF 加工成可追溯的 Markdown 和结构化语料，用品牌规则规范术语，并在入库前执行质量门禁。
 
-这是面向知识加工岗位的本地作品项目。品牌、参数和样例文档均为自制演示数据。尚未在真实厂商维修手册上验证，不能据此指导实际维修。
+这是面向知识加工岗位的本地作品项目。品牌、参数和样例文档均为自制演示数据。已对 3 份公开厂商维修通报抽样验证，仍不能据此指导实际维修。
 
 ![本地工作台](docs/workbench.png)
 
@@ -53,11 +53,15 @@ HF_HOME="$PWD/work/huggingface" uv run --extra docling autorepair process exampl
 # 扫描样例
 HF_HOME="$PWD/work/huggingface" uv run --extra docling autorepair process examples/holdout/aurora/06-service.pdf --brand aurora --ocr
 
-# 将上一步输出的实际 run_id 填入，不要原样使用占位文本
+# 查询跨批次累计的当前正式知识库
+uv run autorepair search '氧传感器' --brand aurora
+uv run autorepair catalog --brand aurora
+
+# 显式查询历史批次；使用实际运行 ID
 uv run autorepair search '氧传感器' --brand aurora --run RUN_ID
 ```
 
-检索默认排除待复核文档。加 `--include-review` 可做演示对照，加 `--original` 检索脱敏原文。分数为相关性排序，不是正确概率。
+默认查询当前正式知识库并排除待复核文档。显式指定 `--run` 后可用 `--include-review` 做历史演示对照；历史结果不表示当前仍获准发布。加 `--original` 检索脱敏原文。分数为相关性排序，不是正确概率。
 
 ## 结果在哪里
 
@@ -155,3 +159,10 @@ FIDELITY_REQUIRE_PASS=1 FIDELITY_OUTPUT="$PWD/docs/fidelity-fixed" \
 使用 NHTSA 公开的 Toyota、Honda、Subaru 厂商维修通报共 16 页复测，修复稀疏边框表格退化、多层表头、未编号章节、跨页步骤编号和小型图标遗漏。固定抽查点复测：表格 8/8、章节 20/20、图片 16/16、步骤编号 5/5。真实资料仍需人工复核，原文及完整衍生产物不随仓库分发。
 
 来源、修复前后证据和复现方法见 [真实汽车维修文档转换验证](docs/real-documents/README.md)。
+
+
+## 知识库建设（0.4.0，第 1 项）
+
+工作台侧边栏选择「知识库」，无需重新加工即可查看当前品牌文档目录并检索跨批次累计的通过资料。目录展示正式、待复核及失败状态；查询仅召回当前正式项，包含来源运行、规则摘要、章节路径、车型及年份。旧数据库自动补建目录。同品牌同文档 ID 更新为待复核或失败时，原通过内容立即退出正式查询；历史运行保留用于审计。
+
+当前仍按解析块做 BM25 关键词检索，查询时构建内存索引；章节切块、元数据录入与范围过滤、附件关联、版本管理、语义检索及带引用问答按 [知识库建设与实施计划](docs/知识库建设与实施计划.md) 顺序推进。文件内容改变产生新 ID 时不会自动替换旧文档，显式版本替换在第 5 项实现。

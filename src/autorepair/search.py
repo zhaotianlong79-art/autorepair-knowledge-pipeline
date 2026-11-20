@@ -29,6 +29,13 @@ def search(
             rows.append(
                 {
                     "doc_id": result.document.doc_id,
+                    "brand": result.document.brand,
+                    "model": result.document.model,
+                    "year_range": result.document.year_range,
+                    "source_name": result.document.source_name,
+                    "source_hash": result.document.source_hash,
+                    "section_path": block.section_path,
+                    "image_src": block.image_src,
                     "block_id": block.block_id,
                     "text": text,
                     "section": block.section,
