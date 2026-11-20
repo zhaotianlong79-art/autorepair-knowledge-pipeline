@@ -1,0 +1,1081 @@
+{
+  "schema_version": 1,
+  "dataset_id": "repair-v1",
+  "annotation": {
+    "origin": "assistant-source-authored",
+    "independent_human_review": false,
+    "review_status": "pending",
+    "split": "new fixtures authored after production engine freeze; not externally independent"
+  },
+  "documents": [
+    {
+      "id": "a-brake",
+      "file": "corpus/a-brake.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "a-brake",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "a-battery",
+      "file": "corpus/a-battery.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "a-battery",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "a-code",
+      "file": "corpus/a-code.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "a-code",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "a-parts",
+      "file": "corpus/a-parts.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "a-parts",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "a-filter-old",
+      "file": "corpus/a-filter-old.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "a-filter",
+      "expected_quality": "passed",
+      "expected_state": "superseded"
+    },
+    {
+      "id": "a-filter-new",
+      "file": "corpus/a-filter-new.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R2"
+      },
+      "logical_id": "a-filter",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "a-withdrawn",
+      "file": "corpus/a-withdrawn.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "a-withdrawn",
+      "expected_quality": "passed",
+      "expected_state": "withdrawn"
+    },
+    {
+      "id": "a-review",
+      "file": "corpus/a-review.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "a-review",
+      "expected_quality": "review",
+      "expected_state": "staged"
+    },
+    {
+      "id": "a-unknown",
+      "file": "corpus/a-unknown.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "unknown",
+        "year_range": "unknown",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "a-unknown",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "a-conflict-one",
+      "file": "corpus/a-conflict-one.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "a-conflict-one",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "a-conflict-two",
+      "file": "corpus/a-conflict-two.html",
+      "brand": "aurora",
+      "metadata": {
+        "model": "aster",
+        "year_range": "2022-2024",
+        "document_type": "manual",
+        "document_version": "R2"
+      },
+      "logical_id": "a-conflict-two",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "t-brake",
+      "file": "corpus/t-brake.html",
+      "brand": "atlas",
+      "metadata": {
+        "model": "ridge",
+        "year_range": "2020-2021",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "t-brake",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "t-code",
+      "file": "corpus/t-code.html",
+      "brand": "atlas",
+      "metadata": {
+        "model": "ridge",
+        "year_range": "2020-2021",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "t-code",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "t-parts",
+      "file": "corpus/t-parts.html",
+      "brand": "atlas",
+      "metadata": {
+        "model": "ridge",
+        "year_range": "2020-2021",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "t-parts",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "t-bearing",
+      "file": "corpus/t-bearing.html",
+      "brand": "atlas",
+      "metadata": {
+        "model": "ridge",
+        "year_range": "2020-2021",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "t-bearing",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "t-coolant",
+      "file": "corpus/t-coolant.html",
+      "brand": "atlas",
+      "metadata": {
+        "model": "ridge",
+        "year_range": "2020-2021",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "t-coolant",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "t-lamp-old",
+      "file": "corpus/t-lamp-old.html",
+      "brand": "atlas",
+      "metadata": {
+        "model": "ridge",
+        "year_range": "2020-2021",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "t-lamp",
+      "expected_quality": "passed",
+      "expected_state": "superseded"
+    },
+    {
+      "id": "t-lamp-new",
+      "file": "corpus/t-lamp-new.html",
+      "brand": "atlas",
+      "metadata": {
+        "model": "ridge",
+        "year_range": "2020-2021",
+        "document_type": "manual",
+        "document_version": "R2"
+      },
+      "logical_id": "t-lamp",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "t-scope",
+      "file": "corpus/t-scope.html",
+      "brand": "atlas",
+      "metadata": {
+        "model": "summit",
+        "year_range": "2024-2025",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "t-scope",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    },
+    {
+      "id": "t-table",
+      "file": "corpus/t-table.html",
+      "brand": "atlas",
+      "metadata": {
+        "model": "ridge",
+        "year_range": "2020-2021",
+        "document_type": "manual",
+        "document_version": "R1"
+      },
+      "logical_id": "t-table",
+      "expected_quality": "passed",
+      "expected_state": "active"
+    }
+  ],
+  "cases": [
+    {
+      "id": "a01",
+      "brand": "aurora",
+      "question": "前制动卡钳支架螺栓扭矩是多少",
+      "category": "exact",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-brake",
+          "anchor": "78 Nm"
+        }
+      ],
+      "required_warnings": [
+        "禁止踩下制动踏板"
+      ],
+      "annotation_note": ""
+    },
+    {
+      "id": "a02",
+      "brand": "aurora",
+      "question": "前制动卡钳导向销怎么检查",
+      "category": "procedure",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-brake",
+          "anchor": "导向销滑动状态"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a03",
+      "brand": "aurora",
+      "question": "前轮刹车钳支撑螺丝要拧多紧",
+      "category": "synonym",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-brake",
+          "anchor": "78 Nm"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": "口语同义，应召回卡钳支架参数，摘录规则可能保守拒答。"
+    },
+    {
+      "id": "a04",
+      "brand": "aurora",
+      "question": "蓄电池静置电压标准是多少",
+      "category": "numeric",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-battery",
+          "anchor": "12.6 V"
+        }
+      ],
+      "required_warnings": [
+        "禁止在蓄电池附近产生火花"
+      ],
+      "annotation_note": ""
+    },
+    {
+      "id": "a05",
+      "brand": "aurora",
+      "question": "电瓶打火没力气，接线哪里容易出问题",
+      "category": "synonym",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-battery",
+          "anchor": "极柱腐蚀与搭铁连接"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a06",
+      "brand": "aurora",
+      "question": "P0456 应检查哪些部位",
+      "category": "fault_code",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-code",
+          "anchor": "油箱盖密封圈"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a07",
+      "brand": "aurora",
+      "question": "PN-CKP-271 是哪个部件",
+      "category": "part_number",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-parts",
+          "anchor": "曲轴位置传感器"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a08",
+      "brand": "aurora",
+      "question": "曲轴位置传感器插接器检查什么",
+      "category": "exact",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-parts",
+          "anchor": "锁止状态"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a09",
+      "brand": "aurora",
+      "question": "空气滤清器更换周期是多少",
+      "category": "version",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-filter-new",
+          "anchor": "12000 km"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": "旧版9000 km不能参与回答。"
+    },
+    {
+      "id": "a10",
+      "brand": "aurora",
+      "question": "空气滤清器滤芯怎么检查",
+      "category": "version",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "a-filter-new",
+          "anchor": "滤芯破损和壳体密封"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a11",
+      "brand": "aurora",
+      "question": "驻车制动拉索调整间隙是多少",
+      "category": "withdrawn",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": "唯一资料已人工撤下。"
+    },
+    {
+      "id": "a12",
+      "brand": "aurora",
+      "question": "节气门检测电压是多少",
+      "category": "review",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": "唯一资料待复核，不应召回99或4.8等候选参数。"
+    },
+    {
+      "id": "a13",
+      "brand": "aurora",
+      "question": "排气管法兰螺栓扭矩是多少",
+      "category": "unknown_scope",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023,
+        "include_unknown": true
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a14",
+      "brand": "aurora",
+      "question": "转向横拉杆锁紧螺母扭矩是多少",
+      "category": "conflict",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "conflicting_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": "两个独立活动资料给出48和52 Nm，不能任选。"
+    },
+    {
+      "id": "a15",
+      "brand": "aurora",
+      "question": "P0457 有什么维修要求",
+      "category": "missing_code",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a16",
+      "brand": "aurora",
+      "question": "PN-CKP-272 的装配要求",
+      "category": "missing_part",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a17",
+      "brand": "aurora",
+      "question": "导航地图怎么升级",
+      "category": "no_answer",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a18",
+      "brand": "aurora",
+      "question": "电饭锅内胆涂层脱落怎么办",
+      "category": "out_of_domain",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a19",
+      "brand": "aurora",
+      "question": "前制动卡钳支架螺栓扭矩是多少",
+      "category": "wrong_scope",
+      "filters": {
+        "model": "aster",
+        "year_start": 2025,
+        "year_end": 2025
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a20",
+      "brand": "aurora",
+      "question": "前制动卡钳支架螺栓扭矩是多少",
+      "category": "missing_scope",
+      "filters": {},
+      "expected_status": "needs_scope",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a21",
+      "brand": "aurora",
+      "question": "2022款前制动卡钳扭矩是多少",
+      "category": "year_mismatch",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "needs_scope",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "a22",
+      "brand": "aurora",
+      "question": "后制动盘固定螺钉扭矩是多少",
+      "category": "cross_brand",
+      "filters": {
+        "model": "aster",
+        "year_start": 2023,
+        "year_end": 2023
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": "后制动盘参数只存在另一品牌。"
+    },
+    {
+      "id": "t01",
+      "brand": "atlas",
+      "question": "后制动盘固定螺钉扭矩是多少",
+      "category": "numeric",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-brake",
+          "anchor": "11 Nm"
+        }
+      ],
+      "required_warnings": [
+        "不得直接触摸"
+      ],
+      "annotation_note": ""
+    },
+    {
+      "id": "t02",
+      "brand": "atlas",
+      "question": "后制动盘磨损极限是多少",
+      "category": "numeric",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-brake",
+          "anchor": "9 mm"
+        }
+      ],
+      "required_warnings": [
+        "不得直接触摸"
+      ],
+      "annotation_note": ""
+    },
+    {
+      "id": "t03",
+      "brand": "atlas",
+      "question": "后刹车碟磨到多薄就要换",
+      "category": "synonym",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-brake",
+          "anchor": "9 mm"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t04",
+      "brand": "atlas",
+      "question": "P0118 要核查哪些线路",
+      "category": "fault_code",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-code",
+          "anchor": "线束断路"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t05",
+      "brand": "atlas",
+      "question": "冷却液温度传感器电路高输入怎么检查",
+      "category": "exact",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-code",
+          "anchor": "插接器端子"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t06",
+      "brand": "atlas",
+      "question": "PN-FAN-842 对应什么部件",
+      "category": "part_number",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-parts",
+          "anchor": "散热风扇继电器"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t07",
+      "brand": "atlas",
+      "question": "散热风扇继电器触点检查什么",
+      "category": "exact",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-parts",
+          "anchor": "触点接触状态"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t08",
+      "brand": "atlas",
+      "question": "轮毂轴承嗡鸣时怎么检查",
+      "category": "procedure",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-bearing",
+          "anchor": "轴向松旷"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t09",
+      "brand": "atlas",
+      "question": "车轮跟着速度越来越嗡嗡响怎么办",
+      "category": "synonym",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-bearing",
+          "anchor": "轮毂转动粗糙感"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t10",
+      "brand": "atlas",
+      "question": "冷却液加注量是多少",
+      "category": "numeric",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-coolant",
+          "anchor": "6.4 L"
+        }
+      ],
+      "required_warnings": [
+        "禁止开启冷却液加注盖"
+      ],
+      "annotation_note": ""
+    },
+    {
+      "id": "t11",
+      "brand": "atlas",
+      "question": "换防冻液后如何把空气排干净",
+      "category": "synonym",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-coolant",
+          "anchor": "排出冷却系统残留空气"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t12",
+      "brand": "atlas",
+      "question": "前照灯近光基准下降量是多少",
+      "category": "version",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-lamp-new",
+          "anchor": "40 mm"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t13",
+      "brand": "atlas",
+      "question": "前照灯左右截止线怎么核查",
+      "category": "version",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-lamp-new",
+          "anchor": "左右灯光截止线"
+        }
+      ],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t14",
+      "brand": "atlas",
+      "question": "轮胎冷态气压是多少",
+      "category": "conflict",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "conflicting_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": "前后轮220和240不同，不应给单一数值。"
+    },
+    {
+      "id": "t15",
+      "brand": "atlas",
+      "question": "前轮轮胎冷态气压是多少",
+      "category": "table",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "answered",
+      "supports": [
+        {
+          "document_id": "t-table",
+          "anchor": "220 kPa"
+        }
+      ],
+      "required_warnings": [
+        "不等于热态读数"
+      ],
+      "annotation_note": "应答前轮数值，但当前规则可能因完整表格包含后轮而保守拒答。"
+    },
+    {
+      "id": "t16",
+      "brand": "atlas",
+      "question": "P0117 的维修步骤是什么",
+      "category": "missing_code",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t17",
+      "brand": "atlas",
+      "question": "PN-FAN-843 是什么",
+      "category": "missing_part",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t18",
+      "brand": "atlas",
+      "question": "氧传感器安装扭矩是多少",
+      "category": "wrong_scope",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": "只有summit车型的资料，不能用于ridge。"
+    },
+    {
+      "id": "t19",
+      "brand": "atlas",
+      "question": "空调滤芯拆卸方法是什么",
+      "category": "no_answer",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t20",
+      "brand": "atlas",
+      "question": "这辆车明年能卖多少钱",
+      "category": "out_of_domain",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t21",
+      "brand": "atlas",
+      "question": "前制动卡钳导向销怎么检查",
+      "category": "cross_brand",
+      "filters": {
+        "model": "ridge",
+        "year_start": 2021,
+        "year_end": 2021
+      },
+      "expected_status": "insufficient_evidence",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    },
+    {
+      "id": "t22",
+      "brand": "atlas",
+      "question": "冷却液加注量是多少",
+      "category": "missing_scope",
+      "filters": {
+        "model": "ridge"
+      },
+      "expected_status": "needs_scope",
+      "supports": [],
+      "required_warnings": [],
+      "annotation_note": ""
+    }
+  ]
+}

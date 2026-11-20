@@ -4,6 +4,23 @@
 
 这是面向知识加工岗位的本地作品项目。品牌、参数和样例文档均为自制演示数据。已对 3 份公开厂商维修通报抽样验证，仍不能据此指导实际维修。
 
+
+当前版本 **0.11.0**。已有转换、规则加工、知识库、版本维护、三种检索及引用摘录问答；评估与作品演示工程已交付，外部人工盲测仍待完成。
+
+- [作品说明与 5 分钟演示](docs/项目作品说明.md)
+- [新冻结题集结果与失败案例](docs/冻结题集评估结果.md)
+- [人工复核与数据集说明](benchmarks/repair-v1/README.md)
+
+```bash
+uv sync --frozen
+.venv/bin/python scripts/demo_knowledge.py
+.venv/bin/python -m streamlit run portfolio_app.py --server.address 127.0.0.1
+```
+
+演示使用隔离的 `work/portfolio-demo/`，非空目录不覆盖；不需要模型或密钥。Aurora 选 `aster / 2023`，Atlas 选 `ridge / 2021`。244 项软件测试通过。新题集并非全对：语义及混合前三正文召回 24/24，但可答题有标注依据作答 18/24，应拒答题拒答 19/20；标签尚未外部人工复核，不能据此宣称真实维修准确率。
+
+![知识库引用摘录演示](docs/portfolio/citation-answer.png)
+
 ![本地工作台](docs/workbench.png)
 
 ## 已实现能力
@@ -230,4 +247,17 @@ uv sync --extra docling --extra semantic
   --engine ollama --qa-config configs/qa/ollama.example.yaml
 ```
 
-引用含来源运行、块、章节、版本和实际页码；无页码不猜测。问答结果可下载 JSON，保留生成时快照。225 项测试和 18 项独立流程通过；Ollama 协议已测试，本机未执行真实 LLM 推理，不宣称生成或选证准确率。详见 [带引用问答验证](docs/带引用问答验证.md)。剩余第 8 项独立评估与作品说明。
+引用含来源运行、块、章节、版本和实际页码；无页码不猜测。问答结果可下载 JSON，保留生成时快照。225 项测试和 18 项独立流程通过；Ollama 协议已测试，本机未执行真实 LLM 推理，不宣称生成或选证准确率。详见 [带引用问答验证](docs/带引用问答验证.md)。第 8 项评估和作品工程已交付，外部人工复核待完成。
+
+
+## 评估与作品交付（0.11.0，第 8 项）
+
+新增 20 份独立于原开发样例的自制资料、44 个场景（39 种不同问题文本），首次运行前冻结来源和预标注证据；生产检索与问答引擎保持 `381040c` 基线。新评分器区分正文召回、文件／锚点匹配、来源可追溯和拒答策略，不把机械引用匹配当作语义正确。
+
+```bash
+.venv/bin/python scripts/evaluate_benchmark.py --modes bm25 \
+  --output work/benchmark.json --report work/benchmark.md
+# 已准备本地 BGE 缓存时可选 --modes bm25 semantic hybrid
+```
+
+逐题失败公开保留：同义问题门禁仍保守，“气压”参数冲突策略存在未覆盖场景。244 项软件测试与 CI 的通过不等于所有问题回答正确。人工复核表保持待填写；支持导入真实署名记录并单列认可标签子集指标。见 [第 8 项工程交付及未测项](docs/第8项评估与作品交付.md)。
