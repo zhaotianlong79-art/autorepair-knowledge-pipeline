@@ -1,0 +1,60 @@
+{
+  "scope": "Selected page-specific checks manually annotated from 16 rendered OEM pages; not a complete-document accuracy oracle.",
+  "toyota": {
+    "headings": [
+      {"page": 1, "text": "Applicability", "level": 2},
+      {"page": 1, "text": "Introduction", "level": 2},
+      {"page": 1, "text": "Production Change Information", "level": 2},
+      {"page": 2, "text": "Warranty Information", "level": 2},
+      {"page": 2, "text": "Parts Information", "level": 2},
+      {"page": 3, "text": "Required Tools & Equipment", "level": 2},
+      {"page": 3, "text": "Repair Procedure", "level": 2}
+    ],
+    "tables": [
+      {"page": 1, "contains": "Mirai", "columns": 3, "row_contains": [["2021", "Mirai", ""]]},
+      {"page": 2, "contains": "52278-50030", "columns": 4, "header_contains": ["PREVIOUS", "NEW", "PART NAME", "QTY"], "row_contains": [["52278-50030", "52278-62010", "Stopper", "2"]]},
+      {"page": 3, "contains": "01413-00072", "columns": 3, "row_contains": [["Insulated", "01413-00072", "2"], ["Insulated", "01413-00073", "2"], ["Insulated", "01413-00074", "2"]]}
+    ],
+    "figures": [
+      {"page": 4, "bbox": [119,371,335,587]}, {"page": 4, "bbox": [358,371,574,587]},
+      {"page": 5, "bbox": [119,153,334,345]}, {"page": 5, "bbox": [358,153,574,345]}, {"page": 5, "bbox": [359,520,575,664]},
+      {"page": 6, "bbox": [359,155,575,297]}, {"page": 6, "bbox": [359,394,575,675]},
+      {"page": 7, "bbox": [359,155,575,317]}, {"page": 7, "bbox": [119,441,335,657]}, {"page": 7, "bbox": [359,443,575,659]}
+    ],
+    "steps": [{"page": 8, "number": "11."}, {"page": 8, "number": "12."}, {"page": 9, "number": "21."}]
+  },
+  "honda": {
+    "headings": [
+      {"page": 1, "text": "APPLIES TO", "level": 2},
+      {"page": 1, "text": "WARRANTY CLAIM INFORMATION", "level": 2},
+      {"page": 1, "text": "Repair Procedure A", "level": 3},
+      {"page": 2, "text": "SOFTWARE INFORMATION", "level": 2},
+      {"page": 3, "text": "REPAIR PROCEDURE A", "level": 2},
+      {"page": 3, "text": "SRS Software Update", "level": 3},
+      {"page": 4, "text": "REPAIR PROCEDURE B", "level": 2}
+    ],
+    "tables": [
+      {"page": 1, "contains": "7515A9", "columns": 7, "row_contains": [["7515A9", "SRS", "0.4", "6ZS00", "VMV00", "A25085A", "77960-3A2-A81"], ["A", "all-DTC", "0.1", "6ZS00", "VMV00", "A25085A", "77960-3A2-A81"]]},
+      {"page": 2, "contains": "77959-3A2-A830", "columns": 3, "row_contains": [["2026", "SRS", "77959-3A2-A830"]]}
+    ],
+    "figures": [{"page": 3, "bbox": [56,223,428,475]}, {"page": 4, "bbox": [270,55,284,68]}],
+    "steps": [{"page": 3, "number": "4."}, {"page": 3, "number": "7."}]
+  },
+  "subaru": {
+    "headings": [
+      {"page": 1, "text": "INTRODUCTION:", "level": 2},
+      {"page": 1, "text": "PART INFORMATION:", "level": 2},
+      {"page": 2, "text": "SERVICE PROCEDURE / INFORMATION:", "level": 2},
+      {"page": 2, "text": "LEGACY & OUTBACK", "level": 3},
+      {"page": 3, "text": "Ascent", "level": 3},
+      {"page": 3, "text": "WARRANTY / CLAIM INFORMATION:", "level": 2}
+    ],
+    "tables": [
+      {"page": 1, "contains": "61041AN00A", "columns": 3, "header_contains": ["Description", "Part Number", "Production Date"], "row_contains": [["REGULATOR", "61041AN00A", "N/A"], ["RUN CHANNEL", "63527AN15A", "02/23/2024"]]},
+      {"page": 1, "contains": "63527XC00B", "columns": 3, "header_contains": ["Description", "Part Number", "Production Date"], "row_contains": [["RUN CHANNEL", "63527XC03D", "02/23/2024"]]},
+      {"page": 3, "contains": "B850-286", "columns": 4, "row_contains": [["MOTOR", "B850-286", "0.9", "SBW-21"], ["MOTOR", "C850-275", "0.3", "SBW-21"]]}
+    ],
+    "figures": [{"page": 2, "bbox": [100,399,267,540]}, {"page": 2, "bbox": [267,399,512,540]}, {"page": 2, "bbox": [228,584,398,724]}, {"page": 3, "bbox": [163,85,449,189]}],
+    "steps": []
+  }
+}

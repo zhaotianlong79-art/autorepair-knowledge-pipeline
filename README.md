@@ -148,3 +148,10 @@ FIDELITY_REQUIRE_PASS=1 FIDELITY_OUTPUT="$PWD/docs/fidelity-fixed" \
   HF_HOME="$PWD/work/huggingface" HF_HUB_OFFLINE=1 \
   uv run --extra docling python scripts/test_markdown_fidelity.py
 ```
+
+
+### 真实维修资料验证（0.3.0）
+
+使用 NHTSA 公开的 Toyota、Honda、Subaru 厂商维修通报共 16 页复测，修复稀疏边框表格退化、多层表头、未编号章节、跨页步骤编号和小型图标遗漏。固定抽查点复测：表格 8/8、章节 20/20、图片 16/16、步骤编号 5/5。真实资料仍需人工复核，原文及完整衍生产物不随仓库分发。
+
+来源、修复前后证据和复现方法见 [真实汽车维修文档转换验证](docs/real-documents/README.md)。

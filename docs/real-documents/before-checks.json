@@ -1,0 +1,316 @@
+[
+  {
+    "id": "toyota",
+    "checks": [
+      {
+        "kind": "heading",
+        "index": 0,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 1,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 2,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 3,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 4,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 5,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 6,
+        "passed": false
+      },
+      {
+        "kind": "table",
+        "index": 0,
+        "passed": false
+      },
+      {
+        "kind": "table",
+        "index": 1,
+        "passed": false
+      },
+      {
+        "kind": "table",
+        "index": 2,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 0,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 1,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 2,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 3,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 4,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 5,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 6,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 7,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 8,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 9,
+        "passed": true
+      },
+      {
+        "kind": "step",
+        "index": 0,
+        "passed": false
+      },
+      {
+        "kind": "step",
+        "index": 1,
+        "passed": false
+      },
+      {
+        "kind": "step",
+        "index": 2,
+        "passed": false
+      }
+    ],
+    "totals": {
+      "heading": {
+        "passed": 0,
+        "total": 7
+      },
+      "table": {
+        "passed": 1,
+        "total": 3
+      },
+      "figure": {
+        "passed": 10,
+        "total": 10
+      },
+      "step": {
+        "passed": 0,
+        "total": 3
+      }
+    }
+  },
+  {
+    "id": "honda",
+    "checks": [
+      {
+        "kind": "heading",
+        "index": 0,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 1,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 2,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 3,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 4,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 5,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 6,
+        "passed": false
+      },
+      {
+        "kind": "table",
+        "index": 0,
+        "passed": true
+      },
+      {
+        "kind": "table",
+        "index": 1,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 0,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 1,
+        "passed": false
+      },
+      {
+        "kind": "step",
+        "index": 0,
+        "passed": false
+      },
+      {
+        "kind": "step",
+        "index": 1,
+        "passed": false
+      }
+    ],
+    "totals": {
+      "heading": {
+        "passed": 0,
+        "total": 7
+      },
+      "table": {
+        "passed": 2,
+        "total": 2
+      },
+      "figure": {
+        "passed": 1,
+        "total": 2
+      },
+      "step": {
+        "passed": 0,
+        "total": 2
+      }
+    }
+  },
+  {
+    "id": "subaru",
+    "checks": [
+      {
+        "kind": "heading",
+        "index": 0,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 1,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 2,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 3,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 4,
+        "passed": false
+      },
+      {
+        "kind": "heading",
+        "index": 5,
+        "passed": false
+      },
+      {
+        "kind": "table",
+        "index": 0,
+        "passed": false
+      },
+      {
+        "kind": "table",
+        "index": 1,
+        "passed": false
+      },
+      {
+        "kind": "table",
+        "index": 2,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 0,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 1,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 2,
+        "passed": true
+      },
+      {
+        "kind": "figure",
+        "index": 3,
+        "passed": true
+      }
+    ],
+    "totals": {
+      "heading": {
+        "passed": 0,
+        "total": 6
+      },
+      "table": {
+        "passed": 1,
+        "total": 3
+      },
+      "figure": {
+        "passed": 4,
+        "total": 4
+      },
+      "step": {
+        "passed": 0,
+        "total": 0
+      }
+    }
+  }
+]

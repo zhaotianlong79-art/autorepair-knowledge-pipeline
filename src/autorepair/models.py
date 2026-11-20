@@ -23,6 +23,7 @@ class Block(Model):
     list_depth: int = Field(default=0, ge=0)
     ordered: bool = False
     ordinal: int = Field(default=1, ge=1)
+    list_marker: str = ""
     image_src: str = ""
 
 

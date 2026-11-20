@@ -51,5 +51,26 @@ def recover_table(item, document, path: Path, digest: str):
         area = (x1 - x0) * (y1 - y0)
         other_area = max(1, (bbox.r - bbox.l) * (bbox.b - bbox.t))
         if area and intersection / max(area, other_area) > 0.75:
-            return table_markdown(grid)
+            # A sparse outer box cannot override a richer layout-model grid.
+            if len(grid[0]) < item.data.num_cols:
+                continue
+            return header_markdown(grid)
     return None
+
+
+def header_markdown(grid):
+    """Flatten observed multirow headers without discarding group captions."""
+    rows = [list(row) for row in grid]
+    caption = ""
+    if len(rows) > 1 and len(set(rows[0])) == 1 and len(set(rows[1])) > 1:
+        caption = rows.pop(0)[0] + "\n\n"
+    elif len(rows) > 1:
+        # Only collapse when each second-row cell is either an unchanged label
+        # or a child of a repeated merged parent in the first row.
+        first, second = rows[:2]
+        repeated = {x for x in first if first.count(x) > 1 and x}
+        if repeated and all(a == b or a in repeated for a, b in zip(first, second, strict=True)):
+            rows[:2] = [
+                [b if a == b else b + " / " + a for a, b in zip(first, second, strict=True)]
+            ]
+    return caption + table_markdown(rows)

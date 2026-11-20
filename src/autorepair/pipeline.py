@@ -123,7 +123,11 @@ def markdown(result: Result) -> str:
                 text = f"![{alt}](<{source}>)\n\n" + text
         comment = f"<!-- source:{block.block_id} {json.dumps(block.location, ensure_ascii=False).replace('-->', '--&gt;')} -->"
         if block.kind == "list":
-            marker = f"{block.ordinal}. " if block.ordered else "- "
+            marker = (
+                (("-" if block.list_marker in {"·", "•", "●", "▪"} else block.list_marker) + " ")
+                if block.list_marker
+                else (f"{block.ordinal}. " if block.ordered else "- ")
+            )
             content = "    " * block.list_depth + marker + text + " " + comment
             lines.append(("\n" if previous_list else "\n\n") + content)
             previous_list = True

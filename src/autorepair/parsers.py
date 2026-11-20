@@ -181,7 +181,7 @@ def parse(
                         if recognized:
                             text += "\n\n图片识别文字\n" + recognized
                             location["ocr_scores"] = scores
-                        else:
+                        elif suffix == ".docx" or ocr:
                             doc.issues.append(
                                 Issue(
                                     code="image.ocr_empty",
@@ -258,10 +258,15 @@ def parse(
                     section_path=[x[1] for x in heading_stack],
                     list_depth=max(0, depth - len(heading_stack) - 1) if kind == "list" else 0,
                     ordered=bool(getattr(item, "enumerated", False)),
+                    list_marker=str(item.marker) if isinstance(item, ListItem) else "",
                     image_src=image_src,
                     links=[str(hyperlink)] if hyperlink else [],
                 )
             )
+        if suffix == ".pdf":
+            from autorepair.pdf_structure import enrich_pdf
+
+            enrich_pdf(doc, path)
         # Block counts from the same parser cannot establish conversion completeness.
         doc.issues.append(
             Issue(

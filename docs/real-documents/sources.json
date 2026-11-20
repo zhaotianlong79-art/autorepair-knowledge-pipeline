@@ -1,0 +1,29 @@
+[
+  {
+    "id": "toyota",
+    "document": "T-SB-0047-23",
+    "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241405-9999.pdf",
+    "sha256": "4a314c3eaef7cb76b2b08638494ff04a74fe4d39c38fcbb3988be267aab623ec",
+    "bytes": 892935,
+    "accessed": "2026-11-20",
+    "distribution": "Source and converted text/images stay in ignored local work directory; no redistribution license assumed."
+  },
+  {
+    "id": "honda",
+    "document": "25-085",
+    "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11023863-0001.pdf",
+    "sha256": "c9457c53a8957fa33021ebe84d129f6ec114dde41167e8279e4f7a66b0ebacfb",
+    "bytes": 252211,
+    "accessed": "2026-11-20",
+    "distribution": "Source and converted text/images stay in ignored local work directory; no redistribution license assumed."
+  },
+  {
+    "id": "subaru",
+    "document": "07-189-21R",
+    "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11016175-0001.pdf",
+    "sha256": "81499ed65df8e755a5ea5ba3252b3333d3119557874b94c5a3d87ce93f19eea9",
+    "bytes": 1333711,
+    "accessed": "2026-11-20",
+    "distribution": "Source and converted text/images stay in ignored local work directory; no redistribution license assumed."
+  }
+]
