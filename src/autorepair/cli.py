@@ -77,6 +77,7 @@ def main():
     lookup.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
     lookup.add_argument("--include-review", action="store_true")
     lookup.add_argument("--original", action="store_true")
+    lookup.add_argument("--mode", choices=["bm25", "semantic", "hybrid"], default="bm25")
     filter_args(lookup)
     catalog = commands.add_parser("catalog", help="列出品牌知识库文档及最近状态")
     catalog.add_argument("--brand", required=True)
@@ -139,7 +140,42 @@ def main():
     index.add_argument("--mode", choices=["check", "incremental", "rebuild"], default="check")
     cleanup.add_argument("--apply", action="store_true")
     cleanup.add_argument("--plan-token")
+    semantic_index = commands.add_parser(
+        "semantic-index", help="检查、增量更新或重建当前品牌的本地向量缓存"
+    )
+    semantic_index.add_argument("--brand", required=True)
+    semantic_index.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
+    semantic_index.add_argument(
+        "--mode", choices=["check", "incremental", "rebuild"], default="check"
+    )
+    semantic_index.add_argument("--actor", default="")
+    semantic_index.add_argument("--reason", default="")
+    model = commands.add_parser("semantic-model", help="查看固定模型配置，显式下载到本地缓存")
+    model.add_argument("--download", action="store_true")
     args = parser.parse_args()
+    if args.command == "semantic-model":
+        from dataclasses import asdict
+
+        from autorepair.semantic import DEFAULT_CONFIG, LocalEmbedder, SemanticError
+
+        try:
+            if args.download:
+                LocalEmbedder(download=True)
+            print(
+                json.dumps(
+                    {
+                        **asdict(DEFAULT_CONFIG),
+                        "config_hash": DEFAULT_CONFIG.key,
+                        "downloaded": args.download,
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
+        except SemanticError as exc:
+            parser.error(str(exc))
+        return
+
     if args.command == "process":
         try:
             cfg = load_config(args.config, args.brand)
@@ -198,9 +234,14 @@ def main():
             store = (
                 Store(args.database, auto_repair=False)
                 if args.command == "index"
+                or (args.command == "semantic-index" and args.mode == "check")
                 else Store(args.database)
             )
-            if args.command == "versions":
+            if args.command == "semantic-index":
+                output = store.maintain_semantic_index(
+                    args.brand, mode=args.mode, actor=args.actor, reason=args.reason
+                )
+            elif args.command == "versions":
                 output = store.versions(args.brand, args.logical_id)
             elif args.command == "lifecycle-history":
                 output = store.lifecycle_history(args.brand, args.logical_id)
@@ -258,6 +299,8 @@ def main():
             elif args.command == "source-attach":
                 output = store.attach_source(args.brand, args.doc_id, args.input, run_id=args.run)
             elif args.run:
+                if args.mode != "bm25":
+                    parser.error("历史批次仅支持 BM25；语义及混合检索只查询当前正式知识库")
                 output = search(
                     store.load_run(args.run),
                     args.query,
@@ -273,7 +316,11 @@ def main():
                 if args.include_review:
                     parser.error("正式知识库不包含待复核文档；演示查询请显式指定 --run")
                 output = store.search(
-                    args.query, args.brand, original=args.original, filters=read_filter(args)
+                    args.query,
+                    args.brand,
+                    original=args.original,
+                    filters=read_filter(args),
+                    mode=args.mode,
                 )
             print(json.dumps(output, ensure_ascii=False, indent=2))
         except (KeyError, ValueError, OSError) as exc:

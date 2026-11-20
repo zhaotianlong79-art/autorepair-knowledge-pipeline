@@ -83,7 +83,7 @@ wheels = [
 
 [[package]]
 name = "autorepair-knowledge-pipeline"
-version = "0.8.0"
+version = "0.9.0"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -103,6 +103,11 @@ docling = [
     { name = "pdfplumber" },
     { name = "pypdfium2" },
 ]
+semantic = [
+    { name = "httpx", extra = ["socks"] },
+    { name = "torch" },
+    { name = "transformers" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -119,6 +124,7 @@ requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.12,<5" },
     { name = "docling", marker = "extra == 'docling'", specifier = ">=2.70,<3" },
     { name = "httpx", extras = ["socks"], marker = "extra == 'docling'", specifier = ">=0.28,<1" },
+    { name = "httpx", extras = ["socks"], marker = "extra == 'semantic'", specifier = ">=0.28,<1" },
     { name = "lxml", specifier = ">=5,<7" },
     { name = "markdown-it-py", specifier = ">=3,<5" },
     { name = "onnxruntime", marker = "extra == 'docling'", specifier = ">=1.20,<2" },
@@ -128,8 +134,10 @@ requires-dist = [
     { name = "pyyaml", specifier = ">=6,<7" },
     { name = "rank-bm25", specifier = ">=0.2.2,<0.3" },
     { name = "streamlit", specifier = ">=1.45,<2" },
+    { name = "torch", marker = "extra == 'semantic'", specifier = ">=2.6,<3" },
+    { name = "transformers", marker = "extra == 'semantic'", specifier = ">=5.19,<6" },
 ]
-provides-extras = ["docling"]
+provides-extras = ["semantic", "docling"]
 
 [package.metadata.requires-dev]
 dev = [

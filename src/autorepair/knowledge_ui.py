@@ -59,14 +59,55 @@ def render_knowledge(store: Store, brand: str):
         ],
         width="stretch",
     )
+    from autorepair.semantic import DEFAULT_CONFIG
+
+    mode_label = st.selectbox(
+        "检索方式", ["关键词 BM25", "本地语义", "混合 RRF"], key="retrieval-mode"
+    )
+    mode = {"关键词 BM25": "bm25", "本地语义": "semantic", "混合 RRF": "hybrid"}[mode_label]
+    with st.expander("本地语义模型与索引"):
+        st.caption(
+            "首次请在终端执行 uv sync --extra semantic 和 autorepair semantic-model --download。查询只读本地模型，缺失时会报错，不自动切换检索方式。"
+        )
+        st.json(
+            {
+                "model": DEFAULT_CONFIG.model,
+                "revision": DEFAULT_CONFIG.revision,
+                "index_config": DEFAULT_CONFIG.key,
+            }
+        )
+        if st.button("检查语义索引", key="semantic-check"):
+            st.json(store.maintain_semantic_index(brand))
+        with st.form("semantic-maintenance"):
+            index_mode = st.selectbox("语义维护方式", ["incremental", "rebuild"])
+            actor = st.text_input("维护署名", key="semantic-actor")
+            reason = st.text_input("维护原因", key="semantic-reason")
+            if st.form_submit_button("维护语义索引"):
+                try:
+                    with st.spinner("正在维护本地向量索引"):
+                        report = store.maintain_semantic_index(
+                            brand, mode=index_mode, actor=actor, reason=reason
+                        )
+                    st.json(report)
+                except (ValueError, OSError) as exc:
+                    st.error(str(exc))
     query = st.text_input(
         "查询正式知识库", key="knowledge-query", placeholder="术语、部件号、故障码或问题关键词"
     )
     if not query.strip():
         return
-    hits = store.search(query, brand, filters=filters)
+    try:
+        with st.spinner("正在检索"):
+            hits = store.search(query, brand, filters=filters, mode=mode)
+    except (ValueError, OSError) as exc:
+        st.error(str(exc))
+        return
     if not hits:
         st.info("正式知识库没有匹配证据。请检查品牌、关键词及文档审核状态。")
+    if hits and mode != "bm25":
+        st.caption(
+            "语义相似度及融合分数仅用于候选排序，不能证明答案存在或资料适用。请核对原文；当前不生成问答。"
+        )
     for hit in hits:
         st.markdown(f"**{hit['source_name']} · {hit['doc_id']} / {hit['chunk_id']}**")
         st.caption(" / ".join(hit["section_path"]) or hit["section"] or "未标注章节")
@@ -125,9 +166,8 @@ def render_knowledge(store: Store, brand: str):
                         "parts",
                         "chunk_config",
                         "chunk_config_hash",
+                        "retrieval_mode",
                     ]
                 }
             )
-    st.caption(
-        "分数用于相关性排序，不代表答案正确概率。当前采用关键词检索，语义检索和问答按计划后续实现。"
-    )
+    st.caption("分数用于相关性排序，不代表答案正确概率。问答按计划后续实现。")

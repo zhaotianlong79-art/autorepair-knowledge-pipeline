@@ -73,17 +73,38 @@ def search(
     return sorted(ranked, key=lambda r: (-r["score"], r["doc_id"], r["block_id"]))[:k]
 
 
-def search_chunks(documents, chunks, query, *, k=5):
-    """Rank owned chunk text, then attach related evidence without inflating scores."""
-    if not query.strip() or not chunks or k <= 0:
+def lexical_ranking(chunks, query):
+    if not chunks or not query.strip():
         return []
     texts = [" / ".join(c.section_path) + " " + c.text for c in chunks]
     tokens = [tokenize(t) or [""] for t in texts]
     query_tokens = tokenize(query)
     scores = BM25Okapi(tokens).get_scores(query_tokens)
+    return sorted(
+        [
+            (
+                c.chunk_id,
+                round(float(scores[i]) + (10 if query.casefold() in texts[i].casefold() else 0), 5),
+            )
+            for i, c in enumerate(chunks)
+            if set(query_tokens) & set(tokens[i])
+        ],
+        key=lambda r: (-r[1], r[0]),
+    )
+
+
+def search_chunks(documents, chunks, query, *, k=5, ranking=None):
+    """Rank owned chunk text, then attach related evidence without inflating scores."""
+    if not query.strip() or not chunks or k <= 0:
+        return []
+    ranking = (
+        ranking
+        if ranking is not None
+        else {key: {"score": score} for key, score in lexical_ranking(chunks, query)}
+    )
     ranked = []
-    for i, chunk in enumerate(chunks):
-        if not set(query_tokens) & set(tokens[i]):
+    for chunk in chunks:
+        if chunk.chunk_id not in ranking:
             continue
         doc = documents[(chunk.brand, chunk.doc_id)]
         by_id = {b.block_id: b for b in doc.blocks}
@@ -147,9 +168,7 @@ def search_chunks(documents, chunks, query, *, k=5):
             "text_mode": chunk.text_mode,
             "oversized": chunk.oversized,
             "status": "passed",
-            "score": round(
-                float(scores[i]) + (10 if query.casefold() in texts[i].casefold() else 0), 5
-            ),
+            **ranking[chunk.chunk_id],
         }
         ranked.append(rows)
     return sorted(ranked, key=lambda r: (-r["score"], r["doc_id"], r["chunk_id"]))[:k]

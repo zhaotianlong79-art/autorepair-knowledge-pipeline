@@ -1,0 +1,4064 @@
+{
+  "scope": "Fixed self-authored development set, not independent evaluation or real repair guidance. All brands share fixture wording. Scores measure evidence retrieval, not answer correctness.",
+  "config": {
+    "model": "BAAI/bge-small-zh-v1.5",
+    "revision": "7999e1d3359715c523056ef9478215996d62a620",
+    "dimension": 512,
+    "query_prefix": "为这个句子生成表示以用于检索相关文章：",
+    "window_chars": 256,
+    "overlap_chars": 48,
+    "schema": "cls-l2-char-windows-v1",
+    "config_hash": "54d7f0b91bad519ba319190220425bdb1b4c8b9dea9145da875568b721953d40"
+  },
+  "environment": {
+    "platform": "macOS-26.7.1-arm64-arm-64bit",
+    "python": "3.12.13",
+    "torch": "2.15.0",
+    "transformers": "5.23.0",
+    "tokenizers": "0.23.3"
+  },
+  "model_load_seconds": 1.7379,
+  "model_parameters": 23953920,
+  "model_weight_bytes": 95815680,
+  "index": {
+    "aurora": {
+      "config": {
+        "model": "BAAI/bge-small-zh-v1.5",
+        "revision": "7999e1d3359715c523056ef9478215996d62a620",
+        "dimension": 512,
+        "query_prefix": "为这个句子生成表示以用于检索相关文章：",
+        "window_chars": 256,
+        "overlap_chars": 48,
+        "schema": "cls-l2-char-windows-v1"
+      },
+      "config_hash": "54d7f0b91bad519ba319190220425bdb1b4c8b9dea9145da875568b721953d40",
+      "checked": 26,
+      "dirty": 26,
+      "reused": 0,
+      "written": 26,
+      "windows": 26,
+      "brand": "aurora",
+      "mode": "incremental",
+      "stale": 0,
+      "pruned": 0,
+      "build_seconds": 0.0948
+    },
+    "atlas": {
+      "config": {
+        "model": "BAAI/bge-small-zh-v1.5",
+        "revision": "7999e1d3359715c523056ef9478215996d62a620",
+        "dimension": 512,
+        "query_prefix": "为这个句子生成表示以用于检索相关文章：",
+        "window_chars": 256,
+        "overlap_chars": 48,
+        "schema": "cls-l2-char-windows-v1"
+      },
+      "config_hash": "54d7f0b91bad519ba319190220425bdb1b4c8b9dea9145da875568b721953d40",
+      "checked": 26,
+      "dirty": 26,
+      "reused": 0,
+      "written": 26,
+      "windows": 26,
+      "brand": "atlas",
+      "mode": "incremental",
+      "stale": 0,
+      "pruned": 0,
+      "build_seconds": 0.0746
+    }
+  },
+  "metrics": {
+    "bm25": {
+      "questions": 52,
+      "hit1": 32,
+      "hit3": 42,
+      "reciprocal_rank_at3": 36.666666666666664,
+      "hit1_rate": 0.6154,
+      "hit3_rate": 0.8077,
+      "mrr_at3": 0.7051,
+      "median_ms": 1.078,
+      "p95_ms": 1.297
+    },
+    "semantic": {
+      "questions": 52,
+      "hit1": 42,
+      "hit3": 52,
+      "reciprocal_rank_at3": 47.0,
+      "hit1_rate": 0.8077,
+      "hit3_rate": 1.0,
+      "mrr_at3": 0.9038,
+      "median_ms": 8.114,
+      "p95_ms": 8.826
+    },
+    "hybrid": {
+      "questions": 52,
+      "hit1": 35,
+      "hit3": 46,
+      "reciprocal_rank_at3": 40.5,
+      "hit1_rate": 0.6731,
+      "hit3_rate": 0.8846,
+      "mrr_at3": 0.7788,
+      "median_ms": 8.253,
+      "p95_ms": 8.879
+    }
+  },
+  "queries": [
+    {
+      "brand": "aurora",
+      "query": "刹车踩下去软绵绵的该查什么？",
+      "expected": "aurora-brake.html",
+      "expected_evidence": "制动液含水率过高会降低沸点。车辆制动踏板行程增大、感觉松软时，应检查储液罐液位并排查液压管路泄漏。排气后检查制动效能。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 2.038,
+          "top3": []
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 9.244,
+          "top3": [
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.5559511,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.493511,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.48417,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.819,
+          "top3": [
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.01639344262295082,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.016129032258064516,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "制动液含水率升高有什么影响？",
+      "expected": "aurora-brake.html",
+      "expected_evidence": "制动液含水率过高会降低沸点。车辆制动踏板行程增大、感觉松软时，应检查储液罐液位并排查液压管路泄漏。排气后检查制动效能。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.068,
+          "top3": [
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 13.26096,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-4a3739d9ece1448de9569968",
+              "score": 8.73294,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 1.75382,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.194,
+          "top3": [
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.7297978,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-4a3739d9ece1448de9569968",
+              "score": 0.6596977,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-ab441148614e59375f6e2641",
+              "score": 0.511874,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 9.009,
+          "top3": [
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-4a3739d9ece1448de9569968",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-ab441148614e59375f6e2641",
+              "score": 0.03149801587301587,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "车停久了打不着火，电瓶没劲怎么排查？",
+      "expected": "aurora-battery.html",
+      "expected_evidence": "发动机起动机转动无力，仪表灯亮度下降时，应测量蓄电池静置电压，检查接线柱氧化和充电系统输出。长期停放导致电量不足，应充电后复测。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 1.133,
+          "top3": [
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 1.28378,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 1.23672,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-b52cc2ee9e98b0683baa044c",
+              "score": 1.22549,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 9.689,
+          "top3": [
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 0.6275474,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-8f53e1eaf83bfd98c448bd66",
+              "score": 0.5907962,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-8afb1bf9a9a12deec63e7075",
+              "score": 0.582948,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": null,
+          "milliseconds": 9.318,
+          "top3": [
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.032018442622950824,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.030330882352941176,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.02946236559139785,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "蓄电池接线柱氧化会造成什么症状？",
+      "expected": "aurora-battery.html",
+      "expected_evidence": "发动机起动机转动无力，仪表灯亮度下降时，应测量蓄电池静置电压，检查接线柱氧化和充电系统输出。长期停放导致电量不足，应充电后复测。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.297,
+          "top3": [
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 13.95789,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-a835ea22683495cfba3eff51",
+              "score": 8.35181,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.518,
+          "top3": [
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 0.6113868,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-a835ea22683495cfba3eff51",
+              "score": 0.5364501,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-cba13f02565dfd20031e407c",
+              "score": 0.4743515,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.309,
+          "top3": [
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-a835ea22683495cfba3eff51",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-cba13f02565dfd20031e407c",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "水温表一直往红区走，先检查哪里？",
+      "expected": "aurora-cooling.html",
+      "expected_evidence": "冷却液通过水泵、节温器和散热器循环。发动机温度持续升高时，检查冷却液液位、节温器开启状态及散热风扇。警告：系统高温时不得打开加注盖。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 1.277,
+          "top3": [
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-4a3739d9ece1448de9569968",
+              "score": 1.28031,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-5b28c153a3b3cde53071a823",
+              "score": 1.25175,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-8f53e1eaf83bfd98c448bd66",
+              "score": 1.25175,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.826,
+          "top3": [
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-ab441148614e59375f6e2641",
+              "score": 0.5390623,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-aff8c7faa112bd6f2224d1d2",
+              "score": 0.4885329,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.4770194,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": null,
+          "milliseconds": 8.733,
+          "top3": [
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-aff8c7faa112bd6f2224d1d2",
+              "score": 0.0315136476426799,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-8f53e1eaf83bfd98c448bd66",
+              "score": 0.03125763125763126,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-5b28c153a3b3cde53071a823",
+              "score": 0.030621785881252923,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "冷却系统高温时能否打开加注盖？",
+      "expected": "aurora-cooling.html",
+      "expected_evidence": "冷却液通过水泵、节温器和散热器循环。发动机温度持续升高时，检查冷却液液位、节温器开启状态及散热风扇。警告：系统高温时不得打开加注盖。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.123,
+          "top3": [
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-ab441148614e59375f6e2641",
+              "score": 21.77519,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-aff8c7faa112bd6f2224d1d2",
+              "score": 11.05525,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 1.22549,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.578,
+          "top3": [
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-ab441148614e59375f6e2641",
+              "score": 0.6607807,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-aff8c7faa112bd6f2224d1d2",
+              "score": 0.5499275,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-609f2fdae9babae3be786921",
+              "score": 0.4719634,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.121,
+          "top3": [
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-ab441148614e59375f6e2641",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-aff8c7faa112bd6f2224d1d2",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 0.029571646010002173,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "发动机怠速哆嗦，点火方面要查啥？",
+      "expected": "aurora-ignition.html",
+      "expected_evidence": "故障码 P0300 表示检测到随机或多缸失火。检查火花塞间隙、点火线圈输出以及进气泄漏。发动机怠速不稳和抖动可由点火异常引起。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.095,
+          "top3": [
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-8afb1bf9a9a12deec63e7075",
+              "score": 8.34726,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 3.35025,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 3.04327,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.654,
+          "top3": [
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-8afb1bf9a9a12deec63e7075",
+              "score": 0.6321498,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.5983356,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-8f53e1eaf83bfd98c448bd66",
+              "score": 0.5892817,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.217,
+          "top3": [
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-8afb1bf9a9a12deec63e7075",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.03200204813108039,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 0.031754032258064516,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "P0300 的检查项目有哪些？",
+      "expected": "aurora-ignition.html",
+      "expected_evidence": "故障码 P0300 表示检测到随机或多缸失火。检查火花塞间隙、点火线圈输出以及进气泄漏。发动机怠速不稳和抖动可由点火异常引起。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.343,
+          "top3": [
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-8afb1bf9a9a12deec63e7075",
+              "score": 3.23754,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-4a3739d9ece1448de9569968",
+              "score": 1.28031,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-5b28c153a3b3cde53071a823",
+              "score": 1.25175,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 4.854,
+          "top3": [
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-8afb1bf9a9a12deec63e7075",
+              "score": 0.4085342,
+              "evidence_match": true
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 4.073,
+          "top3": [
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-8afb1bf9a9a12deec63e7075",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "P0301 应优先检查哪一缸？",
+      "expected": "aurora-cylinder.html",
+      "expected_evidence": "故障码 P0301 表示第一缸失火。核查第一缸火花塞及点火线圈，比较各缸压缩压力；不要仅凭相近编号认定多缸同时失火。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.131,
+          "top3": [
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-b8c00231c82ceb00a4e3e488",
+              "score": 6.81345,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-8f53e1eaf83bfd98c448bd66",
+              "score": 5.52081,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-4a3739d9ece1448de9569968",
+              "score": 1.28031,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 4.099,
+          "top3": [
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-b8c00231c82ceb00a4e3e488",
+              "score": 0.5920897,
+              "evidence_match": true
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 4.622,
+          "top3": [
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-b8c00231c82ceb00a4e3e488",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "第一缸失火如何比较压缩压力？",
+      "expected": "aurora-cylinder.html",
+      "expected_evidence": "故障码 P0301 表示第一缸失火。核查第一缸火花塞及点火线圈，比较各缸压缩压力；不要仅凭相近编号认定多缸同时失火。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.18,
+          "top3": [
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-b8c00231c82ceb00a4e3e488",
+              "score": 19.04833,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-8f53e1eaf83bfd98c448bd66",
+              "score": 10.28978,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-6c087e4d6fc7020c454eeccb",
+              "score": 6.02072,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.121,
+          "top3": [
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-b8c00231c82ceb00a4e3e488",
+              "score": 0.6838977,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-8f53e1eaf83bfd98c448bd66",
+              "score": 0.6729632,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-6c087e4d6fc7020c454eeccb",
+              "score": 0.5982185,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.164,
+          "top3": [
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-b8c00231c82ceb00a4e3e488",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cylinder.html",
+              "chunk_id": "chunk-8f53e1eaf83bfd98c448bd66",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-6c087e4d6fc7020c454eeccb",
+              "score": 0.031746031746031744,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "排气含氧量检测元件的加热线路怎么查？",
+      "expected": "aurora-oxygen.html",
+      "expected_evidence": "前氧传感器用于反馈排气含氧量，辅助控制空燃比。混合气调节异常时，应检查传感器加热电路和信号变化。自制示例部件号 90919-01253 仅用于本演示资料。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.266,
+          "top3": [
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-33a27c108c556f4c067f655d",
+              "score": 10.09222,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-8afb1bf9a9a12deec63e7075",
+              "score": 2.25994,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 1.82056,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.38,
+          "top3": [
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-33a27c108c556f4c067f655d",
+              "score": 0.629888,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-cba13f02565dfd20031e407c",
+              "score": 0.5980461,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-aff8c7faa112bd6f2224d1d2",
+              "score": 0.5688642,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.773,
+          "top3": [
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-33a27c108c556f4c067f655d",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.031024531024531024,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ignition.html",
+              "chunk_id": "chunk-8afb1bf9a9a12deec63e7075",
+              "score": 0.03021353930031804,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "90919-01253 在这份资料中是什么？",
+      "expected": "aurora-oxygen.html",
+      "expected_evidence": "前氧传感器用于反馈排气含氧量，辅助控制空燃比。混合气调节异常时，应检查传感器加热电路和信号变化。自制示例部件号 90919-01253 仅用于本演示资料。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.006,
+          "top3": [
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-33a27c108c556f4c067f655d",
+              "score": 4.20021,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 4.492,
+          "top3": [
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-33a27c108c556f4c067f655d",
+              "score": 0.3673248,
+              "evidence_match": true
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 4.38,
+          "top3": [
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-33a27c108c556f4c067f655d",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "开快了轮子嗡嗡响，举升以后查哪里？",
+      "expected": "aurora-bearing.html",
+      "expected_evidence": "车辆行驶中出现随车速升高而增强的嗡鸣，应排查车轮轴承。举升车辆后转动车轮，检查转动粗糙感与轴向间隙，并区分轮胎花纹噪声。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.064,
+          "top3": [
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 2.17709,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.349,
+          "top3": [
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.6822455,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-a3c007c2c74d7efb3e138d6b",
+              "score": 0.5675967,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.5146999,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 7.921,
+          "top3": [
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-a3c007c2c74d7efb3e138d6b",
+              "score": 0.016129032258064516,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "车轮轴承如何检查轴向间隙？",
+      "expected": "aurora-bearing.html",
+      "expected_evidence": "车辆行驶中出现随车速升高而增强的嗡鸣，应排查车轮轴承。举升车辆后转动车轮，检查转动粗糙感与轴向间隙，并区分轮胎花纹噪声。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.309,
+          "top3": [
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 14.39732,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-a3c007c2c74d7efb3e138d6b",
+              "score": 11.57644,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 2.92583,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 8.268,
+          "top3": [
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-a3c007c2c74d7efb3e138d6b",
+              "score": 0.6553228,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.6441285,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 0.6073248,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.16,
+          "top3": [
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-a3c007c2c74d7efb3e138d6b",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 0.031746031746031744,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "直路上车总往一边歪，轮胎还偏磨怎么办？",
+      "expected": "aurora-alignment.html",
+      "expected_evidence": "平直路面上方向盘居中仍向一侧偏移时，先确认左右轮胎气压，再检查车轮定位参数、前束和悬架变形。轮胎单侧异常磨损也应检查定位。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.038,
+          "top3": [
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 4.78379,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 1.75382,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.065,
+          "top3": [
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 0.6637442,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b4621743a19bc3f1eae6a417",
+              "score": 0.5455208,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.4977353,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 7.99,
+          "top3": [
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.03200204813108039,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b4621743a19bc3f1eae6a417",
+              "score": 0.016129032258064516,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "车轮前束异常应检查什么？",
+      "expected": "aurora-alignment.html",
+      "expected_evidence": "平直路面上方向盘居中仍向一侧偏移时，先确认左右轮胎气压，再检查车轮定位参数、前束和悬架变形。轮胎单侧异常磨损也应检查定位。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.116,
+          "top3": [
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 7.93756,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-a3c007c2c74d7efb3e138d6b",
+              "score": 4.08007,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oxygen.html",
+              "chunk_id": "chunk-33a27c108c556f4c067f655d",
+              "score": 3.87315,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 8.191,
+          "top3": [
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.5852996,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 0.5731065,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-a3c007c2c74d7efb3e138d6b",
+              "score": 0.5710899,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.007,
+          "top3": [
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.032018442622950824,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-a3c007c2c74d7efb3e138d6b",
+              "score": 0.03200204813108039,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "发动机配气传动的齿形带开裂，换的时候要对齐什么？",
+      "expected": "aurora-belt.html",
+      "expected_evidence": "检查正时皮带齿根裂纹、缺齿及表面油污。更换时核对曲轴和凸轮轴标记，按规定调整张紧度。禁止在正时位置不明确时强行转动。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 1.093,
+          "top3": [
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 3.35025,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 2.08562,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 1.84297,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 9.013,
+          "top3": [
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-812249ad47cc42b21a957efb",
+              "score": 0.5698743,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-bearing.html",
+              "chunk_id": "chunk-3cf4efb7b92068a925b159df",
+              "score": 0.5152844,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-b52cc2ee9e98b0683baa044c",
+              "score": 0.508794,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": null,
+          "milliseconds": 8.282,
+          "top3": [
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.031754032258064516,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-b52cc2ee9e98b0683baa044c",
+              "score": 0.031024531024531024,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 0.030679156908665108,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "正时皮带缺齿如何处理？",
+      "expected": "aurora-belt.html",
+      "expected_evidence": "检查正时皮带齿根裂纹、缺齿及表面油污。更换时核对曲轴和凸轮轴标记，按规定调整张紧度。禁止在正时位置不明确时强行转动。",
+      "modes": {
+        "bm25": {
+          "rank": 2,
+          "milliseconds": 1.147,
+          "top3": [
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-5b28c153a3b3cde53071a823",
+              "score": 12.80719,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-812249ad47cc42b21a957efb",
+              "score": 11.11481,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 7.604,
+          "top3": [
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-812249ad47cc42b21a957efb",
+              "score": 0.7093141,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-5b28c153a3b3cde53071a823",
+              "score": 0.6685124,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-a835ea22683495cfba3eff51",
+              "score": 0.3777952,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 7.93,
+          "top3": [
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-5b28c153a3b3cde53071a823",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-belt.html",
+              "chunk_id": "chunk-812249ad47cc42b21a957efb",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-a835ea22683495cfba3eff51",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "夏天车里只吹热风，冷媒该直接加吗？",
+      "expected": "aurora-ac.html",
+      "expected_evidence": "空调出风不冷时，检查制冷剂压力、管路泄漏、冷凝器散热和压缩机工作状态。检漏确认后再按规定回收及充注，不能盲目添加制冷剂。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 1.055,
+          "top3": [
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-ab441148614e59375f6e2641",
+              "score": 2.1379,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 8.123,
+          "top3": [
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-ab441148614e59375f6e2641",
+              "score": 0.5002565,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-609f2fdae9babae3be786921",
+              "score": 0.4544717,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-aff8c7faa112bd6f2224d1d2",
+              "score": 0.4517701,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 8.108,
+          "top3": [
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-ab441148614e59375f6e2641",
+              "score": 0.03278688524590164,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-609f2fdae9babae3be786921",
+              "score": 0.016129032258064516,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-aff8c7faa112bd6f2224d1d2",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "空调制冷不足有哪些检漏项目？",
+      "expected": "aurora-ac.html",
+      "expected_evidence": "空调出风不冷时，检查制冷剂压力、管路泄漏、冷凝器散热和压缩机工作状态。检漏确认后再按规定回收及充注，不能盲目添加制冷剂。",
+      "modes": {
+        "bm25": {
+          "rank": 2,
+          "milliseconds": 1.162,
+          "top3": [
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-254621721944606e5c8613f0",
+              "score": 19.75656,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-609f2fdae9babae3be786921",
+              "score": 13.2984,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 1.44996,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 7.989,
+          "top3": [
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-609f2fdae9babae3be786921",
+              "score": 0.7388478,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-254621721944606e5c8613f0",
+              "score": 0.7041048,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-cooling.html",
+              "chunk_id": "chunk-aff8c7faa112bd6f2224d1d2",
+              "score": 0.6151516,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 8.268,
+          "top3": [
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-254621721944606e5c8613f0",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-609f2fdae9babae3be786921",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 0.031024531024531024,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "挂挡的时候车猛地一顿，应该从哪查？",
+      "expected": "aurora-transmission.html",
+      "expected_evidence": "自动变速器升挡或挂挡产生明显冲击时，检查变速器油液位与油质，并按流程读取控制系统数据，排查液压控制及发动机支承问题。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.061,
+          "top3": [
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-b52cc2ee9e98b0683baa044c",
+              "score": 2.15732,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.107,
+          "top3": [
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-b52cc2ee9e98b0683baa044c",
+              "score": 0.6046035,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.5396225,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 0.5198565,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.48,
+          "top3": [
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-b52cc2ee9e98b0683baa044c",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.016129032258064516,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-alignment.html",
+              "chunk_id": "chunk-b0b4d40681b86ccd130012b4",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "自动变速器换挡冲击与油质有关吗？",
+      "expected": "aurora-transmission.html",
+      "expected_evidence": "自动变速器升挡或挂挡产生明显冲击时，检查变速器油液位与油质，并按流程读取控制系统数据，排查液压控制及发动机支承问题。",
+      "modes": {
+        "bm25": {
+          "rank": 2,
+          "milliseconds": 1.055,
+          "top3": [
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-f14da5212d224f157ba55255",
+              "score": 32.01025,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-b52cc2ee9e98b0683baa044c",
+              "score": 24.00129,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 7.944,
+          "top3": [
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-f14da5212d224f157ba55255",
+              "score": 0.7547286,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-b52cc2ee9e98b0683baa044c",
+              "score": 0.7416069,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.5170104,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 8.571,
+          "top3": [
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-f14da5212d224f157ba55255",
+              "score": 0.03278688524590164,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-transmission.html",
+              "chunk_id": "chunk-b52cc2ee9e98b0683baa044c",
+              "score": 0.03225806451612903,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "机油红灯亮了还可以接着开吗？",
+      "expected": "aurora-oil.html",
+      "expected_evidence": "发动机润滑油压力警告灯点亮时，应停止运行并检查机油液位，使用机械压力表确认实际油压，排查油泵、滤清器和油道。不能只更换压力开关而忽略真实低油压。",
+      "modes": {
+        "bm25": {
+          "rank": 2,
+          "milliseconds": 1.045,
+          "top3": [
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 4.00128,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 2.49091,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 2.15732,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 7.923,
+          "top3": [
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.6257417,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 0.4923073,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 0.4681095,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 8.879,
+          "top3": [
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 0.031746031746031744,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "如何用机械压力表确认机油压力？",
+      "expected": "aurora-oil.html",
+      "expected_evidence": "发动机润滑油压力警告灯点亮时，应停止运行并检查机油液位，使用机械压力表确认实际油压，排查油泵、滤清器和油道。不能只更换压力开关而忽略真实低油压。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.056,
+          "top3": [
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 20.09259,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 11.36697,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 4.87475,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 8.0,
+          "top3": [
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 0.6965778,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.6823491,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.6021164,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 8.109,
+          "top3": [
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c013812045c17c4af77e0d8b",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.031746031746031744,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "踩油门提不起速度，汽油供油不足查什么？",
+      "expected": "aurora-fuel.html",
+      "expected_evidence": "发动机加速无力时，按流程测量燃油轨压力，检查燃油泵供电、滤清器堵塞和管路泄漏。拆卸前释放残余燃油压力，并远离点火源。",
+      "modes": {
+        "bm25": {
+          "rank": 3,
+          "milliseconds": 1.028,
+          "top3": [
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-556c5260bd1822d773dadda7",
+              "score": 4.08673,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-254621721944606e5c8613f0",
+              "score": 3.40964,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 1.82056,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.081,
+          "top3": [
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.6425597,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.6225527,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-brake.html",
+              "chunk_id": "chunk-9a339ab0fcd1b9880223489f",
+              "score": 0.6038541,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.095,
+          "top3": [
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.032266458495966696,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-556c5260bd1822d773dadda7",
+              "score": 0.031544957774465976,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-battery.html",
+              "chunk_id": "chunk-0eea5fbc10a4c1d73d099954",
+              "score": 0.030309988518943745,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "拆燃油管路前为什么要释放压力？",
+      "expected": "aurora-fuel.html",
+      "expected_evidence": "发动机加速无力时，按流程测量燃油轨压力，检查燃油泵供电、滤清器堵塞和管路泄漏。拆卸前释放残余燃油压力，并远离点火源。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.042,
+          "top3": [
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 9.17754,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-556c5260bd1822d773dadda7",
+              "score": 6.1434,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-ac.html",
+              "chunk_id": "chunk-609f2fdae9babae3be786921",
+              "score": 2.38967,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.203,
+          "top3": [
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.5802016,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-556c5260bd1822d773dadda7",
+              "score": 0.5235001,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.497992,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.059,
+          "top3": [
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-496d22fff2bc8b7f292b64ca",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "aurora-fuel.html",
+              "chunk_id": "chunk-556c5260bd1822d773dadda7",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "aurora-oil.html",
+              "chunk_id": "chunk-c9b704a9606955de7d9ce497",
+              "score": 0.03125763125763126,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "刹车踩下去软绵绵的该查什么？",
+      "expected": "atlas-brake.html",
+      "expected_evidence": "制动液含水率过高会降低沸点。车辆制动踏板行程增大、感觉松软时，应检查储液罐液位并排查液压管路泄漏。排气后检查制动效能。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 1.04,
+          "top3": []
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.04,
+          "top3": [
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.5559511,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.493511,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.48417,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.343,
+          "top3": [
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.01639344262295082,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.016129032258064516,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "制动液含水率升高有什么影响？",
+      "expected": "atlas-brake.html",
+      "expected_evidence": "制动液含水率过高会降低沸点。车辆制动踏板行程增大、感觉松软时，应检查储液罐液位并排查液压管路泄漏。排气后检查制动效能。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.102,
+          "top3": [
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 13.26096,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-08d76126e145e0d7517aab33",
+              "score": 8.73294,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 1.75382,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.363,
+          "top3": [
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.7297978,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-08d76126e145e0d7517aab33",
+              "score": 0.6596977,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-8e85f5f4cf8e53c671c69333",
+              "score": 0.511874,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.732,
+          "top3": [
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-08d76126e145e0d7517aab33",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-8e85f5f4cf8e53c671c69333",
+              "score": 0.03149801587301587,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "车停久了打不着火，电瓶没劲怎么排查？",
+      "expected": "atlas-battery.html",
+      "expected_evidence": "发动机起动机转动无力，仪表灯亮度下降时，应测量蓄电池静置电压，检查接线柱氧化和充电系统输出。长期停放导致电量不足，应充电后复测。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 1.157,
+          "top3": [
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 1.28378,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 1.23672,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 1.22549,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.133,
+          "top3": [
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 0.6275474,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-98a4ac0eab6a69daa7bc0641",
+              "score": 0.5907962,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-58577074b42d91245907b7a7",
+              "score": 0.582948,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": null,
+          "milliseconds": 8.342,
+          "top3": [
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.032018442622950824,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.030330882352941176,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.02946236559139785,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "蓄电池接线柱氧化会造成什么症状？",
+      "expected": "atlas-battery.html",
+      "expected_evidence": "发动机起动机转动无力，仪表灯亮度下降时，应测量蓄电池静置电压，检查接线柱氧化和充电系统输出。长期停放导致电量不足，应充电后复测。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.09,
+          "top3": [
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 13.95789,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-c99ba5d0e92c36b4d54ca920",
+              "score": 8.35181,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 7.995,
+          "top3": [
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 0.6113868,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-c99ba5d0e92c36b4d54ca920",
+              "score": 0.5364501,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-8275e10ee779b41d77625450",
+              "score": 0.4743515,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.649,
+          "top3": [
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-c99ba5d0e92c36b4d54ca920",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-8275e10ee779b41d77625450",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "水温表一直往红区走，先检查哪里？",
+      "expected": "atlas-cooling.html",
+      "expected_evidence": "冷却液通过水泵、节温器和散热器循环。发动机温度持续升高时，检查冷却液液位、节温器开启状态及散热风扇。警告：系统高温时不得打开加注盖。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 1.171,
+          "top3": [
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-08d76126e145e0d7517aab33",
+              "score": 1.28031,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-6a8184c0c9b7de4b1ea5e4b7",
+              "score": 1.25175,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-98a4ac0eab6a69daa7bc0641",
+              "score": 1.25175,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.019,
+          "top3": [
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-8e85f5f4cf8e53c671c69333",
+              "score": 0.5390623,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-65b8efdbaf835c76b5f7bba7",
+              "score": 0.4885329,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.4770194,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": null,
+          "milliseconds": 8.724,
+          "top3": [
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-65b8efdbaf835c76b5f7bba7",
+              "score": 0.0315136476426799,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-98a4ac0eab6a69daa7bc0641",
+              "score": 0.03125763125763126,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-6a8184c0c9b7de4b1ea5e4b7",
+              "score": 0.030621785881252923,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "冷却系统高温时能否打开加注盖？",
+      "expected": "atlas-cooling.html",
+      "expected_evidence": "冷却液通过水泵、节温器和散热器循环。发动机温度持续升高时，检查冷却液液位、节温器开启状态及散热风扇。警告：系统高温时不得打开加注盖。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.136,
+          "top3": [
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-8e85f5f4cf8e53c671c69333",
+              "score": 21.77519,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-65b8efdbaf835c76b5f7bba7",
+              "score": 11.05525,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 1.22549,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 7.958,
+          "top3": [
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-8e85f5f4cf8e53c671c69333",
+              "score": 0.6607807,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-65b8efdbaf835c76b5f7bba7",
+              "score": 0.5499275,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-356573a59204d0bf8a749fd2",
+              "score": 0.4719634,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.89,
+          "top3": [
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-8e85f5f4cf8e53c671c69333",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-65b8efdbaf835c76b5f7bba7",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 0.029386529386529386,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "发动机怠速哆嗦，点火方面要查啥？",
+      "expected": "atlas-ignition.html",
+      "expected_evidence": "故障码 P0300 表示检测到随机或多缸失火。检查火花塞间隙、点火线圈输出以及进气泄漏。发动机怠速不稳和抖动可由点火异常引起。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.095,
+          "top3": [
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-58577074b42d91245907b7a7",
+              "score": 8.34726,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 3.35025,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 3.04327,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.282,
+          "top3": [
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-58577074b42d91245907b7a7",
+              "score": 0.6321498,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.5983356,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-98a4ac0eab6a69daa7bc0641",
+              "score": 0.5892817,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.5,
+          "top3": [
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-58577074b42d91245907b7a7",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.03200204813108039,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 0.031754032258064516,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "P0300 的检查项目有哪些？",
+      "expected": "atlas-ignition.html",
+      "expected_evidence": "故障码 P0300 表示检测到随机或多缸失火。检查火花塞间隙、点火线圈输出以及进气泄漏。发动机怠速不稳和抖动可由点火异常引起。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.122,
+          "top3": [
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-58577074b42d91245907b7a7",
+              "score": 3.23754,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-08d76126e145e0d7517aab33",
+              "score": 1.28031,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-6a8184c0c9b7de4b1ea5e4b7",
+              "score": 1.25175,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 3.899,
+          "top3": [
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-58577074b42d91245907b7a7",
+              "score": 0.4085342,
+              "evidence_match": true
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 4.026,
+          "top3": [
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-58577074b42d91245907b7a7",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "P0301 应优先检查哪一缸？",
+      "expected": "atlas-cylinder.html",
+      "expected_evidence": "故障码 P0301 表示第一缸失火。核查第一缸火花塞及点火线圈，比较各缸压缩压力；不要仅凭相近编号认定多缸同时失火。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.144,
+          "top3": [
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-1da1180b54ed5d710b30bd74",
+              "score": 6.81345,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-98a4ac0eab6a69daa7bc0641",
+              "score": 5.52081,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-08d76126e145e0d7517aab33",
+              "score": 1.28031,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 4.327,
+          "top3": [
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-1da1180b54ed5d710b30bd74",
+              "score": 0.5920897,
+              "evidence_match": true
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 3.976,
+          "top3": [
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-1da1180b54ed5d710b30bd74",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "第一缸失火如何比较压缩压力？",
+      "expected": "atlas-cylinder.html",
+      "expected_evidence": "故障码 P0301 表示第一缸失火。核查第一缸火花塞及点火线圈，比较各缸压缩压力；不要仅凭相近编号认定多缸同时失火。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.058,
+          "top3": [
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-1da1180b54ed5d710b30bd74",
+              "score": 19.04833,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-98a4ac0eab6a69daa7bc0641",
+              "score": 10.28978,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-d533c2b84ce41b9012b08101",
+              "score": 6.02072,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.177,
+          "top3": [
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-1da1180b54ed5d710b30bd74",
+              "score": 0.6838977,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-98a4ac0eab6a69daa7bc0641",
+              "score": 0.6729632,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-d533c2b84ce41b9012b08101",
+              "score": 0.5982185,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.441,
+          "top3": [
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-1da1180b54ed5d710b30bd74",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cylinder.html",
+              "chunk_id": "chunk-98a4ac0eab6a69daa7bc0641",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-d533c2b84ce41b9012b08101",
+              "score": 0.031746031746031744,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "排气含氧量检测元件的加热线路怎么查？",
+      "expected": "atlas-oxygen.html",
+      "expected_evidence": "前氧传感器用于反馈排气含氧量，辅助控制空燃比。混合气调节异常时，应检查传感器加热电路和信号变化。自制示例部件号 90919-01253 仅用于本演示资料。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.079,
+          "top3": [
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-9fbe1432990298381fb34f52",
+              "score": 10.09222,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-58577074b42d91245907b7a7",
+              "score": 2.25994,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 1.82056,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.209,
+          "top3": [
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-9fbe1432990298381fb34f52",
+              "score": 0.629888,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-8275e10ee779b41d77625450",
+              "score": 0.5980461,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-65b8efdbaf835c76b5f7bba7",
+              "score": 0.5688642,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.081,
+          "top3": [
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-9fbe1432990298381fb34f52",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.031024531024531024,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ignition.html",
+              "chunk_id": "chunk-58577074b42d91245907b7a7",
+              "score": 0.03021353930031804,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "90919-01253 在这份资料中是什么？",
+      "expected": "atlas-oxygen.html",
+      "expected_evidence": "前氧传感器用于反馈排气含氧量，辅助控制空燃比。混合气调节异常时，应检查传感器加热电路和信号变化。自制示例部件号 90919-01253 仅用于本演示资料。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.007,
+          "top3": [
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-9fbe1432990298381fb34f52",
+              "score": 4.20021,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 4.297,
+          "top3": [
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-9fbe1432990298381fb34f52",
+              "score": 0.3673248,
+              "evidence_match": true
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 4.947,
+          "top3": [
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-9fbe1432990298381fb34f52",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "开快了轮子嗡嗡响，举升以后查哪里？",
+      "expected": "atlas-bearing.html",
+      "expected_evidence": "车辆行驶中出现随车速升高而增强的嗡鸣，应排查车轮轴承。举升车辆后转动车轮，检查转动粗糙感与轴向间隙，并区分轮胎花纹噪声。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.077,
+          "top3": [
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 2.17709,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.081,
+          "top3": [
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.6822455,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-52d0f1b6a881cbdbb363c702",
+              "score": 0.5675967,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.5146999,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.735,
+          "top3": [
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-52d0f1b6a881cbdbb363c702",
+              "score": 0.016129032258064516,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "车轮轴承如何检查轴向间隙？",
+      "expected": "atlas-bearing.html",
+      "expected_evidence": "车辆行驶中出现随车速升高而增强的嗡鸣，应排查车轮轴承。举升车辆后转动车轮，检查转动粗糙感与轴向间隙，并区分轮胎花纹噪声。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.152,
+          "top3": [
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 14.39732,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-52d0f1b6a881cbdbb363c702",
+              "score": 11.57644,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 2.92583,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 7.783,
+          "top3": [
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-52d0f1b6a881cbdbb363c702",
+              "score": 0.6553228,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.6441285,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 0.6073248,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 8.535,
+          "top3": [
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-52d0f1b6a881cbdbb363c702",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 0.031746031746031744,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "直路上车总往一边歪，轮胎还偏磨怎么办？",
+      "expected": "atlas-alignment.html",
+      "expected_evidence": "平直路面上方向盘居中仍向一侧偏移时，先确认左右轮胎气压，再检查车轮定位参数、前束和悬架变形。轮胎单侧异常磨损也应检查定位。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.056,
+          "top3": [
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 4.78379,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 1.75382,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 7.882,
+          "top3": [
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 0.6637442,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-4fbf2dfd1ec1d79c4aaae17f",
+              "score": 0.5455208,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.4977353,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.556,
+          "top3": [
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.03200204813108039,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-4fbf2dfd1ec1d79c4aaae17f",
+              "score": 0.016129032258064516,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "车轮前束异常应检查什么？",
+      "expected": "atlas-alignment.html",
+      "expected_evidence": "平直路面上方向盘居中仍向一侧偏移时，先确认左右轮胎气压，再检查车轮定位参数、前束和悬架变形。轮胎单侧异常磨损也应检查定位。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.125,
+          "top3": [
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 7.93756,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-52d0f1b6a881cbdbb363c702",
+              "score": 4.08007,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oxygen.html",
+              "chunk_id": "chunk-9fbe1432990298381fb34f52",
+              "score": 3.87315,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 8.015,
+          "top3": [
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.5852996,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 0.5731065,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-52d0f1b6a881cbdbb363c702",
+              "score": 0.5710899,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.449,
+          "top3": [
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.032018442622950824,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-52d0f1b6a881cbdbb363c702",
+              "score": 0.03200204813108039,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "发动机配气传动的齿形带开裂，换的时候要对齐什么？",
+      "expected": "atlas-belt.html",
+      "expected_evidence": "检查正时皮带齿根裂纹、缺齿及表面油污。更换时核对曲轴和凸轮轴标记，按规定调整张紧度。禁止在正时位置不明确时强行转动。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 1.07,
+          "top3": [
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 3.35025,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 2.08562,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 1.84297,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 7.997,
+          "top3": [
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-04a38df8c16244b334d507d0",
+              "score": 0.5698743,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-bearing.html",
+              "chunk_id": "chunk-550f1616d0dc3ed4e2d94c91",
+              "score": 0.5152844,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 0.508794,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": null,
+          "milliseconds": 8.611,
+          "top3": [
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.031754032258064516,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 0.031024531024531024,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 0.030679156908665108,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "正时皮带缺齿如何处理？",
+      "expected": "atlas-belt.html",
+      "expected_evidence": "检查正时皮带齿根裂纹、缺齿及表面油污。更换时核对曲轴和凸轮轴标记，按规定调整张紧度。禁止在正时位置不明确时强行转动。",
+      "modes": {
+        "bm25": {
+          "rank": 2,
+          "milliseconds": 1.031,
+          "top3": [
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-6a8184c0c9b7de4b1ea5e4b7",
+              "score": 12.80719,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-04a38df8c16244b334d507d0",
+              "score": 11.11481,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 7.7,
+          "top3": [
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-04a38df8c16244b334d507d0",
+              "score": 0.7093141,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-6a8184c0c9b7de4b1ea5e4b7",
+              "score": 0.6685124,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-c99ba5d0e92c36b4d54ca920",
+              "score": 0.3777952,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 7.884,
+          "top3": [
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-04a38df8c16244b334d507d0",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-belt.html",
+              "chunk_id": "chunk-6a8184c0c9b7de4b1ea5e4b7",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-c99ba5d0e92c36b4d54ca920",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "夏天车里只吹热风，冷媒该直接加吗？",
+      "expected": "atlas-ac.html",
+      "expected_evidence": "空调出风不冷时，检查制冷剂压力、管路泄漏、冷凝器散热和压缩机工作状态。检漏确认后再按规定回收及充注，不能盲目添加制冷剂。",
+      "modes": {
+        "bm25": {
+          "rank": null,
+          "milliseconds": 1.012,
+          "top3": [
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-8e85f5f4cf8e53c671c69333",
+              "score": 2.1379,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 8.248,
+          "top3": [
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-8e85f5f4cf8e53c671c69333",
+              "score": 0.5002565,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-356573a59204d0bf8a749fd2",
+              "score": 0.4544717,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-65b8efdbaf835c76b5f7bba7",
+              "score": 0.4517701,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 8.239,
+          "top3": [
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-8e85f5f4cf8e53c671c69333",
+              "score": 0.03278688524590164,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-356573a59204d0bf8a749fd2",
+              "score": 0.016129032258064516,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-65b8efdbaf835c76b5f7bba7",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "空调制冷不足有哪些检漏项目？",
+      "expected": "atlas-ac.html",
+      "expected_evidence": "空调出风不冷时，检查制冷剂压力、管路泄漏、冷凝器散热和压缩机工作状态。检漏确认后再按规定回收及充注，不能盲目添加制冷剂。",
+      "modes": {
+        "bm25": {
+          "rank": 2,
+          "milliseconds": 1.067,
+          "top3": [
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-e42d419e4b65f87b42e37e69",
+              "score": 19.75656,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-356573a59204d0bf8a749fd2",
+              "score": 13.2984,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 1.44996,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.044,
+          "top3": [
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-356573a59204d0bf8a749fd2",
+              "score": 0.7388478,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-e42d419e4b65f87b42e37e69",
+              "score": 0.7041048,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-cooling.html",
+              "chunk_id": "chunk-65b8efdbaf835c76b5f7bba7",
+              "score": 0.6151516,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.087,
+          "top3": [
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-356573a59204d0bf8a749fd2",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-e42d419e4b65f87b42e37e69",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 0.031024531024531024,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "挂挡的时候车猛地一顿，应该从哪查？",
+      "expected": "atlas-transmission.html",
+      "expected_evidence": "自动变速器升挡或挂挡产生明显冲击时，检查变速器油液位与油质，并按流程读取控制系统数据，排查液压控制及发动机支承问题。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.008,
+          "top3": [
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 2.15732,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.082,
+          "top3": [
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 0.6046035,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.5396225,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 0.5198565,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 8.279,
+          "top3": [
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.016129032258064516,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-alignment.html",
+              "chunk_id": "chunk-b8aa35feb87b9feaf770604f",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "自动变速器换挡冲击与油质有关吗？",
+      "expected": "atlas-transmission.html",
+      "expected_evidence": "自动变速器升挡或挂挡产生明显冲击时，检查变速器油液位与油质，并按流程读取控制系统数据，排查液压控制及发动机支承问题。",
+      "modes": {
+        "bm25": {
+          "rank": 2,
+          "milliseconds": 1.051,
+          "top3": [
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-06a07c5fc76efa9fecdf5ae2",
+              "score": 32.01025,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 24.00129,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 8.547,
+          "top3": [
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-06a07c5fc76efa9fecdf5ae2",
+              "score": 0.7547286,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 0.7416069,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.5170104,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 7.967,
+          "top3": [
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-06a07c5fc76efa9fecdf5ae2",
+              "score": 0.03278688524590164,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-transmission.html",
+              "chunk_id": "chunk-01affabc35ebc002bbcf660b",
+              "score": 0.03225806451612903,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.015873015873015872,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "机油红灯亮了还可以接着开吗？",
+      "expected": "atlas-oil.html",
+      "expected_evidence": "发动机润滑油压力警告灯点亮时，应停止运行并检查机油液位，使用机械压力表确认实际油压，排查油泵、滤清器和油道。不能只更换压力开关而忽略真实低油压。",
+      "modes": {
+        "bm25": {
+          "rank": 2,
+          "milliseconds": 1.015,
+          "top3": [
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 4.00128,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 2.49091,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 2.15732,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.251,
+          "top3": [
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.6257417,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 0.4923073,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 0.4681095,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 8.407,
+          "top3": [
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 0.031746031746031744,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "如何用机械压力表确认机油压力？",
+      "expected": "atlas-oil.html",
+      "expected_evidence": "发动机润滑油压力警告灯点亮时，应停止运行并检查机油液位，使用机械压力表确认实际油压，排查油泵、滤清器和油道。不能只更换压力开关而忽略真实低油压。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.051,
+          "top3": [
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 20.09259,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 11.36697,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 4.87475,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 2,
+          "milliseconds": 8.365,
+          "top3": [
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 0.6965778,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.6823491,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.6021164,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 2,
+          "milliseconds": 8.138,
+          "top3": [
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-5e8420904eded0d88082a0b5",
+              "score": 0.03252247488101534,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.03252247488101534,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.031746031746031744,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "踩油门提不起速度，汽油供油不足查什么？",
+      "expected": "atlas-fuel.html",
+      "expected_evidence": "发动机加速无力时，按流程测量燃油轨压力，检查燃油泵供电、滤清器堵塞和管路泄漏。拆卸前释放残余燃油压力，并远离点火源。",
+      "modes": {
+        "bm25": {
+          "rank": 3,
+          "milliseconds": 1.05,
+          "top3": [
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-520739466b35206a1c82e813",
+              "score": 4.08673,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-e42d419e4b65f87b42e37e69",
+              "score": 3.40964,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 1.82056,
+              "evidence_match": true
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.488,
+          "top3": [
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.6425597,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.6225527,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-brake.html",
+              "chunk_id": "chunk-796bd9d7b42cccc6b7385a55",
+              "score": 0.6038541,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 7.969,
+          "top3": [
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.032266458495966696,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-520739466b35206a1c82e813",
+              "score": 0.031544957774465976,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-battery.html",
+              "chunk_id": "chunk-682685d4a6c26ab678e300c0",
+              "score": 0.030309988518943745,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "拆燃油管路前为什么要释放压力？",
+      "expected": "atlas-fuel.html",
+      "expected_evidence": "发动机加速无力时，按流程测量燃油轨压力，检查燃油泵供电、滤清器堵塞和管路泄漏。拆卸前释放残余燃油压力，并远离点火源。",
+      "modes": {
+        "bm25": {
+          "rank": 1,
+          "milliseconds": 1.025,
+          "top3": [
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 9.17754,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-520739466b35206a1c82e813",
+              "score": 6.1434,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-ac.html",
+              "chunk_id": "chunk-356573a59204d0bf8a749fd2",
+              "score": 2.38967,
+              "evidence_match": false
+            }
+          ]
+        },
+        "semantic": {
+          "rank": 1,
+          "milliseconds": 8.354,
+          "top3": [
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.5802016,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-520739466b35206a1c82e813",
+              "score": 0.5235001,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.497992,
+              "evidence_match": false
+            }
+          ]
+        },
+        "hybrid": {
+          "rank": 1,
+          "milliseconds": 7.903,
+          "top3": [
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-becf43e3c566050b2927f652",
+              "score": 0.03278688524590164,
+              "evidence_match": true
+            },
+            {
+              "source": "atlas-fuel.html",
+              "chunk_id": "chunk-520739466b35206a1c82e813",
+              "score": 0.03225806451612903,
+              "evidence_match": false
+            },
+            {
+              "source": "atlas-oil.html",
+              "chunk_id": "chunk-ffef269549968415294d0cd9",
+              "score": 0.03125763125763126,
+              "evidence_match": false
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "no_answer": [
+    {
+      "brand": "aurora",
+      "query": "P0399 的专用维修步骤",
+      "returned": {
+        "bm25": [],
+        "semantic": [],
+        "hybrid": []
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "90919-09999 的更换方法",
+      "returned": {
+        "bm25": [
+          "aurora-belt.html",
+          "aurora-oil.html"
+        ],
+        "semantic": [],
+        "hybrid": []
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "电饭锅煮饭夹生怎么修",
+      "returned": {
+        "bm25": [],
+        "semantic": [
+          "aurora-ac.html",
+          "aurora-cooling.html",
+          "aurora-ac.html"
+        ],
+        "hybrid": [
+          "aurora-ac.html",
+          "aurora-cooling.html",
+          "aurora-ac.html"
+        ]
+      }
+    },
+    {
+      "brand": "aurora",
+      "query": "这台车明天的二手成交价格是多少",
+      "returned": {
+        "bm25": [],
+        "semantic": [
+          "aurora-alignment.html",
+          "aurora-cylinder.html",
+          "aurora-battery.html"
+        ],
+        "hybrid": [
+          "aurora-alignment.html",
+          "aurora-cylinder.html",
+          "aurora-battery.html"
+        ]
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "P0399 的专用维修步骤",
+      "returned": {
+        "bm25": [],
+        "semantic": [],
+        "hybrid": []
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "90919-09999 的更换方法",
+      "returned": {
+        "bm25": [
+          "atlas-belt.html",
+          "atlas-oil.html"
+        ],
+        "semantic": [],
+        "hybrid": []
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "电饭锅煮饭夹生怎么修",
+      "returned": {
+        "bm25": [],
+        "semantic": [
+          "atlas-ac.html",
+          "atlas-cooling.html",
+          "atlas-ac.html"
+        ],
+        "hybrid": [
+          "atlas-ac.html",
+          "atlas-cooling.html",
+          "atlas-ac.html"
+        ]
+      }
+    },
+    {
+      "brand": "atlas",
+      "query": "这台车明天的二手成交价格是多少",
+      "returned": {
+        "bm25": [],
+        "semantic": [
+          "atlas-alignment.html",
+          "atlas-cylinder.html",
+          "atlas-battery.html"
+        ],
+        "hybrid": [
+          "atlas-alignment.html",
+          "atlas-cylinder.html",
+          "atlas-battery.html"
+        ]
+      }
+    }
+  ],
+  "long_table_check": {
+    "characters": 3430,
+    "windows": 17,
+    "tail_covered": true,
+    "all_vectors_valid": true
+  },
+  "vector_cache": {
+    "rows": 52,
+    "payload_bytes": 561896
+  },
+  "process_peak_rss_mib": 612.31,
+  "decision": "Keep BM25 default. Offer semantic and RRF explicitly. No reranker yet; this small development set cannot justify another model. No global similarity cutoff or claim of general no-answer detection."
+}

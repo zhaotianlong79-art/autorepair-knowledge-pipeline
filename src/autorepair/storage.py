@@ -137,6 +137,9 @@ class Store(LifecycleMixin):
                 db.execute(
                     "ALTER TABLE document_chunk_state ADD COLUMN index_hash TEXT NOT NULL DEFAULT ''"
                 )
+            from autorepair.semantic import init_cache
+
+            init_cache(db)
             self._init_lifecycle(db, sync=auto_repair)
             if auto_repair:
                 self._ensure_chunks(db)
@@ -578,10 +581,33 @@ class Store(LifecycleMixin):
         return [Chunk.model_validate_json(payload) for (payload,) in rows]
 
     def search(
-        self, query: str, brand: str, *, original=False, k=5, filters: MetadataFilter | None = None
+        self,
+        query: str,
+        brand: str,
+        *,
+        original=False,
+        k=5,
+        filters: MetadataFilter | None = None,
+        mode="bm25",
+        embedder=None,
     ) -> list[dict]:
-        from autorepair.search import search_chunks
+        from autorepair.search import lexical_ranking, search_chunks
+        from autorepair.semantic import (
+            LazyEmbedder,
+            cached_vectors,
+            fuse,
+            identifier_filter,
+            rank_semantic,
+        )
 
+        if mode not in {"bm25", "semantic", "hybrid"}:
+            raise ValueError("未知检索模式")
+        if original and mode != "bm25":
+            raise ValueError("原文对照查询目前仅支持 BM25；语义检索使用正式规范正文")
+        if not query.strip() or k <= 0:
+            return []
+        if mode != "bm25" and len(query) > 400:
+            raise ValueError("语义查询最多 400 字符，防止超过模型输入上限")
         # Explicit transaction gives document content, derived chunks and approval provenance one snapshot.
         with self.connect() as db:
             db.execute("BEGIN")
@@ -608,10 +634,76 @@ class Store(LifecycleMixin):
         }
         if original:
             chunks = [c for doc in docs for c in chunk_document(doc, original=True)]
+        if mode != "bm25":
+            chunks = identifier_filter(chunks, query)
+        ranking = None
+        config_info = {}
+        if mode != "bm25" and chunks:
+            embedder = embedder or LazyEmbedder()
+            with self.connect() as db:
+                db.execute("BEGIN IMMEDIATE")
+                active = {c.chunk_id for c in self._load_chunks(db, brand)}
+                if any(c.chunk_id not in active for c in chunks):
+                    raise ValueError("检索期间发布内容发生变化，请重试")
+                vectors, report = cached_vectors(db, chunks, embedder)
+            semantic = rank_semantic(chunks, vectors, query, embedder)
+            ranking = fuse(lexical_ranking(chunks, query), semantic, mode=mode, pool=max(50, k))
+            config_info = dict(
+                embedding_config=report["config"], embedding_config_hash=report["config_hash"]
+            )
         return [
-            {**hit, **provenance[hit["doc_id"]], "metadata_match": matches[hit["doc_id"]]}
-            for hit in search_chunks(documents, chunks, query, k=k)
+            {
+                **hit,
+                **provenance[hit["doc_id"]],
+                "metadata_match": matches[hit["doc_id"]],
+                "retrieval_mode": mode,
+                **config_info,
+            }
+            for hit in search_chunks(documents, chunks, query, k=k, ranking=ranking)
         ]
+
+    def maintain_semantic_index(self, brand, *, mode="check", embedder=None, actor="", reason=""):
+        from autorepair.semantic import LazyEmbedder, cached_vectors
+
+        if mode != "check":
+            self._operation(actor, reason, 0)
+        embedder = embedder or LazyEmbedder()
+        with self.connect() as db:
+            db.execute("BEGIN" if mode == "check" else "BEGIN IMMEDIATE")
+            chunks = self._load_chunks(db, brand)
+            _, report = cached_vectors(db, chunks, embedder, mode=mode)
+            active = {(c.doc_id, c.chunk_id) for c in chunks}
+            stale_rows = [
+                rowid
+                for rowid, doc_id, chunk_id, config_hash in db.execute(
+                    "SELECT rowid,doc_id,chunk_id,config_hash FROM semantic_vectors WHERE brand=?",
+                    (brand,),
+                )
+                if config_hash != embedder.config.key or (doc_id, chunk_id) not in active
+            ]
+            stale = len(stale_rows)
+            if mode != "check":
+                db.executemany(
+                    "DELETE FROM semantic_vectors WHERE rowid=?", [(r,) for r in stale_rows]
+                )
+                self._event(
+                    db,
+                    brand,
+                    "",
+                    "",
+                    f"semantic-index-{mode}",
+                    {},
+                    {**report, "stale": stale},
+                    actor,
+                    reason,
+                )
+            return {
+                **report,
+                "brand": brand,
+                "mode": mode,
+                "stale": stale,
+                "pruned": stale if mode != "check" else 0,
+            }
 
     @staticmethod
     def _metadata_event(db, before_doc, after_doc, run_id, created, actor, reason, source):
