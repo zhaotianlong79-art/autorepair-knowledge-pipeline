@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "autorepair-knowledge-pipeline"
 version = "0.12.0"
-description = "Traceable automotive document processing with brand rules and quality gates"
+description = "Multi-format document parsing and Markdown conversion with provenance and quality checks"
 requires-python = ">=3.12,<3.13"
 license = "MIT"
 dependencies = [

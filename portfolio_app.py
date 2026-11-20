@@ -9,10 +9,10 @@ from autorepair.storage import Store
 
 ROOT = Path(__file__).parent
 DATABASE = ROOT / "work/portfolio-demo/knowledge.sqlite"
-st.set_page_config(page_title="汽车维修知识库 · 作品演示", page_icon="🔧", layout="wide")
-st.title("汽车维修知识库 · 作品演示")
+st.set_page_config(page_title="文档解析与知识库 · 领域示例", page_icon="📄", layout="wide")
+st.title("文档解析与知识库 · 领域示例")
 st.caption(
-    "20 份自制资料 · 跨品牌范围过滤 · 来源证据 · 版本生命周期 · 本地检索与引用摘录。仅用于软件演示，参数不可用于真实维修。"
+    "汽车领域扩展示例 · 20 份自制资料 · 跨品牌范围过滤 · 来源证据 · 版本生命周期 · 本地检索与引用摘录。仅用于软件演示，参数不可用于真实维修。"
 )
 with st.sidebar:
     brand = st.selectbox("品牌", ["aurora", "atlas"], key="portfolio-brand")

@@ -1,13 +1,16 @@
-# AutoRepair Knowledge Pipeline
+# Document to Markdown
 
-汽车维修知识加工与质量校验平台。将 HTML、JSON 内嵌 HTML、DOCX、PDF 加工成可追溯的 Markdown 和结构化语料，用品牌规则规范术语，并在入库前执行质量门禁。
+多格式文档解析与 Markdown 转换工具。支持 PDF（数字版与扫描件）、DOCX、HTML／HTM，以及 JSON 内嵌 HTML 和规范语料，输出可追溯的 Markdown、结构化 JSON 和本地图片附件。
 
-这是面向知识加工岗位的本地作品项目。品牌、参数和样例文档均为自制演示数据。已对 3 份公开厂商维修通报抽样验证，仍不能据此指导实际维修。
+围绕章节结构、表格、图片与来源位置提供保真检查和质量校验，并支持可配置的规则加工、文档版本维护、知识库检索及证据摘录问答。扫描识别和复杂表格可能需要人工复核，转换结果不宣称对任意文档无损。
 
+当前公开的领域规则、车型过滤、问答词表与评估资料以汽车维修为示例。文档解析与 Markdown 导出可用于其他领域；其他领域的术语和问答规则需单独配置、验证。历史报告保留当时的项目名称及测量范围。
+
+仓库地址：[zhaotianlong79-art/document-to-markdown](https://github.com/zhaotianlong79-art/document-to-markdown)。现有 Python 模块名 `autorepair` 和命令行入口保持兼容，下面的使用命令继续有效。
 
 当前版本 **0.12.0**。已有转换、规则加工、知识库、版本维护、三种检索及引用摘录问答；评估与作品演示工程已交付，外部人工盲测仍待完成。
 
-- [作品说明与 5 分钟演示](docs/项目作品说明.md)
+- [汽车领域扩展示例与 5 分钟演示](docs/项目作品说明.md)
 - [新冻结题集结果与失败案例](docs/冻结题集评估结果.md)
 - [人工复核与数据集说明](benchmarks/repair-v1/README.md)
 
@@ -22,6 +25,17 @@ uv sync --frozen
 ![知识库引用摘录演示](docs/portfolio/citation-answer.png)
 
 ![本地工作台](docs/workbench.png)
+
+## 支持的输入
+
+| 格式 | 解析与转换 |
+| --- | --- |
+| PDF | 数字 PDF；扫描 PDF 可启用 OCR；结构、表格及图片需要按结果复核 |
+| DOCX | Word 文档的标题、段落、表格及图片 |
+| HTML／HTM | 静态 DOM、章节、列表、表格、链接和本地图片 |
+| JSON | 支持的记录字段、内嵌 HTML 及项目规范 JSON，不是任意 JSON 自动语义解析 |
+
+Excel、PowerPoint、旧版 `.doc` 等格式目前没有专用转换入口。
 
 ## 已实现能力
 

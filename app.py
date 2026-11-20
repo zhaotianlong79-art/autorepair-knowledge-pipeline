@@ -18,9 +18,11 @@ from autorepair.search import search
 from autorepair.storage import Store
 
 ROOT = Path(__file__).parent
-st.set_page_config(page_title="维修知识加工工作台", page_icon="🔧", layout="wide")
-st.title("维修知识加工工作台")
-st.caption("品牌规则 · 来源追踪 · 质量门禁。演示材料使用虚构品牌与自制参数，不用于实际维修。")
+st.set_page_config(page_title="文档解析与 Markdown 工作台", page_icon="📄", layout="wide")
+st.title("文档解析与 Markdown 工作台")
+st.caption(
+    "PDF · DOCX · HTML · JSON → Markdown。来源追踪与质量校验；内置规则和知识库资料为汽车领域演示，不用于实际维修。"
+)
 with st.sidebar:
     workspace = st.radio("工作区", ["文档加工", "知识库"], key="workspace")
     st.subheader("加工设置" if workspace == "文档加工" else "知识库范围")

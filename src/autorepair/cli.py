@@ -58,7 +58,7 @@ def read_filter(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="汽车维修知识加工与质量校验")
+    parser = argparse.ArgumentParser(description="多格式文档解析、Markdown 转换与质量校验")
     commands = parser.add_subparsers(dest="command", required=True)
     ingest = commands.add_parser("process", help="加工本地文件或目录")
     ingest.add_argument("input", type=Path)
