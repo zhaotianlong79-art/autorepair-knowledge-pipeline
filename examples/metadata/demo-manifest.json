@@ -1,0 +1,16 @@
+{
+  "../dev/aurora/01-manual.html": {
+    "model": "Demo Sedan",
+    "year_range": "2020-2022",
+    "document_type": "manual",
+    "document_version": "demo-v1"
+  },
+  "../dev/aurora/03-procedure.json": {
+    "applicability": [
+      {"model": "Demo Sedan", "year_start": 2020, "year_end": 2021},
+      {"model": "Demo SUV", "year_start": 2024, "year_end": 2025}
+    ],
+    "document_type": "procedure",
+    "document_version": "demo-v2"
+  }
+}

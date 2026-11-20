@@ -11,6 +11,7 @@ import streamlit as st
 from autorepair.chunking import chunk_document
 from autorepair.config import load_config
 from autorepair.knowledge_ui import render_knowledge
+from autorepair.metadata_ui import ingest_fields, patch_from_fields
 from autorepair.pipeline import confirm_completeness, export, markdown, report_markdown, run
 from autorepair.search import search
 from autorepair.storage import Store
@@ -43,6 +44,7 @@ with st.sidebar:
             if source == "内置演示"
             else ""
         )
+        metadata_values, file_metadata = ingest_fields(uploaded)
         start = st.button("开始加工", type="primary", width="stretch")
         st.caption("只有通过门禁的文档进入正式 JSONL；待复核材料单独保存。")
 if workspace == "知识库":
@@ -51,6 +53,7 @@ if workspace == "知识库":
 if start:
     try:
         cfg = load_config(ROOT / "configs", brand)
+        metadata_patch = patch_from_fields(metadata_values)
         with st.spinner("正在解析与校验…"):
             if source == "上传文件":
                 if not uploaded:
@@ -62,13 +65,22 @@ if start:
                         path = Path(tmp) / f"{n:03}-{Path(item.name).name}"
                         path.write_bytes(item.getvalue())
                         paths.append(path)
-                    results = run(paths, cfg, ocr=ocr)
+                    overrides = {
+                        str(path.resolve()): patch_from_fields(
+                            {k: v for k, v in row.items() if k != "file"}
+                        )
+                        for path, row in zip(paths, file_metadata, strict=True)
+                    }
+                    results = run(
+                        paths, cfg, ocr=ocr, metadata=metadata_patch, metadata_by_path=overrides
+                    )
             else:
                 paths = sorted((ROOT / "examples/dev" / brand).glob("*"))
                 if demo == "静态 HTML 与 JSON":
                     paths = [p for p in paths if p.suffix in {".html", ".json"}]
-                results = run(paths, cfg, ocr=ocr)
+                results = run(paths, cfg, ocr=ocr, metadata=metadata_patch)
             run_id = export(results, cfg, ROOT / "artifacts")
+            results = Store(ROOT / "artifacts/knowledge.sqlite").load_run(run_id)
             st.session_state["processed"] = {"brand": brand, "results": results, "run_id": run_id}
     except Exception as exc:
         st.error(f"加工失败：{type(exc).__name__}。请检查文件、配置和解析模型环境。")
@@ -118,6 +130,7 @@ with tab1:
             state["run_id"] = export(
                 results, load_config(ROOT / "configs", brand), ROOT / "artifacts"
             )
+            state["results"] = Store(ROOT / "artifacts/knowledge.sqlite").load_run(state["run_id"])
             st.rerun()
     if selected.reviews:
         st.write("人工复核记录", selected.reviews)
@@ -159,6 +172,19 @@ with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
             for r in results
             if r.status == "passed"
             for c in chunk_document(r.document)
+        ),
+    )
+    archive.writestr(
+        "metadata-history.json",
+        json.dumps(
+            {
+                r.document.doc_id: Store(ROOT / "artifacts/knowledge.sqlite").metadata_history(
+                    brand, r.document.doc_id
+                )
+                for r in results
+            },
+            ensure_ascii=False,
+            indent=2,
         ),
     )
     archive.writestr(

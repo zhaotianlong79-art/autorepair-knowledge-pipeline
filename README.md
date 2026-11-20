@@ -77,6 +77,7 @@ artifacts/
     knowledge.jsonl            # 仅已通过文档
     knowledge-chunks.jsonl     # 本次通过资料的章节切块与关联
     results.json               # 含修改、问题与复核记录
+    metadata-history.json      # 本次涉及文档的元数据修正记录
     quality-report.md
 ```
 
@@ -176,3 +177,10 @@ FIDELITY_REQUIRE_PASS=1 FIDELITY_OUTPUT="$PWD/docs/fidelity-fixed" \
 正式库自动补建旧文档切块，处理更新或撤下时同步维护；历史批次检索仍返回源块。工作台显示关联上下文，命令行 `autorepair chunks --brand aurora` 可查看完整切块，导出新增 `knowledge-chunks.jsonl`。
 
 详见 [章节感知切块实现与验证](docs/章节感知切块验证.md)。87 项测试通过；切块审计覆盖 26 份输入的 437 个源块，规范化及原文字符按偏移还原均通过。以上只证明已转换内容的覆盖，不能替代原始文档完整性复核。
+
+
+## 元数据录入与适用范围（0.6.0，第 3 项）
+
+上传和 CLI 支持车型、年份、资料类型、资料版本及多车型配对范围；单文件清单可覆盖批次默认值。正式检索、目录及显式历史查询支持组合筛选，年份范围按区间相交匹配。指定条件时默认排除对应未知项，显式包含未知资料时显示适用性未确认提示，不把其他已知不适用资料混入结果。
+
+知识库增加元数据修正表单、`metadata-correct` 与 `metadata-history` 命令；必须填写署名、原因和当前修订号，保存前后快照与来源运行。修正保持原审核状态，更新与索引在同一事务完成；旧库自动兼容。详见 [录入、过滤及修正验证](docs/元数据录入与过滤验证.md) 和 [演示清单](examples/metadata/demo-manifest.json)。119 项测试及原有格式、切块回归通过。

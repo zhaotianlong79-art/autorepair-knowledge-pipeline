@@ -2,7 +2,7 @@
 
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 class Model(BaseModel):
@@ -42,12 +42,46 @@ class Change(Model):
     after: str
 
 
+DocumentType = Literal[
+    "unknown",
+    "manual",
+    "service_bulletin",
+    "procedure",
+    "wiring_diagram",
+    "parts_catalog",
+    "training",
+    "other",
+]
+
+
+class Applicability(Model):
+    model: str = "unknown"
+    year_start: int | None = Field(default=None, ge=1900, le=2200, strict=True)
+    year_end: int | None = Field(default=None, ge=1900, le=2200, strict=True)
+
+    @field_validator("model")
+    @classmethod
+    def clean_model(cls, value):
+        return " ".join(value.split()) or "unknown"
+
+    @model_validator(mode="after")
+    def valid_years(self):
+        if (self.year_start is None) != (self.year_end is None) or (
+            self.year_start is not None and self.year_start > self.year_end
+        ):
+            raise ValueError("年份端点须成对提供且起始年不大于结束年")
+        return self
+
+
 class Document(Model):
     schema_version: str = "1.0"
     doc_id: str
     brand: str
     model: str = "unknown"
     year_range: str = "unknown"
+    document_type: DocumentType = "unknown"
+    document_version: str = "unknown"
+    applicability: list[Applicability] = Field(default_factory=list)
     source_name: str
     source_hash: str
     parser: str

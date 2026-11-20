@@ -2,6 +2,7 @@
 
 import streamlit as st
 
+from autorepair.metadata_ui import correction_fields, filter_fields
 from autorepair.storage import Store
 
 
@@ -17,10 +18,18 @@ def render_knowledge(store: Store, brand: str):
     if not entries:
         st.info("当前品牌尚无入库记录。先在「文档加工」中处理文件，通过项会自动进入正式知识库。")
         return
+    correction_fields(store, brand, entries)
+    try:
+        filters = filter_fields()
+    except ValueError as exc:
+        st.error(str(exc))
+        return
     selected_status = st.selectbox(
         "目录状态", ["全部", "passed", "review", "failed"], key="catalog-status"
     )
-    visible = [e for e in entries if selected_status == "全部" or e["status"] == selected_status]
+    visible = store.list_documents(
+        brand, status=None if selected_status == "全部" else selected_status, filters=filters
+    )
     st.dataframe(
         [
             {
@@ -29,6 +38,9 @@ def render_knowledge(store: Store, brand: str):
                 "车型": e["model"],
                 "年份": e["year_range"],
                 "状态": e["status"],
+                "资料类型": e["document_type"],
+                "版本": e["document_version"],
+                "元数据修订": e["metadata_revision"],
                 "来源运行": e["run_id"],
                 "更新时间": e["updated_at"],
             }
@@ -41,13 +53,16 @@ def render_knowledge(store: Store, brand: str):
     )
     if not query.strip():
         return
-    hits = store.search(query, brand)
+    hits = store.search(query, brand, filters=filters)
     if not hits:
         st.info("正式知识库没有匹配证据。请检查品牌、关键词及文档审核状态。")
     for hit in hits:
         st.markdown(f"**{hit['source_name']} · {hit['doc_id']} / {hit['chunk_id']}**")
         st.caption(" / ".join(hit["section_path"]) or hit["section"] or "未标注章节")
+        if hit["metadata_match"]["uses_unknown"]:
+            st.warning("此结果包含未知适用字段，不能确认适用于所选车辆。")
         st.code(hit["text"], language=None)
+        st.caption(f"类型 {hit['document_type']} · 资料版本 {hit['document_version']}")
         st.caption(
             f"车型 {hit['model']} · 年份 {hit['year_range']} · 来源运行 {hit['source_run_id']} · 相关性 {hit['score']}"
         )

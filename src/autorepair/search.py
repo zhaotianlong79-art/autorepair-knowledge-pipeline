@@ -4,6 +4,7 @@ import re
 
 from rank_bm25 import BM25Okapi
 
+from autorepair.metadata import MetadataFilter, snapshot
 from autorepair.models import Result
 
 
@@ -14,7 +15,14 @@ def tokenize(text: str) -> list[str]:
 
 
 def search(
-    results: list[Result], query: str, brand: str, *, original=False, include_review=False, k=5
+    results: list[Result],
+    query: str,
+    brand: str,
+    *,
+    original=False,
+    include_review=False,
+    k=5,
+    filters=None,
 ):
     rows = []
     for result in results:
@@ -24,10 +32,15 @@ def search(
             or (result.status == "review" and not include_review)
         ):
             continue
+        match = (filters or MetadataFilter()).match(result.document)
+        if match is None:
+            continue
         for block in result.document.blocks:
             text = block.original if original else block.text
             rows.append(
                 {
+                    **snapshot(result.document),
+                    "metadata_match": match,
                     "doc_id": result.document.doc_id,
                     "brand": result.document.brand,
                     "model": result.document.model,
@@ -99,6 +112,7 @@ def search_chunks(documents, chunks, query, *, k=5):
         related_blocks = [related[b.block_id] for b in doc.blocks if b.block_id in related]
         owned_images = [p.image_src for p in chunk.parts if p.image_src]
         rows = {
+            **snapshot(doc),
             "chunk_id": chunk.chunk_id,
             "doc_id": doc.doc_id,
             "brand": doc.brand,

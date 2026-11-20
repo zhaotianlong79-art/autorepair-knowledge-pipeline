@@ -97,6 +97,10 @@ def process(
     result = Result(document=doc, rules_hash=cfg.digest, issues=list(doc.issues))
     # Sanitize metadata as well as public before/after views. Raw input stays only in its source file.
     doc.source_name = redact(doc.source_name)
+    doc.model = redact(doc.model)
+    doc.year_range = redact(doc.year_range)
+    doc.document_version = redact(doc.document_version)
+    doc.applicability = [s.model_copy(update={"model": redact(s.model)}) for s in doc.applicability]
     for block in doc.blocks:
         block.location = scrub_value(block.location)
         block.links = [redact(link) for link in block.links]

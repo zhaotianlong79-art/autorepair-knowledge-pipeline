@@ -8,13 +8,22 @@ from pathlib import Path
 from autorepair.chunking import chunk_document
 from autorepair.config import Config
 from autorepair.engine import process
+from autorepair.metadata import MetadataPatch, apply_metadata, snapshot
 from autorepair.models import Document, Issue, Result
 from autorepair.parsers import parse
 from autorepair.privacy import redact
 from autorepair.storage import Store
 
 
-def run(paths: list[Path], cfg: Config, *, ocr=False, models_path=None) -> list[Result]:
+def run(
+    paths: list[Path],
+    cfg: Config,
+    *,
+    ocr=False,
+    models_path=None,
+    metadata: MetadataPatch | None = None,
+    metadata_by_path: dict | None = None,
+) -> list[Result]:
     docs = []
     for path in paths:
         try:
@@ -40,6 +49,20 @@ def run(paths: list[Path], cfg: Config, *, ocr=False, models_path=None) -> list[
                     ],
                 )
             )
+    applied_fields = {}
+    for i, (path, doc) in enumerate(zip(paths, docs, strict=True)):
+        specific = (metadata_by_path or {}).get(str(path.resolve()))
+        combined = metadata.supplied.copy() if metadata else {}
+        if specific:
+            if "applicability" in specific.supplied:
+                combined.pop("model", None)
+                combined.pop("year_range", None)
+            elif "model" in specific.supplied or "year_range" in specific.supplied:
+                combined.pop("applicability", None)
+            combined.update(specific.supplied)
+        patch = MetadataPatch.model_validate(combined)
+        docs[i] = apply_metadata(doc, patch)
+        applied_fields[str(path.resolve())] = list(patch.supplied)
     registry = {}
     duplicate = set()
     for doc in docs:
@@ -47,7 +70,19 @@ def run(paths: list[Path], cfg: Config, *, ocr=False, models_path=None) -> list[
             duplicate.add(doc.doc_id)
         registry[doc.doc_id] = {b.section for b in doc.blocks if b.section}
     results = [process(doc, cfg, registry) for doc in docs]
-    for result in results:
+    for path, result in zip(paths, results, strict=True):
+        if applied_fields[str(path.resolve())]:
+            result.reviews.append(
+                {
+                    "check": "metadata.input",
+                    "patch": {
+                        k: snapshot(result.document)[k] for k in applied_fields[str(path.resolve())]
+                    },
+                    "method": "manifest"
+                    if str(path.resolve()) in (metadata_by_path or {})
+                    else "manual-input",
+                }
+            )
         if result.document.doc_id in duplicate:
             result.issues.append(
                 Issue(
@@ -156,6 +191,7 @@ def export(results: list[Result], cfg: Config, output: Path) -> str:
     output.mkdir(parents=True, exist_ok=True)
     store = Store(output / "knowledge.sqlite")
     run_id = store.save(results, cfg)
+    results = store.load_run(run_id)
     folder = output / run_id
     folder.mkdir()
     for status in ("passed", "review", "failed"):
@@ -183,6 +219,17 @@ def export(results: list[Result], cfg: Config, output: Path) -> str:
             for r in results
             if r.status == "passed"
             for c in chunk_document(r.document)
+        ),
+        encoding="utf-8",
+    )
+    (folder / "metadata-history.json").write_text(
+        json.dumps(
+            {
+                r.document.doc_id: store.metadata_history(cfg.brand, r.document.doc_id)
+                for r in results
+            },
+            ensure_ascii=False,
+            indent=2,
         ),
         encoding="utf-8",
     )
