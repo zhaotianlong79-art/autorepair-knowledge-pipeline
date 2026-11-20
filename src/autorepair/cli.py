@@ -100,6 +100,19 @@ def main():
     history.add_argument("--brand", required=True)
     history.add_argument("--doc-id", required=True)
     history.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
+    evidence = commands.add_parser("evidence", help="查看章节块的解析原文、上下文、附件与页码定位")
+    evidence.add_argument("--brand", required=True)
+    evidence.add_argument("--doc-id", required=True)
+    evidence.add_argument("--chunk-id", required=True)
+    evidence.add_argument("--run", help="明确查看历史／候选运行；默认只允许当前正式资料")
+    evidence.add_argument("--original", action="store_true")
+    evidence.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
+    attach = commands.add_parser("source-attach", help="为已有资料补挂哈希一致的本地原件")
+    attach.add_argument("input", type=Path)
+    attach.add_argument("--brand", required=True)
+    attach.add_argument("--doc-id", required=True)
+    attach.add_argument("--run")
+    attach.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
     args = parser.parse_args()
     if args.command == "process":
         try:
@@ -173,6 +186,12 @@ def main():
                 )
             elif args.command == "metadata-history":
                 output = store.metadata_history(args.brand, args.doc_id)
+            elif args.command == "evidence":
+                output = store.evidence(
+                    args.brand, args.doc_id, args.chunk_id, run_id=args.run, original=args.original
+                )
+            elif args.command == "source-attach":
+                output = store.attach_source(args.brand, args.doc_id, args.input, run_id=args.run)
             elif args.run:
                 output = search(
                     store.load_run(args.run),
@@ -192,5 +211,5 @@ def main():
                     args.query, args.brand, original=args.original, filters=read_filter(args)
                 )
             print(json.dumps(output, ensure_ascii=False, indent=2))
-        except (KeyError, ValueError) as exc:
+        except (KeyError, ValueError, OSError) as exc:
             parser.error(str(exc))

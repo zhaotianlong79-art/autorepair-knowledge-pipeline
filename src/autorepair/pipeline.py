@@ -12,6 +12,7 @@ from autorepair.metadata import MetadataPatch, apply_metadata, snapshot
 from autorepair.models import Document, Issue, Result
 from autorepair.parsers import parse
 from autorepair.privacy import redact
+from autorepair.sources import capture_source
 from autorepair.storage import Store
 
 
@@ -83,6 +84,7 @@ def run(
                     else "manual-input",
                 }
             )
+        capture_source(result, path)
         if result.document.doc_id in duplicate:
             result.issues.append(
                 Issue(

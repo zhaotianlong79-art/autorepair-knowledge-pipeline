@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "autorepair-knowledge-pipeline"
-version = "0.6.0"
+version = "0.7.0"
 description = "Traceable automotive document processing with brand rules and quality gates"
 requires-python = ">=3.12,<3.13"
 license = "MIT"
 dependencies = [
   "beautifulsoup4>=4.12,<5", "lxml>=5,<7", "pydantic>=2.10,<3",
-  "PyYAML>=6,<7", "rank-bm25>=0.2.2,<0.3", "streamlit>=1.45,<2",
+  "markdown-it-py>=3,<5", "PyYAML>=6,<7", "rank-bm25>=0.2.2,<0.3", "streamlit>=1.45,<2",
 ]
 
 [project.optional-dependencies]
@@ -19,6 +19,7 @@ docling = [
     "httpx[socks]>=0.28,<1",
     "onnxruntime>=1.20,<2",
     "pdfplumber>=0.11,<1",
+    "pypdfium2>=4.30,<6",
 ]
 
 [dependency-groups]

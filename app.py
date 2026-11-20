@@ -10,6 +10,7 @@ import streamlit as st
 
 from autorepair.chunking import chunk_document
 from autorepair.config import load_config
+from autorepair.evidence_ui import evidence_panel, render_images, render_table
 from autorepair.knowledge_ui import render_knowledge
 from autorepair.metadata_ui import ingest_fields, patch_from_fields
 from autorepair.pipeline import confirm_completeness, export, markdown, report_markdown, run
@@ -134,6 +135,38 @@ with tab1:
             st.rerun()
     if selected.reviews:
         st.write("人工复核记录", selected.reviews)
+    if selected.status != "failed":
+        with st.expander("原文、图表与页码核对"):
+            review_chunks = chunk_document(selected.document)
+            if review_chunks:
+                review_chunk = st.selectbox(
+                    "核对章节块",
+                    review_chunks,
+                    format_func=lambda c: " / ".join(c.section_path) + " · " + c.chunk_id,
+                    key=f"review-chunk-{index}",
+                )
+                for part in review_chunk.parts:
+                    render_table(part.model_dump())
+                review_key = f"review-{state['run_id']}-{review_chunk.chunk_id}"
+                evidence = Store(ROOT / "artifacts/knowledge.sqlite").evidence(
+                    brand, selected.document.doc_id, review_chunk.chunk_id, run_id=state["run_id"]
+                )
+                render_images(
+                    Store(ROOT / "artifacts/knowledge.sqlite"),
+                    brand,
+                    selected.document.doc_id,
+                    [i["src"] for i in evidence["images"]],
+                    run_id=state["run_id"],
+                    key=review_key,
+                )
+                evidence_panel(
+                    Store(ROOT / "artifacts/knowledge.sqlite"),
+                    brand,
+                    selected.document.doc_id,
+                    review_chunk.chunk_id,
+                    run_id=state["run_id"],
+                    key=review_key,
+                )
 with tab2:
     issues = [{"文档": r.document.source_name, **i.model_dump()} for r in results for i in r.issues]
     if issues:

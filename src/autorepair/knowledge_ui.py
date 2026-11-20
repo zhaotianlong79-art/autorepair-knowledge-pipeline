@@ -2,6 +2,7 @@
 
 import streamlit as st
 
+from autorepair.evidence_ui import evidence_panel, render_images, render_table
 from autorepair.metadata_ui import correction_fields, filter_fields
 from autorepair.storage import Store
 
@@ -62,6 +63,8 @@ def render_knowledge(store: Store, brand: str):
         if hit["metadata_match"]["uses_unknown"]:
             st.warning("此结果包含未知适用字段，不能确认适用于所选车辆。")
         st.code(hit["text"], language=None)
+        for part in hit["parts"]:
+            render_table(part)
         st.caption(f"类型 {hit['document_type']} · 资料版本 {hit['document_version']}")
         st.caption(
             f"车型 {hit['model']} · 年份 {hit['year_range']} · 来源运行 {hit['source_run_id']} · 相关性 {hit['score']}"
@@ -79,9 +82,27 @@ def render_knowledge(store: Store, brand: str):
                         f"{related['block_id']} · {related['kind']} · {', '.join(related['reasons'])}"
                     )
                     st.code(related["text"], language=None)
+                    render_table(related)
                     if related["image_src"]:
                         st.caption(f"图片资源 {related['image_src']}")
                     st.json(related["location"])
+        view_key = f"{brand}-{hit['doc_id']}-{hit['chunk_id']}-{hit['source_run_id']}"
+        render_images(
+            store,
+            brand,
+            hit["doc_id"],
+            hit["image_sources"],
+            expected_run_id=hit["source_run_id"],
+            key=view_key,
+        )
+        evidence_panel(
+            store,
+            brand,
+            hit["doc_id"],
+            hit["chunk_id"],
+            expected_run_id=hit["source_run_id"],
+            key=view_key,
+        )
         with st.expander("来源位置与版本"):
             st.json(
                 {

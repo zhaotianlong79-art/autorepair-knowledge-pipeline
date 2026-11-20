@@ -6,6 +6,8 @@
 
 | 项目 | 用途 | 上游许可证及来源 |
 | --- | --- | --- |
+| pypdfium2 / PDFium | 本地 PDF 原页渲染与区域标注 | [上游项目及许可说明](https://github.com/pypdfium2-team/pypdfium2#licensing)，以安装包附带的依赖许可为准 |
+| markdown-it-py | 将 Markdown 表格解析为可转义展示的单元格 | [上游项目及附带许可](https://github.com/executablebooks/markdown-it-py) |
 | pdfplumber | 数字 PDF 矢量表格单元格核对 | [MIT](https://github.com/jsvine/pdfplumber/blob/stable/LICENSE.txt) |
 | Docling | PDF DOCX 转为结构化文档 | [MIT](https://github.com/docling-project/docling/blob/main/LICENSE) |
 | Beautiful Soup | 静态 HTML DOM 提取 | [MIT](https://www.crummy.com/software/BeautifulSoup/) |

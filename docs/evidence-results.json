@@ -1,0 +1,70 @@
+{
+  "scope": "Evidence display of verified local conversion caches, not source conversion or semantic accuracy. No OEM originals/images are redistributed. Ambiguous geometry is skipped rather than guessed.",
+  "passed": true,
+  "rows": [
+    {
+      "source": "toyota",
+      "sha256": "4a314c3eaef7cb76b2b08638494ff04a74fe4d39c38fcbb3988be267aab623ec",
+      "status": "review",
+      "evidence_bundles": 37,
+      "retained_source_verified": true,
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "pages_rendered": 9,
+      "tables": 9,
+      "tables_rendered": 9,
+      "distinct_images": 14,
+      "valid_images": 14,
+      "skipped_ambiguous_regions": 0,
+      "approved_documents": 0
+    },
+    {
+      "source": "honda",
+      "sha256": "c9457c53a8957fa33021ebe84d129f6ec114dde41167e8279e4f7a66b0ebacfb",
+      "status": "review",
+      "evidence_bundles": 27,
+      "retained_source_verified": true,
+      "pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pages_rendered": 4,
+      "tables": 5,
+      "tables_rendered": 5,
+      "distinct_images": 3,
+      "valid_images": 3,
+      "skipped_ambiguous_regions": 0,
+      "approved_documents": 0
+    },
+    {
+      "source": "subaru",
+      "sha256": "81499ed65df8e755a5ea5ba3252b3333d3119557874b94c5a3d87ce93f19eea9",
+      "status": "review",
+      "evidence_bundles": 12,
+      "retained_source_verified": true,
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "pages_rendered": 3,
+      "tables": 4,
+      "tables_rendered": 4,
+      "distinct_images": 7,
+      "valid_images": 7,
+      "skipped_ambiguous_regions": 0,
+      "approved_documents": 0
+    }
+  ]
+}

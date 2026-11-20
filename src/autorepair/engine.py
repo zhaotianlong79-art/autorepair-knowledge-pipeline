@@ -95,7 +95,7 @@ def process(
         raise ValueError("Document/config brand mismatch")
     doc = document.model_copy(deep=True)
     result = Result(document=doc, rules_hash=cfg.digest, issues=list(doc.issues))
-    # Sanitize metadata as well as public before/after views. Raw input stays only in its source file.
+    # Sanitize public views. Original snapshots, when retained, live in a separate local blob table.
     doc.source_name = redact(doc.source_name)
     doc.model = redact(doc.model)
     doc.year_range = redact(doc.year_range)

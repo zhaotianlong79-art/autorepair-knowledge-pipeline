@@ -12,6 +12,7 @@ from autorepair.config import Config
 from autorepair.metadata import FIELDS, MetadataFilter, MetadataPatch, apply_metadata, snapshot
 from autorepair.models import Document, Result
 from autorepair.privacy import redact
+from autorepair.sources import MIMES, SourceFile, read_source, source_snapshot
 
 
 class Store:
@@ -23,6 +24,10 @@ class Store:
                 "SELECT 1 FROM sqlite_master WHERE type='table' AND name='document_catalog'"
             ).fetchone()
             db.executescript("""
+            CREATE TABLE IF NOT EXISTS source_files (
+              brand TEXT NOT NULL, doc_id TEXT NOT NULL, source_hash TEXT NOT NULL,
+              suffix TEXT NOT NULL, name TEXT NOT NULL, data BLOB NOT NULL,
+              PRIMARY KEY(brand,doc_id,source_hash));
             CREATE TABLE IF NOT EXISTS metadata_history (
               event_id TEXT PRIMARY KEY, brand TEXT NOT NULL, doc_id TEXT NOT NULL,
               revision INTEGER NOT NULL, created_at TEXT NOT NULL, actor TEXT NOT NULL,
@@ -220,6 +225,7 @@ class Store:
             raise ValueError("Duplicate document IDs in one save")
         if any(r.status == "passed" and r.issues for r in results):
             raise ValueError("Passed documents cannot contain unresolved issues")
+        originals = results
         run_id = uuid4().hex
         created = datetime.now(UTC).isoformat()
         with self.connect() as db:
@@ -307,6 +313,10 @@ class Store:
                     ),
                 )
             self._publish(db, results, run_id, cfg.digest, created)
+            for result in originals:
+                source = source_snapshot(result)
+                if source and result.status != "failed":
+                    self._write_source(db, result.document, source)
         return run_id
 
     def _publish(self, db, results, run_id, rules_hash, created):
@@ -595,3 +605,118 @@ class Store:
             )
             self._publish(db, [result], run_id, result.rules_hash, created)
             return {"run_id": run_id, "metadata_revision": revision, "status": result.status}
+
+    @staticmethod
+    def _write_source(db, document, source):
+        if source.digest != document.source_hash:
+            raise ValueError("原件哈希与文档来源不符")
+        db.execute(
+            "INSERT OR REPLACE INTO source_files VALUES (?, ?, ?, ?, ?, ?)",
+            (
+                document.brand,
+                document.doc_id,
+                document.source_hash,
+                source.suffix,
+                source.name,
+                source.data,
+            ),
+        )
+
+    def _evidence_document(self, db, brand, doc_id, run_id=None, expected_run_id=None):
+        if run_id:
+            result = next(
+                (
+                    r
+                    for r in self._load_run(db, run_id)
+                    if r.document.brand == brand and r.document.doc_id == doc_id
+                ),
+                None,
+            )
+            if result is None or result.status == "failed":
+                raise ValueError("历史运行没有此品牌文档的可用证据")
+            return result.document, dict(
+                source_run_id=run_id,
+                rules_hash=result.rules_hash,
+                status=result.status,
+                historical=True,
+            )
+        row = db.execute(
+            "SELECT d.payload,c.run_id,c.rules_hash,c.metadata_revision FROM documents d JOIN document_catalog c ON d.brand=c.brand AND d.doc_id=c.doc_id WHERE d.brand=? AND d.doc_id=? AND c.status='passed'",
+            (brand, doc_id),
+        ).fetchone()
+        if row is None:
+            raise ValueError("文档不在当前正式库中，请刷新检索结果或明确选择历史运行")
+        if expected_run_id and expected_run_id != row[1]:
+            raise ValueError("文档已更新，请重新检索后查看证据")
+        return Document.model_validate_json(row[0]), dict(
+            source_run_id=row[1],
+            rules_hash=row[2],
+            metadata_revision=row[3],
+            status="passed",
+            historical=False,
+        )
+
+    def evidence(
+        self, brand, doc_id, chunk_id, *, run_id=None, expected_run_id=None, original=False
+    ):
+        from autorepair.evidence import build_evidence
+
+        with self.connect() as db:
+            db.execute("BEGIN")
+            doc, provenance = self._evidence_document(db, brand, doc_id, run_id, expected_run_id)
+            chunks = (
+                chunk_document(doc, original=original)
+                if run_id or original
+                else self._load_chunks(db, brand, doc_id)
+            )
+            chunk = next((c for c in chunks if c.chunk_id == chunk_id), None)
+            if chunk is None:
+                raise ValueError("证据块不存在或已变化，请重新检索")
+            bundle = build_evidence(doc, chunk)
+            source = self._source_row(db, doc)
+        return {**bundle, **provenance, "source": {k: v for k, v in source.items() if k != "data"}}
+
+    @staticmethod
+    def _source_row(db, doc):
+        row = db.execute(
+            "SELECT suffix,name,data FROM source_files WHERE brand=? AND doc_id=? AND source_hash=?",
+            (doc.brand, doc.doc_id, doc.source_hash),
+        ).fetchone()
+        if row is None:
+            return dict(
+                status="missing", message="未保留原件；可核对脱敏解析原文，原页无法预览", data=None
+            )
+        source = SourceFile(bytes(row[2]), row[0], row[1])
+        if source.digest != doc.source_hash or source.suffix not in MIMES:
+            return dict(status="invalid", message="原件校验失败，原页未显示", data=None)
+        return dict(
+            status="available",
+            message="本地校验原件，未作脱敏",
+            suffix=source.suffix,
+            name=source.name,
+            mime=MIMES[source.suffix],
+            data=source.data,
+        )
+
+    def source_file(self, brand, doc_id, *, run_id=None, expected_run_id=None):
+        with self.connect() as db:
+            db.execute("BEGIN")
+            doc, _ = self._evidence_document(db, brand, doc_id, run_id, expected_run_id)
+            return self._source_row(db, doc)
+
+    def attachment(self, brand, doc_id, src, *, run_id=None, expected_run_id=None):
+        from autorepair.evidence import image_attachment
+
+        with self.connect() as db:
+            doc, _ = self._evidence_document(db, brand, doc_id, run_id, expected_run_id)
+        if not any(b.image_src == src for b in doc.blocks):
+            raise ValueError("该图片引用不属于当前文档")
+        return image_attachment(doc, src)
+
+    def attach_source(self, brand, doc_id, path, *, run_id=None):
+        source = read_source(path)
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            doc, _ = self._evidence_document(db, brand, doc_id, run_id)
+            self._write_source(db, doc, source)
+        return dict(source_hash=source.digest, source_name=source.name, status="available")
