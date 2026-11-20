@@ -1,0 +1,1063 @@
+{
+  "scope": "Additional self-authored development acceptance, labels saved before first execution; not independent human validation.",
+  "cases": 15,
+  "executions": 45,
+  "passed": true,
+  "modes": [
+    "bm25",
+    "semantic",
+    "hybrid"
+  ],
+  "rows": [
+    {
+      "case_id": "cold-front-empty",
+      "mode": "bm25",
+      "question": "前轮轮胎空载冷态气压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "210kpa"
+      ],
+      "actual_values": [
+        "210kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 1,
+          "column": 2,
+          "row_label": "前轮轮胎（18英寸）",
+          "column_label": "空载冷态气压(kPa)",
+          "source_text": "210",
+          "value": "210",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "210kpa",
+          "conditions": {
+            "axle": [
+              "front"
+            ],
+            "temperature": [
+              "cold"
+            ],
+            "load": [
+              "empty"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "cold-front-empty",
+      "mode": "semantic",
+      "question": "前轮轮胎空载冷态气压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "210kpa"
+      ],
+      "actual_values": [
+        "210kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 1,
+          "column": 2,
+          "row_label": "前轮轮胎（18英寸）",
+          "column_label": "空载冷态气压(kPa)",
+          "source_text": "210",
+          "value": "210",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "210kpa",
+          "conditions": {
+            "axle": [
+              "front"
+            ],
+            "temperature": [
+              "cold"
+            ],
+            "load": [
+              "empty"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "cold-front-empty",
+      "mode": "hybrid",
+      "question": "前轮轮胎空载冷态气压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "210kpa"
+      ],
+      "actual_values": [
+        "210kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 1,
+          "column": 2,
+          "row_label": "前轮轮胎（18英寸）",
+          "column_label": "空载冷态气压(kPa)",
+          "source_text": "210",
+          "value": "210",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "210kpa",
+          "conditions": {
+            "axle": [
+              "front"
+            ],
+            "temperature": [
+              "cold"
+            ],
+            "load": [
+              "empty"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "cold-rear-full",
+      "mode": "bm25",
+      "question": "后轮轮胎满载冷态气压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "290kpa"
+      ],
+      "actual_values": [
+        "290kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 2,
+          "column": 3,
+          "row_label": "后轮轮胎（18英寸）",
+          "column_label": "满载冷态气压(kPa)",
+          "source_text": "290",
+          "value": "290",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "290kpa",
+          "conditions": {
+            "axle": [
+              "rear"
+            ],
+            "temperature": [
+              "cold"
+            ],
+            "load": [
+              "full"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "cold-rear-full",
+      "mode": "semantic",
+      "question": "后轮轮胎满载冷态气压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "290kpa"
+      ],
+      "actual_values": [
+        "290kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 2,
+          "column": 3,
+          "row_label": "后轮轮胎（18英寸）",
+          "column_label": "满载冷态气压(kPa)",
+          "source_text": "290",
+          "value": "290",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "290kpa",
+          "conditions": {
+            "axle": [
+              "rear"
+            ],
+            "temperature": [
+              "cold"
+            ],
+            "load": [
+              "full"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "cold-rear-full",
+      "mode": "hybrid",
+      "question": "后轮轮胎满载冷态气压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "290kpa"
+      ],
+      "actual_values": [
+        "290kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 2,
+          "column": 3,
+          "row_label": "后轮轮胎（18英寸）",
+          "column_label": "满载冷态气压(kPa)",
+          "source_text": "290",
+          "value": "290",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "290kpa",
+          "conditions": {
+            "axle": [
+              "rear"
+            ],
+            "temperature": [
+              "cold"
+            ],
+            "load": [
+              "full"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "hot-front-empty",
+      "mode": "bm25",
+      "question": "前轮轮胎空载热态气压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "235kpa"
+      ],
+      "actual_values": [
+        "235kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 1,
+          "column": 4,
+          "row_label": "前轮轮胎（18英寸）",
+          "column_label": "空载热态气压(kPa)",
+          "source_text": "235",
+          "value": "235",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "235kpa",
+          "conditions": {
+            "axle": [
+              "front"
+            ],
+            "temperature": [
+              "hot"
+            ],
+            "load": [
+              "empty"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "hot-front-empty",
+      "mode": "semantic",
+      "question": "前轮轮胎空载热态气压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "235kpa"
+      ],
+      "actual_values": [
+        "235kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 1,
+          "column": 4,
+          "row_label": "前轮轮胎（18英寸）",
+          "column_label": "空载热态气压(kPa)",
+          "source_text": "235",
+          "value": "235",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "235kpa",
+          "conditions": {
+            "axle": [
+              "front"
+            ],
+            "temperature": [
+              "hot"
+            ],
+            "load": [
+              "empty"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "hot-front-empty",
+      "mode": "hybrid",
+      "question": "前轮轮胎空载热态气压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "235kpa"
+      ],
+      "actual_values": [
+        "235kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 1,
+          "column": 4,
+          "row_label": "前轮轮胎（18英寸）",
+          "column_label": "空载热态气压(kPa)",
+          "source_text": "235",
+          "value": "235",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "235kpa",
+          "conditions": {
+            "axle": [
+              "front"
+            ],
+            "temperature": [
+              "hot"
+            ],
+            "load": [
+              "empty"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "missing-load",
+      "mode": "bm25",
+      "question": "前轮轮胎冷态气压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-load",
+      "mode": "semantic",
+      "question": "前轮轮胎冷态气压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-load",
+      "mode": "hybrid",
+      "question": "前轮轮胎冷态气压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-axle",
+      "mode": "bm25",
+      "question": "轮胎空载冷态气压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-axle",
+      "mode": "semantic",
+      "question": "轮胎空载冷态气压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-axle",
+      "mode": "hybrid",
+      "question": "轮胎空载冷态气压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-temperature",
+      "mode": "bm25",
+      "question": "前轮轮胎空载气压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-temperature",
+      "mode": "semantic",
+      "question": "前轮轮胎空载气压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-temperature",
+      "mode": "hybrid",
+      "question": "前轮轮胎空载气压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-side",
+      "mode": "bm25",
+      "question": "左侧前轮轮胎空载冷态气压是多少",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-side",
+      "mode": "semantic",
+      "question": "左侧前轮轮胎空载冷态气压是多少",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-side",
+      "mode": "hybrid",
+      "question": "左侧前轮轮胎空载冷态气压是多少",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "tire-alias",
+      "mode": "bm25",
+      "question": "前胎满载冷车胎压多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "260kpa"
+      ],
+      "actual_values": [
+        "260kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 1,
+          "column": 3,
+          "row_label": "前轮轮胎（18英寸）",
+          "column_label": "满载冷态气压(kPa)",
+          "source_text": "260",
+          "value": "260",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "260kpa",
+          "conditions": {
+            "axle": [
+              "front"
+            ],
+            "temperature": [
+              "cold"
+            ],
+            "load": [
+              "full"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "tire-alias",
+      "mode": "semantic",
+      "question": "前胎满载冷车胎压多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "260kpa"
+      ],
+      "actual_values": [
+        "260kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 1,
+          "column": 3,
+          "row_label": "前轮轮胎（18英寸）",
+          "column_label": "满载冷态气压(kPa)",
+          "source_text": "260",
+          "value": "260",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "260kpa",
+          "conditions": {
+            "axle": [
+              "front"
+            ],
+            "temperature": [
+              "cold"
+            ],
+            "load": [
+              "full"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "tire-alias",
+      "mode": "hybrid",
+      "question": "前胎满载冷车胎压多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "260kpa"
+      ],
+      "actual_values": [
+        "260kpa"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "pressure",
+          "row": 1,
+          "column": 3,
+          "row_label": "前轮轮胎（18英寸）",
+          "column_label": "满载冷态气压(kPa)",
+          "source_text": "260",
+          "value": "260",
+          "unit": "kPa",
+          "unit_source": "column-header",
+          "canonical": "260kpa",
+          "conditions": {
+            "axle": [
+              "front"
+            ],
+            "temperature": [
+              "cold"
+            ],
+            "load": [
+              "full"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "idle",
+      "mode": "bm25",
+      "question": "火花塞怠速检查电压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "11.8v"
+      ],
+      "actual_values": [
+        "11.8v"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "voltage",
+          "row": null,
+          "column": null,
+          "row_label": "",
+          "column_label": "",
+          "source_text": "火花塞怠速检查电压为 11.8 V",
+          "value": "11.8",
+          "unit": "V",
+          "unit_source": "clause",
+          "canonical": "11.8v",
+          "conditions": {
+            "engine": [
+              "idle"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "idle",
+      "mode": "semantic",
+      "question": "火花塞怠速检查电压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "11.8v"
+      ],
+      "actual_values": [
+        "11.8v"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "voltage",
+          "row": null,
+          "column": null,
+          "row_label": "",
+          "column_label": "",
+          "source_text": "火花塞怠速检查电压为 11.8 V",
+          "value": "11.8",
+          "unit": "V",
+          "unit_source": "clause",
+          "canonical": "11.8v",
+          "conditions": {
+            "engine": [
+              "idle"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "idle",
+      "mode": "hybrid",
+      "question": "火花塞怠速检查电压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "11.8v"
+      ],
+      "actual_values": [
+        "11.8v"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "voltage",
+          "row": null,
+          "column": null,
+          "row_label": "",
+          "column_label": "",
+          "source_text": "火花塞怠速检查电压为 11.8 V",
+          "value": "11.8",
+          "unit": "V",
+          "unit_source": "clause",
+          "canonical": "11.8v",
+          "conditions": {
+            "engine": [
+              "idle"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "high",
+      "mode": "bm25",
+      "question": "火花塞高速检查电压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "13.7v"
+      ],
+      "actual_values": [
+        "13.7v"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "voltage",
+          "row": null,
+          "column": null,
+          "row_label": "",
+          "column_label": "",
+          "source_text": "火花塞高速检查电压为 13.7 V",
+          "value": "13.7",
+          "unit": "V",
+          "unit_source": "clause",
+          "canonical": "13.7v",
+          "conditions": {
+            "engine": [
+              "high"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "high",
+      "mode": "semantic",
+      "question": "火花塞高速检查电压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "13.7v"
+      ],
+      "actual_values": [
+        "13.7v"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "voltage",
+          "row": null,
+          "column": null,
+          "row_label": "",
+          "column_label": "",
+          "source_text": "火花塞高速检查电压为 13.7 V",
+          "value": "13.7",
+          "unit": "V",
+          "unit_source": "clause",
+          "canonical": "13.7v",
+          "conditions": {
+            "engine": [
+              "high"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "high",
+      "mode": "hybrid",
+      "question": "火花塞高速检查电压是多少",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "13.7v"
+      ],
+      "actual_values": [
+        "13.7v"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "voltage",
+          "row": null,
+          "column": null,
+          "row_label": "",
+          "column_label": "",
+          "source_text": "火花塞高速检查电压为 13.7 V",
+          "value": "13.7",
+          "unit": "V",
+          "unit_source": "clause",
+          "canonical": "13.7v",
+          "conditions": {
+            "engine": [
+              "high"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "missing-engine",
+      "mode": "bm25",
+      "question": "火花塞检查电压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-engine",
+      "mode": "semantic",
+      "question": "火花塞检查电压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "missing-engine",
+      "mode": "hybrid",
+      "question": "火花塞检查电压是多少",
+      "expected_status": "conflicting_evidence",
+      "actual_status": "conflicting_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "code-correct",
+      "mode": "bm25",
+      "question": "P0352 应该检查哪些部位",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "code-correct",
+      "mode": "semantic",
+      "question": "P0352 应该检查哪些部位",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "code-correct",
+      "mode": "hybrid",
+      "question": "P0352 应该检查哪些部位",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "code-neighbor",
+      "mode": "bm25",
+      "question": "P0353 应该检查哪些部位",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "code-neighbor",
+      "mode": "semantic",
+      "question": "P0353 应该检查哪些部位",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "code-neighbor",
+      "mode": "hybrid",
+      "question": "P0353 应该检查哪些部位",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "new-part-alias",
+      "mode": "bm25",
+      "question": "前轮刹车钳支撑螺丝拧多紧",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "86nm"
+      ],
+      "actual_values": [
+        "86nm"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "torque",
+          "row": null,
+          "column": null,
+          "row_label": "",
+          "column_label": "",
+          "source_text": "前制动卡钳支架螺栓紧固扭矩为 86 Nm",
+          "value": "86",
+          "unit": "Nm",
+          "unit_source": "clause",
+          "canonical": "86nm",
+          "conditions": {
+            "axle": [
+              "front"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "new-part-alias",
+      "mode": "semantic",
+      "question": "前轮刹车钳支撑螺丝拧多紧",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "86nm"
+      ],
+      "actual_values": [
+        "86nm"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "torque",
+          "row": null,
+          "column": null,
+          "row_label": "",
+          "column_label": "",
+          "source_text": "前制动卡钳支架螺栓紧固扭矩为 86 Nm",
+          "value": "86",
+          "unit": "Nm",
+          "unit_source": "clause",
+          "canonical": "86nm",
+          "conditions": {
+            "axle": [
+              "front"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "new-part-alias",
+      "mode": "hybrid",
+      "question": "前轮刹车钳支撑螺丝拧多紧",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_values": [
+        "86nm"
+      ],
+      "actual_values": [
+        "86nm"
+      ],
+      "bindings": [
+        {
+          "block_id": "b0003",
+          "quantity": "torque",
+          "row": null,
+          "column": null,
+          "row_label": "",
+          "column_label": "",
+          "source_text": "前制动卡钳支架螺栓紧固扭矩为 86 Nm",
+          "value": "86",
+          "unit": "Nm",
+          "unit_source": "clause",
+          "canonical": "86nm",
+          "conditions": {
+            "axle": [
+              "front"
+            ]
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "unrelated",
+      "mode": "bm25",
+      "question": "后轮轮胎空载冷态气压是多少",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "unrelated",
+      "mode": "semantic",
+      "question": "后轮轮胎空载冷态气压是多少",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    },
+    {
+      "case_id": "unrelated",
+      "mode": "hybrid",
+      "question": "后轮轮胎空载冷态气压是多少",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expected_values": [],
+      "actual_values": [],
+      "bindings": [],
+      "passed": true
+    }
+  ]
+}

@@ -24,7 +24,7 @@ def report_markdown(report):
     lines = [
         "# 冻结题集评估结果",
         "",
-        "数据集 repair-v1；版本 0.11.0。标签由助手基于原文件预先编写，外部人工复核尚未完成；不是人工盲测或真实维修效果。",
+        f"数据集 repair-v1；版本 {report['runtime']['project_version']}。标签由助手基于原文件预先编写，外部人工复核尚未完成；不是人工盲测或真实维修效果。",
         "",
         f"{report['dataset']['documents']} 份自制资料，{report['dataset']['cases']} 个场景（{report['dataset']['distinct_questions']} 种不同问题文本）。开发引擎冻结基线 `{report['baseline_commit'][:7]}`；本次引擎与基线一致：{report['engine_matches_baseline']}。",
         "",
@@ -67,7 +67,12 @@ def report_markdown(report):
         "",
         f"已提交复核记录 {report['reviews']['submitted_cases']} 题，认可标签 {report['reviews']['approved_cases']} 题，否决标签 {report['reviews']['rejected_cases']} 题。记录为自行署名，不是身份认证。",
         "",
-        "人工认可标签子集的指标单列于 JSON；没有认可记录时分母为 0、比率为 null，不声称人工验证通过。生产检索／问答算法未按此题集调整；保留失败样例。",
+        "人工认可标签子集的指标单列于 JSON；没有认可记录时分母为 0、比率为 null，不声称人工验证通过。"
+        + (
+            "生产引擎与冻结基线一致。"
+            if report["engine_matches_baseline"]
+            else "生产引擎已变化，本次为已见题回归，不是独立盲测。原 0.11.0 基线报告保留不覆盖。"
+        ),
         "",
         "未运行真实 LLM 选证，没有自由生成答案准确率。本轮只使用自制 HTML 正式证据，不验证真实 PDF 的维修语义或维修安全。该结果不可作实际车辆操作依据。",
         "",
@@ -120,6 +125,15 @@ def evaluate(output, markdown_path, modes, *, reviews_path=None):
             for name in ["src/autorepair/evaluation.py", "scripts/evaluate_benchmark.py"]
         },
         model=model,
+        additional_engine_files={
+            name: file_hash(ROOT / name)
+            for name in [
+                "src/autorepair/qa_language.py",
+                "src/autorepair/qa_binding.py",
+                "configs/qa/query-terms.yaml",
+            ]
+            if (ROOT / name).exists()
+        },
         reviews=dict(
             submitted_cases=len(reviews),
             approved_cases=len(approved),

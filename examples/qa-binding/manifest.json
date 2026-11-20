@@ -1,0 +1,151 @@
+{
+  "scope": "Additional self-authored development acceptance, labels saved before first execution; not independent human validation.",
+  "cases": [
+    {
+      "id": "cold-front-empty",
+      "file": "pressure.html",
+      "question": "前轮轮胎空载冷态气压是多少",
+      "expected_status": "answered",
+      "expected_values": [
+        "210kpa"
+      ],
+      "expected_cell": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "cold-rear-full",
+      "file": "pressure.html",
+      "question": "后轮轮胎满载冷态气压是多少",
+      "expected_status": "answered",
+      "expected_values": [
+        "290kpa"
+      ],
+      "expected_cell": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "hot-front-empty",
+      "file": "pressure.html",
+      "question": "前轮轮胎空载热态气压是多少",
+      "expected_status": "answered",
+      "expected_values": [
+        "235kpa"
+      ],
+      "expected_cell": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "missing-load",
+      "file": "pressure.html",
+      "question": "前轮轮胎冷态气压是多少",
+      "expected_status": "conflicting_evidence",
+      "expected_values": [],
+      "expected_cell": null
+    },
+    {
+      "id": "missing-axle",
+      "file": "pressure.html",
+      "question": "轮胎空载冷态气压是多少",
+      "expected_status": "conflicting_evidence",
+      "expected_values": [],
+      "expected_cell": null
+    },
+    {
+      "id": "missing-temperature",
+      "file": "pressure.html",
+      "question": "前轮轮胎空载气压是多少",
+      "expected_status": "conflicting_evidence",
+      "expected_values": [],
+      "expected_cell": null
+    },
+    {
+      "id": "missing-side",
+      "file": "pressure.html",
+      "question": "左侧前轮轮胎空载冷态气压是多少",
+      "expected_status": "insufficient_evidence",
+      "expected_values": [],
+      "expected_cell": null
+    },
+    {
+      "id": "tire-alias",
+      "file": "pressure.html",
+      "question": "前胎满载冷车胎压多少",
+      "expected_status": "answered",
+      "expected_values": [
+        "260kpa"
+      ],
+      "expected_cell": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "idle",
+      "file": "service.html",
+      "question": "火花塞怠速检查电压是多少",
+      "expected_status": "answered",
+      "expected_values": [
+        "11.8v"
+      ],
+      "expected_cell": null
+    },
+    {
+      "id": "high",
+      "file": "service.html",
+      "question": "火花塞高速检查电压是多少",
+      "expected_status": "answered",
+      "expected_values": [
+        "13.7v"
+      ],
+      "expected_cell": null
+    },
+    {
+      "id": "missing-engine",
+      "file": "service.html",
+      "question": "火花塞检查电压是多少",
+      "expected_status": "conflicting_evidence",
+      "expected_values": [],
+      "expected_cell": null
+    },
+    {
+      "id": "code-correct",
+      "file": "service.html",
+      "question": "P0352 应该检查哪些部位",
+      "expected_status": "answered",
+      "expected_values": [],
+      "expected_cell": null
+    },
+    {
+      "id": "code-neighbor",
+      "file": "service.html",
+      "question": "P0353 应该检查哪些部位",
+      "expected_status": "insufficient_evidence",
+      "expected_values": [],
+      "expected_cell": null
+    },
+    {
+      "id": "new-part-alias",
+      "file": "parts.html",
+      "question": "前轮刹车钳支撑螺丝拧多紧",
+      "expected_status": "answered",
+      "expected_values": [
+        "86nm"
+      ],
+      "expected_cell": null
+    },
+    {
+      "id": "unrelated",
+      "file": "parts.html",
+      "question": "后轮轮胎空载冷态气压是多少",
+      "expected_status": "insufficient_evidence",
+      "expected_values": [],
+      "expected_cell": null
+    }
+  ]
+}

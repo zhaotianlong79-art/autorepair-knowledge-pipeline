@@ -182,6 +182,19 @@ def trace_citations(store, response, filters):
                     block is None
                     or block.text != record["text"]
                     or block.location != record["location"]
+                    or block.kind != record["kind"]
+                    or block.section_path != record["section_path"]
+                ):
+                    return False
+            if item.get("numeric_bindings"):
+                from autorepair.qa_binding import verify_fact
+                from autorepair.qa_language import normalize
+
+                question = normalize(response["question"])[0]
+                if response.get("question_normalization", {}).get("retrieval_query") != question:
+                    return False
+                if not all(
+                    verify_fact(f, item["records"], question) for f in item["numeric_bindings"]
                 ):
                     return False
             if item["text"] != "\n\n".join(b["text"] for b in item["records"] if b["text"]):
@@ -310,6 +323,7 @@ def evaluate_cases(store, keys, data, modes, *, embedder=None, reviews=None):
                     retrieval_candidates=len(hits),
                     retrieval_scope_violations=scope_violations,
                     answer_status=response["status"],
+                    question_normalization=response.get("question_normalization"),
                     trace_valid=trace,
                     label_support_match=matched,
                     requires_warnings=bool(case["required_warnings"]),
@@ -331,6 +345,7 @@ def evaluate_cases(store, keys, data, modes, *, embedder=None, reviews=None):
                             document_id=keys[(e["brand"], e["doc_id"])],
                             text=e["text"],
                             pages=e["pages"],
+                            numeric_bindings=e.get("numeric_bindings", []),
                         )
                         for e in response["citations"]
                     ],

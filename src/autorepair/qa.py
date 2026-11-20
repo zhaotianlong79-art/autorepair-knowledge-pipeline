@@ -18,24 +18,13 @@ from autorepair.evidence import block_record, page_targets
 from autorepair.metadata import MetadataFilter
 from autorepair.models import Model
 from autorepair.privacy import redact
-from autorepair.search import tokenize
+from autorepair.qa_binding import PATTERNS, ambiguities, bind, conflicts, intents
+from autorepair.qa_language import normalize, relevant
 from autorepair.semantic import identifier_filter
 
-QUESTION_WORDS = "为什么 怎么样 怎么 如何 什么 多少 是否 能否 可以 需要 应该 哪些 请问 请帮我 查看 查询 检查 更换 维修 资料 说明 方法 步骤 项目 参数 数值 标准 范围 规格 安装 使用 进行 有关 这个 这份 的 是 吗 呢 了 要 请".split()
-STOP_PATTERN = re.compile("|".join(map(re.escape, sorted(QUESTION_WORDS, key=len, reverse=True))))
-
-INTENTS = [
-    (r"扭矩|力矩", r"N[· ]?m|Nm"),
-    (r"电压", r"mV|V"),
-    (r"间隙|长度|直径", r"mm|cm"),
-    (r"温度", r"°C|℃"),
-    (r"压力|油压", r"kPa|MPa|bar"),
-    (r"容量|油量|加注量", r"mL|ml|L"),
-]
 WARNING = re.compile(r"警告|危险|不得|禁止|切勿|不要|\bWARNING\b|\bDANGER\b", re.I)
-NUMERIC_QUESTION = re.compile(r"多少|多大|多高|多长|数值|标准|参数|范围|规格|几[伏度毫米]")
 MAX_CONTEXT = 16000
-PROMPT_VERSION = "complete-evidence-selection-v1"
+PROMPT_VERSION = "scoped-evidence-selection-v2"
 
 
 class Selection(Model):
@@ -62,39 +51,6 @@ class ExtractiveSelector:
 
     def select(self, question, evidence):
         return Selection(decision="answer", evidence_ids=[e["id"] for e in evidence])
-
-
-def _topic(question):
-    for pattern, _ in INTENTS:
-        question = re.sub(pattern, " ", question)
-    question = STOP_PATTERN.sub(" ", question)
-    return set(tokenize(question))
-
-
-def _relevant(question, text):
-    # Deliberately bounded lexical gate. Similarity alone cannot certify evidence.
-    topic = _topic(question)
-    overlap = topic & set(tokenize(text))
-    return bool(topic and overlap and len(overlap) / len(topic) >= 0.5)
-
-
-def _measurements(question, text, *, bind_topic=False):
-    values = {}
-    if not NUMERIC_QUESTION.search(question):
-        return values
-    if bind_topic:
-        text = "\n".join(s for s in re.split(r"[。；;！？!?\n]", text) if _relevant(question, s))
-    for intent, units in INTENTS:
-        if re.search(intent, question):
-            matches = re.findall(
-                rf"(?<![a-z0-9_.])-?\d+(?:\.\d+)?(?:\s*[-–~至]\s*\d+(?:\.\d+)?)?\s*(?:{units})(?![a-zA-Z])",
-                text,
-                re.I,
-            )
-            values[intent] = {
-                re.sub(r"[\s·]+", "", m).replace("℃", "°C").casefold() for m in matches
-            }
-    return values
 
 
 def _citation(store, hit, brand):
@@ -186,10 +142,14 @@ def answer(
     if not 1 <= max_evidence <= 8:
         raise ValueError("最多选择 1–8 条证据")
     question = redact(question.strip())
+    normalized, normalization = normalize(question)
+    if len(normalized) > 400:
+        raise ValueError("术语规范化后的问题超过 400 字符，请缩短问题")
     filters = filters or MetadataFilter()
     selector = selector or ExtractiveSelector()
     base = dict(
         question=question,
+        question_normalization=normalization,
         created_at=datetime.now(UTC).isoformat(),
         brand=brand,
         scope=filters.model_dump(),
@@ -219,7 +179,7 @@ def answer(
     if any(int(year) != filters.year_start for year in mentioned_years):
         return refuse("needs_scope", "问题中的年份与筛选年份不一致，请核对后重试。")
     hits = store.search(
-        question, brand, filters=filters, mode=retrieval_mode, embedder=embedder, k=20
+        normalized, brand, filters=filters, mode=retrieval_mode, embedder=embedder, k=20
     )
     citations = []
     units_seen = set()
@@ -228,13 +188,19 @@ def answer(
             if hit["metadata_match"]["uses_unknown"]:
                 continue
             item = _citation(store, hit, brand)
-            if item is None or not _relevant(question, item["owned_text"]):
+            if item is None or not relevant(normalized, normalize(item["owned_text"])[0], PATTERNS):
                 continue
             proxy = SimpleNamespace(section_path=[], text=item["owned_text"])
             if not identifier_filter([proxy], question):
                 continue
-            measurements = _measurements(question, item["owned_text"], bind_topic=True)
-            if measurements and not all(measurements.values()):
+            item["numeric_bindings"] = bind(normalized, item["records"])
+            item["parameter_ambiguities"] = ambiguities(
+                normalized, item["records"], item["numeric_bindings"]
+            )
+            if intents(normalized) and not all(
+                any(f["quantity"] == q.name for f in item["numeric_bindings"])
+                for q in intents(normalized)
+            ):
                 continue
             key = (item["doc_id"], hit["section_id"])
             if key in units_seen:
@@ -249,11 +215,9 @@ def answer(
             )
         _validate_current(store, citations, filters)
         # Compare all retrieved eligible evidence before applying the context limit.
-        quantities = {}
-        for item in citations:
-            for intent, values in _measurements(question, item["text"]).items():
-                quantities.setdefault(intent, set()).update(values)
-        if any(len(values) > 1 for values in quantities.values()):
+        if any(item["parameter_ambiguities"] for item in citations) or conflicts(
+            [fact for item in citations for fact in item["numeric_bindings"]]
+        ):
             return {
                 **refuse(
                     "conflicting_evidence",
@@ -272,7 +236,17 @@ def answer(
             )
         # Providers receive only the eligible text and scope, not image bytes or credentials.
         provider_evidence = [
-            {k: e[k] for k in ["id", "text", "model", "year_range", "document_version"]}
+            {
+                k: e[k]
+                for k in [
+                    "id",
+                    "text",
+                    "model",
+                    "year_range",
+                    "document_version",
+                    "numeric_bindings",
+                ]
+            }
             for e in citations
         ]
         raw_selection = selector.select(question, provider_evidence)

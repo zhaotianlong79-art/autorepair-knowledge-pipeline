@@ -20,7 +20,7 @@ with st.sidebar:
     st.write("Aurora：车型 aster，年份 2023；Atlas：车型 ridge，年份 2021。")
     st.write("示例：前制动卡钳支架螺栓扭矩是多少；P0118 要核查哪些线路。")
     st.caption(
-        "人工盲测尚未完成。新题集保留同义问题拒答和气压冲突策略失配，完整结果见仓库评估报告。"
+        "人工盲测尚未完成。原 0.11 基线失败保留；0.12 的参数绑定修复、回归和新增工况验收见仓库报告。"
     )
 if not DATABASE.is_file():
     st.info(

@@ -38,6 +38,12 @@ def render_qa(store, brand, question, filters, mode):
         except (ValueError, OSError) as exc:
             st.error(str(exc))
             return
+        if result.get("question_normalization", {}).get("replacements"):
+            st.caption(
+                "问句术语规范化："
+                + result["question_normalization"]["retrieval_query"]
+                + "；来源原文未改写。"
+            )
         if result["status"] == "answered":
             st.success(result["message"])
         else:
@@ -50,6 +56,26 @@ def render_qa(store, brand, question, filters, mode):
             st.caption(
                 f"章节 {' / '.join(citation['section_path']) or '未提供'} · 版本 {citation['document_version']} · 页码 {citation['pages'] or '未提供（不虚构页码）'}"
             )
+            if citation.get("numeric_bindings"):
+                st.write(
+                    "与所问部件、工况匹配的参数："
+                    if result["status"] == "answered"
+                    else "待核对的候选参数（尚未确认答复）："
+                )
+                st.table(
+                    [
+                        {
+                            "数值": f"{fact['value']} {fact['unit']}",
+                            "原文行条件": fact["row_label"] or "原文句子",
+                            "原文列条件": fact["column_label"] or fact["source_text"],
+                            "位置": f"第 {fact['row']} 数据行 / 第 {fact['column']} 列"
+                            if fact["row"] is not None
+                            else "正文",
+                        }
+                        for fact in citation["numeric_bindings"]
+                    ]
+                )
+                st.caption("下方保留完整来源，包括其他行和工况；以标出的匹配参数和条件为准。")
             st.code(citation["text"], language=None)
             for record in citation["records"]:
                 render_table(record)
