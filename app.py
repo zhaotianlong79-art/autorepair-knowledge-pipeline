@@ -68,12 +68,21 @@ if start:
                         paths.append(path)
                     overrides = {
                         str(path.resolve()): patch_from_fields(
-                            {k: v for k, v in row.items() if k != "file"}
+                            {k: v for k, v in row.items() if k not in {"file", "logical_id"}}
                         )
                         for path, row in zip(paths, file_metadata, strict=True)
                     }
                     results = run(
-                        paths, cfg, ocr=ocr, metadata=metadata_patch, metadata_by_path=overrides
+                        paths,
+                        cfg,
+                        ocr=ocr,
+                        metadata=metadata_patch,
+                        metadata_by_path=overrides,
+                        identity_by_path={
+                            str(p.resolve()): str(row.get("logical_id") or "").strip()
+                            for p, row in zip(paths, file_metadata, strict=True)
+                            if str(row.get("logical_id") or "").strip()
+                        },
                     )
             else:
                 paths = sorted((ROOT / "examples/dev" / brand).glob("*"))
@@ -191,19 +200,42 @@ with tab3:
             col.code(hit["text"], language=None)
             col.caption(json.dumps(hit["location"], ensure_ascii=False))
 # Include candidates in explicit folders, never mix them into approved JSONL.
+publication = {
+    e["doc_id"]: e for e in Store(ROOT / "artifacts/knowledge.sqlite").list_documents(brand)
+}
+active = {
+    d
+    for d, e in publication.items()
+    if e["lifecycle"] == "active" and e["run_id"] == state["run_id"]
+}
 buffer = io.BytesIO()
 with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
+    archive.writestr(
+        "publication.json",
+        json.dumps(
+            {r.document.doc_id: publication[r.document.doc_id] for r in results},
+            ensure_ascii=False,
+            indent=2,
+        ),
+    )
     archive.writestr("quality-report.md", report_markdown(results))
     archive.writestr(
         "knowledge.jsonl",
-        "".join(r.document.model_dump_json() + "\n" for r in results if r.status == "passed"),
+        "".join(
+            r.document.model_copy(
+                update={"logical_id": publication[r.document.doc_id]["logical_id"]}
+            ).model_dump_json()
+            + "\n"
+            for r in results
+            if r.status == "passed" and r.document.doc_id in active
+        ),
     )
     archive.writestr(
         "knowledge-chunks.jsonl",
         "".join(
             c.model_dump_json() + "\n"
             for r in results
-            if r.status == "passed"
+            if r.status == "passed" and r.document.doc_id in active
             for c in chunk_document(r.document)
         ),
     )
@@ -229,7 +261,12 @@ with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         for name, data in r.document.assets.items():
             archive.writestr(f"{r.status}/assets/{name}", base64.b64decode(data, validate=True))
         archive.writestr(f"{r.status}/{n + 1:03}.md", markdown(r))
-        archive.writestr(f"{r.status}/{n + 1:03}.json", r.document.model_dump_json(indent=2))
+        archive.writestr(
+            f"{r.status}/{n + 1:03}.json",
+            r.document.model_copy(
+                update={"logical_id": publication[r.document.doc_id]["logical_id"]}
+            ).model_dump_json(indent=2),
+        )
 st.download_button(
     "下载本次加工结果", buffer.getvalue(), "knowledge-results.zip", mime="application/zip"
 )

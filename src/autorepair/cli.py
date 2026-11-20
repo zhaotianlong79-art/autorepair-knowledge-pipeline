@@ -69,6 +69,7 @@ def main():
     ingest.add_argument("--models", help="Docling 预下载模型目录")
     patch_args(ingest)
     ingest.add_argument("--metadata-manifest", type=Path)
+    ingest.add_argument("--logical-id", help="单文件的稳定逻辑文档身份；不按文件名推断")
     lookup = commands.add_parser("search", help="默认检索正式知识库；--run 可查询历史批次")
     lookup.add_argument("query")
     lookup.add_argument("--run", help="历史运行 ID；不填则查询当前正式知识库")
@@ -113,6 +114,31 @@ def main():
     attach.add_argument("--doc-id", required=True)
     attach.add_argument("--run")
     attach.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
+    versions = commands.add_parser("versions", help="列出文档身份、内容版本与发布状态")
+    events = commands.add_parser("lifecycle-history", help="查看生命周期及维护审计")
+    withdraw = commands.add_parser("withdraw", help="撤下版本，保留审计和默认保留原件")
+    restore = commands.add_parser("restore", help="恢复或回退到最近结果仍通过的版本")
+    replace = commands.add_parser("version-replace", help="显式替换已有独立文档或同组版本")
+    index = commands.add_parser("index", help="检查、增量修复或重建当前活动版本索引")
+    cleanup = commands.add_parser(
+        "source-cleanup", help="默认预览；按预览令牌清理已撤下／替换版本的原件"
+    )
+    for p in [versions, events, withdraw, restore, replace, index, cleanup]:
+        p.add_argument("--brand", required=True)
+        p.add_argument("--database", type=Path, default=Path("artifacts/knowledge.sqlite"))
+    for p in [versions, events]:
+        p.add_argument("--logical-id")
+    for p in [withdraw, restore, replace]:
+        p.add_argument("--doc-id", required=True)
+        p.add_argument("--expected-revision", type=int, required=True)
+    for p in [withdraw, restore, replace, index, cleanup]:
+        p.add_argument("--actor", default="")
+        p.add_argument("--reason", default="")
+    replace.add_argument("--replacement", required=True)
+    replace.add_argument("--expected-target-run", required=True)
+    index.add_argument("--mode", choices=["check", "incremental", "rebuild"], default="check")
+    cleanup.add_argument("--apply", action="store_true")
+    cleanup.add_argument("--plan-token")
     args = parser.parse_args()
     if args.command == "process":
         try:
@@ -141,6 +167,7 @@ def main():
                 models_path=args.models,
                 metadata=metadata,
                 metadata_by_path=by_path,
+                logical_id=args.logical_id,
             )
             run_id = export(results, cfg, args.output)
             print(
@@ -168,8 +195,46 @@ def main():
             parser.error(str(exc))
     else:
         try:
-            store = Store(args.database)
-            if args.command == "catalog":
+            store = (
+                Store(args.database, auto_repair=False)
+                if args.command == "index"
+                else Store(args.database)
+            )
+            if args.command == "versions":
+                output = store.versions(args.brand, args.logical_id)
+            elif args.command == "lifecycle-history":
+                output = store.lifecycle_history(args.brand, args.logical_id)
+            elif args.command in {"withdraw", "restore"}:
+                output = getattr(store, args.command)(
+                    args.brand,
+                    args.doc_id,
+                    actor=args.actor,
+                    reason=args.reason,
+                    expected_revision=args.expected_revision,
+                )
+            elif args.command == "version-replace":
+                output = store.replace_version(
+                    args.brand,
+                    args.doc_id,
+                    args.replacement,
+                    actor=args.actor,
+                    reason=args.reason,
+                    expected_revision=args.expected_revision,
+                    expected_target_run_id=args.expected_target_run,
+                )
+            elif args.command == "index":
+                output = store.maintain_index(
+                    args.brand, mode=args.mode, actor=args.actor, reason=args.reason
+                )
+            elif args.command == "source-cleanup":
+                output = (
+                    store.cleanup_sources(
+                        args.brand, plan_token=args.plan_token, actor=args.actor, reason=args.reason
+                    )
+                    if args.apply
+                    else store.source_cleanup_plan(args.brand)
+                )
+            elif args.command == "catalog":
                 output = store.list_documents(
                     args.brand, status=args.status, filters=read_filter(args)
                 )

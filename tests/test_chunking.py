@@ -255,8 +255,10 @@ def test_persisted_chunks_migrate_repair_and_withdraw_atomically(tmp_path, monke
         raise RuntimeError("synthetic index failure")
 
     monkeypatch.setattr("autorepair.storage.chunk_document", fail)
+    changed = approved.model_copy(deep=True)
+    changed.document.blocks[-1].text += " 更新说明"
     with pytest.raises(RuntimeError):
-        migrated.save([approved], cfg())
+        migrated.save([changed], cfg())
     assert migrated.chunks("aurora") == expected
     assert migrated.list_documents("aurora")[0]["run_id"] == run_id
     withdrawn = approved.model_copy(

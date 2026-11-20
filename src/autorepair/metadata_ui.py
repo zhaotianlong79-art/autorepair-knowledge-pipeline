@@ -35,12 +35,13 @@ def ingest_fields(uploaded):
         rows = []
         if uploaded:
             st.caption(
-                "单文件元数据：类型使用 manual、service_bulletin 等代码；多车型范围可填 JSON 数组。"
+                "logical_id 是稳定文档身份：同一身份的新版本通过后替换活动版本，每批每个身份仅一个文件。资料类型用 manual、service_bulletin 等代码。"
             )
             rows = st.data_editor(
                 [
                     dict(
                         file=f"{i:03} / {item.name}",
+                        logical_id="",
                         model="",
                         year_range="",
                         document_type="",

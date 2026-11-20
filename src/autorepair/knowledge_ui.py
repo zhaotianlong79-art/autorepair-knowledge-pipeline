@@ -3,6 +3,7 @@
 import streamlit as st
 
 from autorepair.evidence_ui import evidence_panel, render_images, render_table
+from autorepair.lifecycle_ui import lifecycle_controls
 from autorepair.metadata_ui import correction_fields, filter_fields
 from autorepair.storage import Store
 
@@ -15,10 +16,17 @@ def render_knowledge(store: Store, brand: str):
     for col, status, label in zip(
         columns, ["passed", "review", "failed"], ["正式文档", "待复核", "失败"], strict=True
     ):
-        col.metric(label, sum(e["status"] == status for e in entries))
+        col.metric(
+            label,
+            sum(
+                e["status"] == status and (status != "passed" or e["lifecycle"] == "active")
+                for e in entries
+            ),
+        )
     if not entries:
         st.info("当前品牌尚无入库记录。先在「文档加工」中处理文件，通过项会自动进入正式知识库。")
         return
+    lifecycle_controls(store, brand)
     correction_fields(store, brand, entries)
     try:
         filters = filter_fields()
@@ -35,6 +43,8 @@ def render_knowledge(store: Store, brand: str):
         [
             {
                 "文档 ID": e["doc_id"],
+                "逻辑身份": e["logical_id"],
+                "发布状态": e["lifecycle"],
                 "来源文件": e["source_name"],
                 "车型": e["model"],
                 "年份": e["year_range"],

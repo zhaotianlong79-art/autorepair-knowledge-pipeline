@@ -97,6 +97,7 @@ def process(
     result = Result(document=doc, rules_hash=cfg.digest, issues=list(doc.issues))
     # Sanitize public views. Original snapshots, when retained, live in a separate local blob table.
     doc.source_name = redact(doc.source_name)
+    doc.logical_id = redact(doc.logical_id)
     doc.model = redact(doc.model)
     doc.year_range = redact(doc.year_range)
     doc.document_version = redact(doc.document_version)

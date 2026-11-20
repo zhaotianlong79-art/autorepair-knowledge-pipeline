@@ -76,6 +76,7 @@ class Applicability(Model):
 class Document(Model):
     schema_version: str = "1.0"
     doc_id: str
+    logical_id: str = ""
     brand: str
     model: str = "unknown"
     year_range: str = "unknown"

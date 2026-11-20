@@ -1,0 +1,82 @@
+{
+  "scope": "Self-authored isolated temporary workflow only; no user originals are cleaned. Cleanup deletes database source copies, not audit payloads, extracted images, source filesystem files, exports or backups.",
+  "passed": true,
+  "checks": [
+    {
+      "check": "approved_new_version_replaces_old",
+      "passed": true
+    },
+    {
+      "check": "candidate_never_displaces_active",
+      "passed": true
+    },
+    {
+      "check": "raw_inactive_only_preview",
+      "passed": true
+    },
+    {
+      "check": "withdrawal_survives_repeat_ingest",
+      "passed": true
+    },
+    {
+      "check": "rollback_returns_only_selected_approved_version",
+      "passed": true
+    },
+    {
+      "check": "same_count_payload_corruption_detected",
+      "passed": true
+    },
+    {
+      "check": "repair_and_history_preserved",
+      "passed": true
+    },
+    {
+      "check": "inactive_raw_copy_removed",
+      "passed": true
+    },
+    {
+      "check": "active_raw_copy_protected",
+      "passed": true
+    },
+    {
+      "check": "raw_tombstone_prevents_automatic_refill",
+      "passed": true
+    },
+    {
+      "check": "restore_search_without_claiming_raw_availability",
+      "passed": true
+    },
+    {
+      "check": "explicit_verified_reattach",
+      "passed": true
+    },
+    {
+      "check": "no_duplicate_versions",
+      "passed": true
+    },
+    {
+      "check": "lifecycle_audit_retained",
+      "passed": true
+    }
+  ],
+  "versions": [
+    {
+      "logical_id": "demo-manual",
+      "doc_id": "doc-7963e83cecfa",
+      "quality": "passed",
+      "state": "superseded"
+    },
+    {
+      "logical_id": "demo-manual",
+      "doc_id": "doc-d712ad130c3b",
+      "quality": "passed",
+      "state": "active"
+    },
+    {
+      "logical_id": "demo-manual",
+      "doc_id": "doc-ec215612824d",
+      "quality": "review",
+      "state": "staged"
+    }
+  ]
+}

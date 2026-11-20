@@ -8,6 +8,7 @@ from pathlib import Path
 from autorepair.chunking import chunk_document
 from autorepair.config import Config
 from autorepair.engine import process
+from autorepair.lifecycle import identity
 from autorepair.metadata import MetadataPatch, apply_metadata, snapshot
 from autorepair.models import Document, Issue, Result
 from autorepair.parsers import parse
@@ -24,7 +25,18 @@ def run(
     models_path=None,
     metadata: MetadataPatch | None = None,
     metadata_by_path: dict | None = None,
+    logical_id: str | None = None,
+    identity_by_path: dict | None = None,
 ) -> list[Result]:
+    if logical_id is not None and len(paths) != 1:
+        raise ValueError("批次身份只允许单文件；多文件请使用逐文件身份映射")
+    if logical_id is not None:
+        logical_id = identity(logical_id)
+    allowed = {str(p.resolve()) for p in paths}
+    if any(k not in allowed for k in (identity_by_path or {})):
+        raise ValueError("身份映射包含批次外的文件")
+    for value in (identity_by_path or {}).values():
+        identity(value)
     docs = []
     for path in paths:
         try:
@@ -63,6 +75,9 @@ def run(
             combined.update(specific.supplied)
         patch = MetadataPatch.model_validate(combined)
         docs[i] = apply_metadata(doc, patch)
+        declared = (identity_by_path or {}).get(str(path.resolve()), logical_id)
+        if declared is not None:
+            docs[i].logical_id = identity(declared)
         applied_fields[str(path.resolve())] = list(patch.supplied)
     registry = {}
     duplicate = set()
@@ -194,6 +209,10 @@ def export(results: list[Result], cfg: Config, output: Path) -> str:
     store = Store(output / "knowledge.sqlite")
     run_id = store.save(results, cfg)
     results = store.load_run(run_id)
+    publication = {e["doc_id"]: e for e in store.list_documents(cfg.brand)}
+    active = {
+        d for d, e in publication.items() if e["lifecycle"] == "active" and e["run_id"] == run_id
+    }
     folder = output / run_id
     folder.mkdir()
     for status in ("passed", "review", "failed"):
@@ -205,21 +224,31 @@ def export(results: list[Result], cfg: Config, output: Path) -> str:
         write_assets(result.document, target)
         (target / f"{stem}.md").write_text(markdown(result), encoding="utf-8")
         (target / f"{stem}.json").write_text(
-            result.document.model_dump_json(indent=2), encoding="utf-8"
+            result.document.model_copy(
+                update={"logical_id": publication[result.document.doc_id]["logical_id"]}
+            ).model_dump_json(indent=2),
+            encoding="utf-8",
         )
     (folder / "results.json").write_text(
         json.dumps([r.model_dump() for r in results], ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
     (folder / "knowledge.jsonl").write_text(
-        "".join(r.document.model_dump_json() + "\n" for r in results if r.status == "passed"),
+        "".join(
+            r.document.model_copy(
+                update={"logical_id": publication[r.document.doc_id]["logical_id"]}
+            ).model_dump_json()
+            + "\n"
+            for r in results
+            if r.status == "passed" and r.document.doc_id in active
+        ),
         encoding="utf-8",
     )
     (folder / "knowledge-chunks.jsonl").write_text(
         "".join(
             c.model_dump_json() + "\n"
             for r in results
-            if r.status == "passed"
+            if r.status == "passed" and r.document.doc_id in active
             for c in chunk_document(r.document)
         ),
         encoding="utf-8",
@@ -230,6 +259,14 @@ def export(results: list[Result], cfg: Config, output: Path) -> str:
                 r.document.doc_id: store.metadata_history(cfg.brand, r.document.doc_id)
                 for r in results
             },
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    (folder / "publication.json").write_text(
+        json.dumps(
+            {r.document.doc_id: publication[r.document.doc_id] for r in results},
             ensure_ascii=False,
             indent=2,
         ),

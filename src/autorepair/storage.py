@@ -9,14 +9,15 @@ from uuid import uuid4
 
 from autorepair.chunking import DEFAULT, Chunk, chunk_document
 from autorepair.config import Config
+from autorepair.lifecycle import LifecycleMixin
 from autorepair.metadata import FIELDS, MetadataFilter, MetadataPatch, apply_metadata, snapshot
 from autorepair.models import Document, Result
 from autorepair.privacy import redact
 from autorepair.sources import MIMES, SourceFile, read_source, source_snapshot
 
 
-class Store:
-    def __init__(self, path: Path):
+class Store(LifecycleMixin):
+    def __init__(self, path: Path, *, auto_repair=True):
         path.parent.mkdir(parents=True, exist_ok=True)
         self.path = path
         with self.connect() as db:
@@ -131,50 +132,151 @@ class Store:
                                 doc_id,
                             ),
                         )
-            self._ensure_chunks(db)
+            state_columns = {r[1] for r in db.execute("PRAGMA table_info(document_chunk_state)")}
+            if "index_hash" not in state_columns:
+                db.execute(
+                    "ALTER TABLE document_chunk_state ADD COLUMN index_hash TEXT NOT NULL DEFAULT ''"
+                )
+            self._init_lifecycle(db, sync=auto_repair)
+            if auto_repair:
+                self._ensure_chunks(db)
 
     @staticmethod
-    def _replace_chunks(db, doc, payload):
+    def _index_digest(rows):
+        return hashlib.sha256(json.dumps(sorted(rows), ensure_ascii=False).encode()).hexdigest()
+
+    def _replace_chunks(self, db, doc, payload, *, force=False):
+        digest = hashlib.sha256(payload.encode()).hexdigest()
+        state = db.execute(
+            "SELECT document_hash,config_hash,chunk_count,index_hash FROM document_chunk_state WHERE brand=? AND doc_id=?",
+            (doc.brand, doc.doc_id),
+        ).fetchone()
+        stored = db.execute(
+            "SELECT chunk_id,payload FROM knowledge_chunks WHERE brand=? AND doc_id=?",
+            (doc.brand, doc.doc_id),
+        ).fetchall()
+        if (
+            not force
+            and state
+            and state[0] == digest
+            and state[1] == DEFAULT.digest
+            and state[2] == len(stored)
+            and state[3] == self._index_digest(stored)
+        ):
+            return False
         chunks = chunk_document(doc)
+        rows = [(c.chunk_id, c.model_dump_json()) for c in chunks]
         db.execute(
             "DELETE FROM knowledge_chunks WHERE brand=? AND doc_id=?", (doc.brand, doc.doc_id)
         )
         db.executemany(
             "INSERT INTO knowledge_chunks VALUES (?, ?, ?, ?)",
-            [(doc.brand, doc.doc_id, c.chunk_id, c.model_dump_json()) for c in chunks],
+            [(doc.brand, doc.doc_id, k, p) for k, p in rows],
         )
         db.execute(
-            "INSERT OR REPLACE INTO document_chunk_state VALUES (?, ?, ?, ?, ?)",
-            (
-                doc.brand,
-                doc.doc_id,
-                hashlib.sha256(payload.encode()).hexdigest(),
-                DEFAULT.digest,
-                len(chunks),
-            ),
+            "INSERT OR REPLACE INTO document_chunk_state(brand,doc_id,document_hash,config_hash,chunk_count,index_hash) VALUES (?, ?, ?, ?, ?, ?)",
+            (doc.brand, doc.doc_id, digest, DEFAULT.digest, len(rows), self._index_digest(rows)),
+        )
+        return True
+
+    def _ensure_chunks(self, db, *, brand=None, repair=True, force=False):
+        approved = "SELECT 1 FROM document_versions v JOIN document_families f ON f.brand=v.brand AND f.logical_id=v.logical_id JOIN document_catalog c ON c.brand=v.brand AND c.doc_id=v.doc_id WHERE v.brand={table}.brand AND v.doc_id={table}.doc_id AND v.state='active' AND v.quality='passed' AND f.active_doc_id=v.doc_id AND f.blocked=0 AND c.status='passed'"
+        orphan = {}
+        for table in ["documents", "knowledge_chunks", "document_chunk_state"]:
+            where = (
+                "brand=? AND " if brand is not None else ""
+            ) + f"NOT EXISTS ({approved.format(table=table)})"
+            params = (brand,) if brand is not None else ()
+            orphan[table] = db.execute(
+                f"SELECT count(*) FROM {table} WHERE {where}", params
+            ).fetchone()[0]
+            if repair:
+                db.execute(f"DELETE FROM {table} WHERE {where}", params)
+        rows = db.execute(
+            "SELECT v.brand,v.doc_id,v.latest_run_id,d.payload,s.document_hash,s.config_hash,s.chunk_count,s.index_hash FROM document_versions v JOIN document_families f ON f.brand=v.brand AND f.logical_id=v.logical_id JOIN document_catalog c ON c.brand=v.brand AND c.doc_id=v.doc_id LEFT JOIN documents d ON d.brand=v.brand AND d.doc_id=v.doc_id LEFT JOIN document_chunk_state s ON s.brand=v.brand AND s.doc_id=v.doc_id WHERE v.state='active' AND v.quality='passed' AND f.active_doc_id=v.doc_id AND f.blocked=0 AND c.status='passed'"
+            + (" AND v.brand=?" if brand is not None else ""),
+            (brand,) if brand is not None else (),
+        ).fetchall()
+        dirty = []
+        repaired = 0
+        for owner, doc_id, run_id, payload, digest, config_hash, count, index_hash in rows:
+            missing = payload is None
+            payload_damaged = False
+            if run_id:
+                result = next(
+                    (
+                        r
+                        for r in self._load_run(db, run_id)
+                        if r.document.brand == owner and r.document.doc_id == doc_id
+                    ),
+                    None,
+                )
+                if result is None or result.status != "passed" or result.issues:
+                    raise ValueError("活动版本的审核记录不一致，停止索引维护")
+                try:
+                    payload_damaged = (
+                        payload is not None
+                        and Document.model_validate_json(payload) != result.document
+                    )
+                except ValueError:
+                    payload_damaged = True
+                if missing or payload_damaged:
+                    payload = result.document.model_dump_json()
+            elif missing:
+                raise ValueError("旧资料缺少可恢复的已审核运行正文")
+            stored = db.execute(
+                "SELECT chunk_id,payload FROM knowledge_chunks WHERE brand=? AND doc_id=?",
+                (owner, doc_id),
+            ).fetchall()
+            reasons = []
+            if missing:
+                reasons.append("document_missing")
+            if payload_damaged:
+                reasons.append("document_payload")
+            if digest != hashlib.sha256(payload.encode()).hexdigest():
+                reasons.append("document_hash")
+            if config_hash != DEFAULT.digest:
+                reasons.append("config_hash")
+            if count != len(stored):
+                reasons.append("chunk_count")
+            if index_hash != self._index_digest(stored):
+                reasons.append("index_hash")
+            if reasons or force:
+                dirty.append(
+                    dict(brand=owner, doc_id=doc_id, reasons=reasons or ["forced_rebuild"])
+                )
+                if repair:
+                    if missing or payload_damaged:
+                        db.execute(
+                            "INSERT OR REPLACE INTO documents VALUES (?, ?, ?)",
+                            (owner, doc_id, payload),
+                        )
+                    self._replace_chunks(
+                        db, Document.model_validate_json(payload), payload, force=force
+                    )
+                    repaired += 1
+        return dict(
+            brand=brand,
+            checked=len(rows),
+            dirty=dirty,
+            repaired=repaired,
+            orphan_rows=orphan,
+            config_hash=DEFAULT.digest,
         )
 
-    def _ensure_chunks(self, db):
-        # Rebuild only derived data; never alter approval state or historical payloads.
-        approved = "SELECT 1 FROM documents d JOIN document_catalog c ON c.brand=d.brand AND c.doc_id=d.doc_id WHERE d.brand={table}.brand AND d.doc_id={table}.doc_id AND c.status='passed'"
-        for table in ["knowledge_chunks", "document_chunk_state"]:
-            db.execute(f"DELETE FROM {table} WHERE NOT EXISTS ({approved.format(table=table)})")
-        rows = db.execute(
-            "SELECT d.brand, d.doc_id, d.payload, s.document_hash, s.config_hash, s.chunk_count "
-            "FROM documents d JOIN document_catalog c ON c.brand=d.brand AND c.doc_id=d.doc_id "
-            "LEFT JOIN document_chunk_state s ON s.brand=d.brand AND s.doc_id=d.doc_id "
-            "WHERE c.status='passed'"
-        ).fetchall()
-        for brand, doc_id, payload, digest, config_hash, count in rows:
-            actual = db.execute(
-                "SELECT count(*) FROM knowledge_chunks WHERE brand=? AND doc_id=?", (brand, doc_id)
-            ).fetchone()[0]
-            if (
-                digest != hashlib.sha256(payload.encode()).hexdigest()
-                or config_hash != DEFAULT.digest
-                or actual != count
-            ):
-                self._replace_chunks(db, Document.model_validate_json(payload), payload)
+    def maintain_index(self, brand, *, mode="check", actor="", reason=""):
+        if mode not in {"check", "incremental", "rebuild"}:
+            raise ValueError("未知索引维护模式")
+        if mode != "check":
+            self._operation(actor, reason, 0)
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE" if mode != "check" else "BEGIN")
+            report = self._ensure_chunks(
+                db, brand=brand, repair=mode != "check", force=mode == "rebuild"
+            )
+            if mode != "check":
+                self._event(db, brand, "", "", f"index-{mode}", {}, report, actor, reason)
+            return {**report, "mode": mode}
 
     @staticmethod
     def _catalog(db, result, run_id, rules_hash, created, revision=None):
@@ -231,9 +333,24 @@ class Store:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             prepared = []
+            batch_families = {}
             seen_metadata = set()
             for incoming in results:
                 doc = incoming.document
+                registered = db.execute(
+                    "SELECT logical_id FROM document_versions WHERE brand=? AND doc_id=?",
+                    (doc.brand, doc.doc_id),
+                ).fetchone()
+                family = (
+                    doc.logical_id.strip()
+                    if doc.logical_id
+                    else registered[0]
+                    if registered
+                    else doc.doc_id
+                )
+                if family in batch_families and batch_families[family] != doc.doc_id:
+                    raise ValueError("同一批次不能提交同一逻辑文档的多个版本，请逐个处理")
+                batch_families[family] = doc.doc_id
                 old = db.execute(
                     "SELECT run_id FROM document_catalog WHERE brand=? AND doc_id=?",
                     (doc.brand, doc.doc_id),
@@ -319,7 +436,7 @@ class Store:
                     self._write_source(db, result.document, source)
         return run_id
 
-    def _publish(self, db, results, run_id, rules_hash, created):
+    def _publish(self, db, results, run_id, rules_hash, created, *, auto_activate=True):
         for result in results:
             doc = result.document
             last_revision = db.execute(
@@ -339,7 +456,10 @@ class Store:
                         json.dumps(mention, ensure_ascii=False),
                     ),
                 )
-            if result.status == "passed":
+            publish = self._register_version(
+                db, result, run_id, created, auto_activate=auto_activate
+            )
+            if publish:
                 payload = doc.model_dump_json()
                 db.execute(
                     "INSERT OR REPLACE INTO documents VALUES (?, ?, ?)",
@@ -352,7 +472,7 @@ class Store:
                     "DELETE FROM documents WHERE brand = ? AND doc_id = ?",
                     (doc.brand, doc.doc_id),
                 )
-            if result.status != "passed":
+            if not publish:
                 for table in ["knowledge_chunks", "document_chunk_state"]:
                     db.execute(
                         f"DELETE FROM {table} WHERE brand=? AND doc_id=?",
@@ -415,24 +535,30 @@ class Store:
                 )
                 is not None
             ]
-        return entries
+        versions = {v["doc_id"]: v for v in self.versions(brand)}
+        return [
+            {**e, "lifecycle_revision": versions[e["doc_id"]]["lifecycle_revision"]}
+            for e in entries
+        ]
 
     def current(self, brand: str) -> list[Result]:
         """Load only current approved knowledge; never fall back to historical runs."""
         with self.connect() as db:
             rows = db.execute(
-                "SELECT d.payload, c.rules_hash, c.reviews FROM documents d "
+                "SELECT d.payload, c.rules_hash, c.reviews,c.logical_id FROM documents d "
                 "JOIN document_catalog c ON c.brand=d.brand AND c.doc_id=d.doc_id "
-                "WHERE d.brand=? AND c.status='passed' ORDER BY d.doc_id",
+                "WHERE d.brand=? AND c.status='passed' AND c.lifecycle='active' AND EXISTS (SELECT 1 FROM document_versions av JOIN document_families af ON af.brand=av.brand AND af.logical_id=av.logical_id WHERE av.brand=c.brand AND av.doc_id=c.doc_id AND av.state='active' AND av.quality='passed' AND af.active_doc_id=av.doc_id AND af.blocked=0) ORDER BY d.doc_id",
                 (brand,),
             ).fetchall()
         return [
             Result(
-                document=Document.model_validate_json(payload),
+                document=Document.model_validate_json(payload).model_copy(
+                    update={"logical_id": logical}
+                ),
                 rules_hash=rules,
                 reviews=json.loads(reviews),
             )
-            for payload, rules, reviews in rows
+            for payload, rules, reviews, logical in rows
         ]
 
     def chunks(self, brand: str, doc_id: str | None = None) -> list[Chunk]:
@@ -444,7 +570,7 @@ class Store:
         rows = db.execute(
             "SELECT k.payload FROM knowledge_chunks k JOIN documents d ON d.brand=k.brand AND d.doc_id=k.doc_id "
             "JOIN document_catalog c ON c.brand=k.brand AND c.doc_id=k.doc_id "
-            "WHERE k.brand=? AND c.status='passed'"
+            "WHERE k.brand=? AND c.status='passed' AND c.lifecycle='active' AND EXISTS (SELECT 1 FROM document_versions av JOIN document_families af ON af.brand=av.brand AND af.logical_id=av.logical_id WHERE av.brand=c.brand AND av.doc_id=c.doc_id AND av.state='active' AND av.quality='passed' AND af.active_doc_id=av.doc_id AND af.blocked=0)"
             + (" AND k.doc_id=?" if doc_id is not None else "")
             + " ORDER BY k.doc_id, k.rowid",
             (brand, doc_id) if doc_id is not None else (brand,),
@@ -460,9 +586,9 @@ class Store:
         with self.connect() as db:
             db.execute("BEGIN")
             rows = db.execute(
-                "SELECT d.payload, c.run_id, c.rules_hash, c.metadata_revision FROM documents d "
+                "SELECT d.payload, c.run_id, c.rules_hash, c.metadata_revision,c.logical_id FROM documents d "
                 "JOIN document_catalog c ON c.brand=d.brand AND c.doc_id=d.doc_id "
-                "WHERE d.brand=? AND c.status='passed' ORDER BY d.doc_id",
+                "WHERE d.brand=? AND c.status='passed' AND c.lifecycle='active' AND EXISTS (SELECT 1 FROM document_versions av JOIN document_families af ON af.brand=av.brand AND af.logical_id=av.logical_id WHERE av.brand=c.brand AND av.doc_id=c.doc_id AND av.state='active' AND av.quality='passed' AND af.active_doc_id=av.doc_id AND af.blocked=0) ORDER BY d.doc_id",
                 (brand,),
             ).fetchall()
             chunks = self._load_chunks(db, brand)
@@ -473,7 +599,9 @@ class Store:
         documents = {(d.brand, d.doc_id): d for d in docs}
         chunks = [c for c in chunks if (c.brand, c.doc_id) in documents]
         provenance = {
-            doc.doc_id: dict(source_run_id=row[1], rules_hash=row[2], metadata_revision=row[3])
+            doc.doc_id: dict(
+                source_run_id=row[1], rules_hash=row[2], metadata_revision=row[3], logical_id=row[4]
+            )
             for doc, row in zip(
                 [Document.model_validate_json(row[0]) for row in rows], rows, strict=True
             )
@@ -603,11 +731,24 @@ class Store:
                     json.dumps([result.model_dump()], ensure_ascii=False),
                 ),
             )
-            self._publish(db, [result], run_id, result.rules_hash, created)
+            self._publish(db, [result], run_id, result.rules_hash, created, auto_activate=False)
             return {"run_id": run_id, "metadata_revision": revision, "status": result.status}
 
     @staticmethod
-    def _write_source(db, document, source):
+    def _write_source(db, document, source, *, explicit=False):
+        if (
+            not explicit
+            and db.execute(
+                "SELECT 1 FROM purged_sources WHERE brand=? AND doc_id=? AND source_hash=?",
+                (document.brand, document.doc_id, document.source_hash),
+            ).fetchone()
+        ):
+            return
+        if explicit:
+            db.execute(
+                "DELETE FROM purged_sources WHERE brand=? AND doc_id=? AND source_hash=?",
+                (document.brand, document.doc_id, document.source_hash),
+            )
         if source.digest != document.source_hash:
             raise ValueError("原件哈希与文档来源不符")
         db.execute(
@@ -641,17 +782,18 @@ class Store:
                 historical=True,
             )
         row = db.execute(
-            "SELECT d.payload,c.run_id,c.rules_hash,c.metadata_revision FROM documents d JOIN document_catalog c ON d.brand=c.brand AND d.doc_id=c.doc_id WHERE d.brand=? AND d.doc_id=? AND c.status='passed'",
+            "SELECT d.payload,c.run_id,c.rules_hash,c.metadata_revision,c.logical_id FROM documents d JOIN document_catalog c ON d.brand=c.brand AND d.doc_id=c.doc_id WHERE d.brand=? AND d.doc_id=? AND c.status='passed' AND c.lifecycle='active' AND EXISTS (SELECT 1 FROM document_versions av JOIN document_families af ON af.brand=av.brand AND af.logical_id=av.logical_id WHERE av.brand=c.brand AND av.doc_id=c.doc_id AND av.state='active' AND av.quality='passed' AND af.active_doc_id=av.doc_id AND af.blocked=0)",
             (brand, doc_id),
         ).fetchone()
         if row is None:
             raise ValueError("文档不在当前正式库中，请刷新检索结果或明确选择历史运行")
         if expected_run_id and expected_run_id != row[1]:
             raise ValueError("文档已更新，请重新检索后查看证据")
-        return Document.model_validate_json(row[0]), dict(
+        return Document.model_validate_json(row[0]).model_copy(update={"logical_id": row[4]}), dict(
             source_run_id=row[1],
             rules_hash=row[2],
             metadata_revision=row[3],
+            logical_id=row[4],
             status="passed",
             historical=False,
         )
@@ -683,6 +825,13 @@ class Store:
             (doc.brand, doc.doc_id, doc.source_hash),
         ).fetchone()
         if row is None:
+            if db.execute(
+                "SELECT 1 FROM purged_sources WHERE brand=? AND doc_id=? AND source_hash=?",
+                (doc.brand, doc.doc_id, doc.source_hash),
+            ).fetchone():
+                return dict(
+                    status="purged", message="原件已按计划清理；可显式补挂同哈希原件", data=None
+                )
             return dict(
                 status="missing", message="未保留原件；可核对脱敏解析原文，原页无法预览", data=None
             )
@@ -718,5 +867,17 @@ class Store:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             doc, _ = self._evidence_document(db, brand, doc_id, run_id)
-            self._write_source(db, doc, source)
+            self._write_source(db, doc, source, explicit=True)
+            v = self._version(db, brand, doc_id)
+            self._event(
+                db,
+                brand,
+                v[0],
+                doc_id,
+                "source-attach",
+                {},
+                dict(source_hash=source.digest),
+                "local-source-attach",
+                "显式补挂哈希一致原件",
+            )
         return dict(source_hash=source.digest, source_name=source.name, status="available")
