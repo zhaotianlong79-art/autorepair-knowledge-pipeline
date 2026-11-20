@@ -1,0 +1,496 @@
+{
+  "document": {
+    "schema_version": "1.0",
+    "doc_id": "doc-37ed64617535",
+    "brand": "aurora",
+    "model": "unknown",
+    "year_range": "unknown",
+    "source_name": "pdf_multipage.pdf",
+    "source_hash": "37ed6461753538adede9daa15cda8f7744a52c8e4fb0aaf47a34120136e0d8f2",
+    "parser": "docling/2.151.1",
+    "blocks": [
+      {
+        "block_id": "b0001",
+        "kind": "heading",
+        "original": "Chapter 1 Service",
+        "text": "Chapter 1 Service",
+        "location": {
+          "item_ref": "#/texts/0",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 791.1044914,
+              "r": 198.07030619999998,
+              "b": 774.2207038,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Chapter 1 Service",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0002",
+        "kind": "paragraph",
+        "original": "INTRO_A101",
+        "text": "INTRO_A101",
+        "location": {
+          "item_ref": "#/texts/1",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 762.0083003,
+              "r": 119.4091779,
+              "b": 751.6904301,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Chapter 1 Service",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0003",
+        "kind": "heading",
+        "original": "1.1 Inspection",
+        "text": "1.1 Inspection",
+        "location": {
+          "item_ref": "#/texts/2",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 732.6484368,
+              "r": 153.62499359999998,
+              "b": 717.6406256,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1 Inspection",
+        "links": [],
+        "heading_level": 2,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0004",
+        "kind": "paragraph",
+        "original": "BODY_B202",
+        "text": "BODY_B202",
+        "location": {
+          "item_ref": "#/texts/3",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 705.0083003,
+              "r": 116.3637685,
+              "b": 694.6904301,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1 Inspection",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0005",
+        "kind": "heading",
+        "original": "1.1.1 Torque",
+        "text": "1.1.1 Torque",
+        "location": {
+          "item_ref": "#/texts/4",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 676.1923822,
+              "r": 133.38573579999996,
+              "b": 663.0605474,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1.1 Torque",
+        "links": [],
+        "heading_level": 3,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection",
+          "1.1.1 Torque"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0006",
+        "kind": "table",
+        "original": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Sensor Alpha | PN-F101 | 35 Nm |\n| Valve Beta | PN-F202 | 12.5 Nm |",
+        "text": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Sensor Alpha | PN-F101 | 35 Nm |\n| Valve Beta | PN-F202 | 12.5 Nm |",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.063018798828125,
+              "t": 653.8470458984375,
+              "r": 537.8204956054688,
+              "b": 562.8337097167969,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1.1 Torque",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection",
+          "1.1.1 Torque"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0007",
+        "kind": "paragraph",
+        "original": "TAIL_Z909",
+        "text": "TAIL_Z909",
+        "location": {
+          "item_ref": "#/texts/5",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 545.0083003,
+              "r": 107.802243,
+              "b": 534.6904301,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1.1 Torque",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection",
+          "1.1.1 Torque"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0008",
+        "kind": "heading",
+        "original": "Chapter 2 Continuation",
+        "text": "Chapter 2 Continuation",
+        "location": {
+          "item_ref": "#/texts/6",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 791.1044914,
+              "r": 239.12401319999998,
+              "b": 774.2207038,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Chapter 2 Continuation",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 2 Continuation"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0009",
+        "kind": "heading",
+        "original": "PAGE_TWO_222",
+        "text": "PAGE_TWO_222",
+        "location": {
+          "item_ref": "#/texts/7",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 762.0083003,
+              "r": 139.57763500000001,
+              "b": 751.6904301,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "PAGE_TWO_222",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "PAGE_TWO_222"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0010",
+        "kind": "table",
+        "original": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Pump Gamma | PN-F303 | 88 Nm |\n| Relay Delta | PN-F404 | 5 Nm |",
+        "text": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Pump Gamma | PN-F303 | 88 Nm |\n| Relay Delta | PN-F404 | 5 Nm |",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 55.857765197753906,
+              "t": 741.5013885498047,
+              "r": 537.7763061523438,
+              "b": 650.9080352783203,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "PAGE_TWO_222",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "PAGE_TWO_222"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0011",
+        "kind": "paragraph",
+        "original": "FINAL_PAGE_END_999",
+        "text": "FINAL_PAGE_END_999",
+        "location": {
+          "item_ref": "#/texts/8",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 648.0083003,
+              "r": 173.818358,
+              "b": 637.6904301,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "PAGE_TWO_222",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "PAGE_TWO_222"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      }
+    ],
+    "issues": [
+      {
+        "code": "parse.completeness",
+        "severity": "warning",
+        "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+        "block_id": ""
+      }
+    ],
+    "expected_blocks": null,
+    "component_mentions": [
+      {
+        "part_number": "PN-F101",
+        "descriptions": [],
+        "evidence": "| Sensor Alpha | PN-F101 | 35 Nm |",
+        "block_id": "b0006",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.063018798828125,
+              "t": 653.8470458984375,
+              "r": 537.8204956054688,
+              "b": 562.8337097167969,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-F202",
+        "descriptions": [],
+        "evidence": "| Valve Beta | PN-F202 | 12.5 Nm |",
+        "block_id": "b0006",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.063018798828125,
+              "t": 653.8470458984375,
+              "r": 537.8204956054688,
+              "b": 562.8337097167969,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-F303",
+        "descriptions": [],
+        "evidence": "| Pump Gamma | PN-F303 | 88 Nm |",
+        "block_id": "b0010",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 55.857765197753906,
+              "t": 741.5013885498047,
+              "r": 537.7763061523438,
+              "b": 650.9080352783203,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-F404",
+        "descriptions": [],
+        "evidence": "| Relay Delta | PN-F404 | 5 Nm |",
+        "block_id": "b0010",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 55.857765197753906,
+              "t": 741.5013885498047,
+              "r": 537.7763061523438,
+              "b": 650.9080352783203,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      }
+    ],
+    "assets": {}
+  },
+  "rules_hash": "ed50bb10374deb206b55d24e31377825505b5f75712bede1019d33de27ae67df",
+  "changes": [],
+  "issues": [
+    {
+      "code": "parse.completeness",
+      "severity": "warning",
+      "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+      "block_id": ""
+    }
+  ],
+  "status": "review",
+  "reviews": []
+}

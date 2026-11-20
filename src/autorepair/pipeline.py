@@ -76,18 +76,61 @@ def confirm_completeness(result: Result, note: str) -> Result:
     return reviewed.finalize()
 
 
+def write_assets(document: Document, folder: Path) -> None:
+    """Write only content-addressed attachments, including normalized JSON input."""
+    import base64
+    import re
+
+    for name, encoded in document.assets.items():
+        if not re.fullmatch(r"[a-f0-9]{64}\.png", name):
+            raise ValueError("Invalid attachment filename")
+        data = base64.b64decode(encoded, validate=True)
+        if hashlib.sha256(data).hexdigest() != name[:-4]:
+            raise ValueError("Attachment digest mismatch")
+        target = folder / "assets" / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(data)
+
+
 def markdown(result: Result) -> str:
+    from html import escape
+    from urllib.parse import quote, urlsplit
+
     doc = result.document
     lines = [f"# {doc.doc_id}", f"品牌 {doc.brand} · 状态 {result.status}"]
+    previous_list = False
     for block in doc.blocks:
-        lines.append(
-            f"<!-- source:{block.block_id} {json.dumps(block.location, ensure_ascii=False)} -->"
-        )
-        lines.append(
-            ("## " if block.kind == "heading" else "- " if block.kind == "list" else "")
-            + block.text
-        )
-    return "\n\n".join(lines) + "\n"
+        text = block.text
+        for link in block.location.get("link_labels", []):
+            label = link["label"]
+            target = link["target"]
+            if urlsplit(target).scheme not in {"", "http", "https", "mailto"}:
+                continue
+            safe = quote(target, safe="/:#?&=.%+~@!$")
+            replacement = f"[{label}](<{safe}>)"
+            if label in text:
+                text = text.replace(label, replacement, 1)
+            else:
+                text += " " + replacement
+        if block.kind == "heading":
+            text = "#" * min(6, block.heading_level + 1) + " " + text
+            if block.anchor:
+                text = f'<a id="{escape(block.anchor, quote=True)}"></a>\n\n' + text
+        elif block.kind == "picture":
+            if block.image_src and urlsplit(block.image_src).scheme in {"", "http", "https"}:
+                source = quote(block.image_src, safe="/:#?&=.%+~@!$")
+                alt = block.original.splitlines()[0].replace("[", r"\[").replace("]", r"\]")
+                text = f"![{alt}](<{source}>)\n\n" + text
+        comment = f"<!-- source:{block.block_id} {json.dumps(block.location, ensure_ascii=False).replace('-->', '--&gt;')} -->"
+        if block.kind == "list":
+            marker = f"{block.ordinal}. " if block.ordered else "- "
+            content = "    " * block.list_depth + marker + text + " " + comment
+            lines.append(("\n" if previous_list else "\n\n") + content)
+            previous_list = True
+        else:
+            lines.append("\n\n" + comment + "\n\n" + text)
+            previous_list = False
+    return "\n\n".join(lines[:2]) + "".join(lines[2:]) + "\n"
 
 
 def report_markdown(results: list[Result]) -> str:
@@ -116,6 +159,7 @@ def export(results: list[Result], cfg: Config, output: Path) -> str:
         safe_id = hashlib.sha256(result.document.doc_id.encode()).hexdigest()[:12]
         stem = f"{index + 1:03}-{safe_id}"
         target = folder / result.status
+        write_assets(result.document, target)
         (target / f"{stem}.md").write_text(markdown(result), encoding="utf-8")
         (target / f"{stem}.json").write_text(
             result.document.model_dump_json(indent=2), encoding="utf-8"

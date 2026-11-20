@@ -6,6 +6,7 @@
 
 | 项目 | 用途 | 上游许可证及来源 |
 | --- | --- | --- |
+| pdfplumber | 数字 PDF 矢量表格单元格核对 | [MIT](https://github.com/jsvine/pdfplumber/blob/stable/LICENSE.txt) |
 | Docling | PDF DOCX 转为结构化文档 | [MIT](https://github.com/docling-project/docling/blob/main/LICENSE) |
 | Beautiful Soup | 静态 HTML DOM 提取 | [MIT](https://www.crummy.com/software/BeautifulSoup/) |
 | lxml | HTML 解析后端 | [BSD 类许可及附带声明](https://github.com/lxml/lxml/blob/master/LICENSES.txt) |

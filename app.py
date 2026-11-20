@@ -145,6 +145,10 @@ with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         "results.json", json.dumps([r.model_dump() for r in results], ensure_ascii=False, indent=2)
     )
     for n, r in enumerate(results):
+        import base64
+
+        for name, data in r.document.assets.items():
+            archive.writestr(f"{r.status}/assets/{name}", base64.b64decode(data, validate=True))
         archive.writestr(f"{r.status}/{n + 1:03}.md", markdown(r))
         archive.writestr(f"{r.status}/{n + 1:03}.json", r.document.model_dump_json(indent=2))
 st.download_button(

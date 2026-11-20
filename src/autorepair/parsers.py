@@ -6,122 +6,13 @@ from functools import lru_cache
 from importlib.metadata import version
 from pathlib import Path
 
-from bs4 import BeautifulSoup, Comment, NavigableString
-
+from autorepair.formatting import numbered_level, table_markdown
+from autorepair.html_parser import html_blocks
+from autorepair.media import attach_image, local_html_images
 from autorepair.models import Block, Document, Issue
+from autorepair.pdf_tables import recover_table
 
 SUPPORTED = {".html", ".htm", ".json", ".pdf", ".docx"}
-
-
-def html_blocks(content: str, prefix: str = "") -> tuple[list[Block], list[Issue]]:
-    soup = BeautifulSoup(content, "lxml")
-    issues = []
-    if soup.find("script") or soup.find("link", rel="stylesheet") or soup.find("style"):
-        issues.append(
-            Issue(
-                code="html.rendering",
-                severity="warning",
-                message="含脚本或样式表，仅提取静态 DOM；需确认可见性",
-            )
-        )
-    # Compute paths before removing elements so source locations remain meaningful.
-    paths = {}
-    for tag in soup.find_all(True):
-        segments = []
-        current = tag
-        while getattr(current, "name", None) and current.name != "[document]":
-            siblings = [
-                x for x in current.previous_siblings if getattr(x, "name", None) == current.name
-            ]
-            segments.append(f"{current.name}[{len(siblings) + 1}]")
-            current = current.parent
-        paths[id(tag)] = "/" + "/".join(reversed(segments))
-    for tag in list(soup.find_all(True)):
-        if tag.parent is None:
-            continue
-        style = (tag.get("style") or "").lower().replace(" ", "")
-        if (
-            tag.name in {"script", "style", "noscript", "nav", "header", "footer"}
-            or tag.has_attr("hidden")
-            or str(tag.get("aria-hidden", "")).lower() == "true"
-            or "display:none" in style
-            or "visibility:hidden" in style
-        ):
-            tag.decompose()
-    blocks = []
-    section = ""
-    containers = {"h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "table", "pre", "blockquote"}
-    tags = []
-
-    def walk(node):
-        for child in node.children:
-            if isinstance(child, Comment):
-                continue
-            if isinstance(child, NavigableString):
-                if str(child).strip():
-                    # Loose text in div/body must not disappear beside a paragraph.
-                    tag = soup.new_tag("p")
-                    tag.string = str(child)
-                    paths[id(tag)] = paths.get(id(node), "/") + f"/text()[{len(tags) + 1}]"
-                    tags.append(tag)
-            elif child.name in containers:
-                tags.append(child)
-            elif child.name not in {"head", "img", "br"}:
-                walk(child)
-
-    walk(soup.body or soup)
-    for tag in tags:
-        if tag.find_parent(["table", "li", "blockquote", "pre"]):
-            continue
-        kind = "paragraph"
-        if tag.name.startswith("h") and tag.name[1:].isdigit():
-            section = tag.get("id") or tag.get_text(" ", strip=True)
-            kind = "heading"
-        if tag.name == "table":
-            if tag.find(attrs={"rowspan": True}) or tag.find(attrs={"colspan": True}):
-                issues.append(
-                    Issue(
-                        code="html.table_span",
-                        severity="warning",
-                        message="合并单元格需对照原表复核",
-                    )
-                )
-            rows = []
-            for row in tag.find_all("tr"):
-                rows.append([cell.get_text(" ", strip=True) for cell in row.find_all(["th", "td"])])
-            width = max((len(r) for r in rows), default=0)
-            if not width:
-                continue
-            rows = [r + [""] * (width - len(r)) for r in rows]
-            text = "\n".join(
-                ["| " + " | ".join(rows[0]) + " |", "| " + " | ".join(["---"] * width) + " |"]
-                + ["| " + " | ".join(r) + " |" for r in rows[1:]]
-            )
-            kind = "table"
-        else:
-            text = tag.get_text(" ", strip=True)
-            if tag.name == "li":
-                kind = "list"
-        if not text:
-            continue
-        blocks.append(
-            Block(
-                block_id=f"b{len(blocks) + 1:04}",
-                kind=kind,
-                original=text,
-                text=text,
-                section=section,
-                location={"dom": prefix + paths[id(tag)]},
-                links=[str(a["href"]) for a in tag.find_all("a", href=True)],
-            )
-        )
-    if not blocks:
-        text = soup.get_text(" ", strip=True)
-        if text:
-            blocks.append(
-                Block(block_id="b0001", original=text, text=text, location={"dom": prefix + "/"})
-            )
-    return blocks, issues
 
 
 @lru_cache(maxsize=2)
@@ -134,6 +25,7 @@ def converter(ocr: bool, models_path: str | None):
     options = PdfPipelineOptions(
         do_ocr=ocr,
         do_table_structure=True,
+        generate_picture_images=True,
         accelerator_options=AcceleratorOptions(device=AcceleratorDevice.CPU),
         enable_remote_services=False,
         artifacts_path=models_path,
@@ -178,6 +70,9 @@ def parse(
             restored = Document.model_validate(data)
             if restored.brand != brand:
                 raise ValueError("Normalized document brand mismatch")
+            for block in restored.blocks:
+                if block.kind == "heading" and "source_level" in block.location:
+                    block.heading_level = min(6, max(1, int(block.location["source_level"])))
             return restored
         doc.parser = "json-html/1"
         records = (
@@ -231,7 +126,7 @@ def parse(
         doc.expected_blocks = len(doc.blocks)
     else:
         from docling.datamodel.base_models import ConversionStatus
-        from docling_core.types.doc import TableItem, TextItem
+        from docling_core.types.doc import ListItem, PictureItem, TableItem, TextItem
 
         result = converter(ocr, models_path).convert(path)
         doc.parser = "docling/" + version("docling")
@@ -244,10 +139,79 @@ def parse(
                 )
             )
         section = ""
-        for item, _ in result.document.iterate_items():
+        heading_stack = []
+        for item, depth in result.document.iterate_items():
+            image_src = ""
+            heading_level = 1
+            location = {"item_ref": item.self_ref}
             if isinstance(item, TableItem):
-                text = item.export_to_markdown(doc=result.document)
+                text = table_markdown([[c.text for c in row] for row in item.data.grid])
+                if suffix == ".pdf":
+                    try:
+                        recovered = recover_table(item, result.document, path, digest)
+                        if recovered:
+                            text = recovered
+                            location["table_method"] = "vector-cell-geometry"
+                        elif any(not c.text.strip() for row in item.data.grid for c in row):
+                            doc.issues.append(
+                                Issue(
+                                    code="table.span_unverified",
+                                    severity="warning",
+                                    message="表格存在空单元格且缺少可验证的合并范围，禁止猜测填充",
+                                )
+                            )
+                    except Exception:
+                        doc.issues.append(
+                            Issue(
+                                code="table.geometry_failed",
+                                severity="warning",
+                                message="无法核对原 PDF 表格几何结构，请复核共享单元格",
+                            )
+                        )
                 kind = "table"
+            elif isinstance(item, PictureItem):
+                kind = "picture"
+                text = "嵌入图片"
+                try:
+                    image = item.get_image(result.document)
+                    if image is not None:
+                        image_src, recognized, scores = attach_image(
+                            doc, image, ocr=(suffix == ".docx" or ocr)
+                        )
+                        if recognized:
+                            text += "\n\n图片识别文字\n" + recognized
+                            location["ocr_scores"] = scores
+                        else:
+                            doc.issues.append(
+                                Issue(
+                                    code="image.ocr_empty",
+                                    severity="warning",
+                                    message="图片文字未识别，已保留图像资源",
+                                )
+                            )
+                    else:
+                        doc.issues.append(
+                            Issue(
+                                code="image.missing",
+                                severity="warning",
+                                message="无法读取图片，已保留占位与来源",
+                            )
+                        )
+                except Exception:
+                    doc.issues.append(
+                        Issue(
+                            code="image.ocr_failed",
+                            severity="warning",
+                            message="图像 OCR 失败，保留图片占位并要求复核",
+                        )
+                    )
+                doc.issues.append(
+                    Issue(
+                        code="image.unverified",
+                        severity="warning",
+                        message="图像及 OCR 需核对原图，不保证文字或隐私信息已完整处理",
+                    )
+                )
             elif isinstance(item, TextItem):
                 text = item.text
                 kind = (
@@ -258,8 +222,18 @@ def parse(
             else:
                 continue
             if kind == "heading":
+                heading_level = min(6, max(1, int(getattr(item, "level", 1))))
+                if suffix == ".pdf":
+                    heading_level = numbered_level(text) or heading_level
                 section = text
-            location = {"item_ref": item.self_ref}
+                heading_stack = [x for x in heading_stack if x[0] < heading_level] + [
+                    (heading_level, text)
+                ]
+            if isinstance(item, ListItem):
+                kind = "list"
+            hyperlink = getattr(item, "hyperlink", None)
+            if hyperlink:
+                location["link_labels"] = [{"label": text, "target": str(hyperlink)}]
             if suffix == ".pdf" and item.prov:
                 location["pages"] = [p.page_no for p in item.prov]
                 location["bboxes"] = [p.bbox.model_dump(mode="json") for p in item.prov]
@@ -280,6 +254,12 @@ def parse(
                     text=text,
                     section=section,
                     location=location,
+                    heading_level=heading_level,
+                    section_path=[x[1] for x in heading_stack],
+                    list_depth=max(0, depth - len(heading_stack) - 1) if kind == "list" else 0,
+                    ordered=bool(getattr(item, "enumerated", False)),
+                    image_src=image_src,
+                    links=[str(hyperlink)] if hyperlink else [],
                 )
             )
         # Block counts from the same parser cannot establish conversion completeness.
@@ -290,4 +270,6 @@ def parse(
                 message="PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
             )
         )
+    if suffix in {".html", ".htm", ".json"}:
+        local_html_images(doc, path)
     return doc

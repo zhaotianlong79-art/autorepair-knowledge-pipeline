@@ -1,0 +1,140 @@
+{
+  "document": {
+    "schema_version": "1.0",
+    "doc_id": "doc-896064e4e2e3",
+    "brand": "aurora",
+    "model": "unknown",
+    "year_range": "unknown",
+    "source_name": "pdf_merged.pdf",
+    "source_hash": "896064e4e2e3db9b45151ca79e259e47a62b9cc68d093cd2ffb5a5d236cff75a",
+    "parser": "docling/2.151.1",
+    "blocks": [
+      {
+        "block_id": "b0001",
+        "kind": "heading",
+        "original": "Merged PDF table",
+        "text": "Merged PDF table",
+        "location": {
+          "item_ref": "#/texts/0",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 791.1044914,
+              "r": 200.06542259999998,
+              "b": 774.2207038,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Merged PDF table",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Merged PDF table"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0002",
+        "kind": "table",
+        "original": "| System | Component | Value |\n| --- | --- | --- |\n| Brake | Unit A | A\\|B |\n| Brake | Unit B | LINE_C303 LINE_D404 |",
+        "text": "| System | Component | Value |\n| --- | --- | --- |\n| Brake | Unit A | A\\|B |\n| Brake | Unit B | LINE_C303 LINE_D404 |",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.2089729309082,
+              "t": 765.5964965820312,
+              "r": 537.9093627929688,
+              "b": 674.8425750732422,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Merged PDF table",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Merged PDF table"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0003",
+        "kind": "paragraph",
+        "original": "MERGED_END_555",
+        "text": "MERGED_END_555",
+        "location": {
+          "item_ref": "#/texts/1",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 672.0083003,
+              "r": 154.85839830000003,
+              "b": 661.6904301,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Merged PDF table",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Merged PDF table"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      }
+    ],
+    "issues": [
+      {
+        "code": "parse.completeness",
+        "severity": "warning",
+        "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+        "block_id": ""
+      }
+    ],
+    "expected_blocks": null,
+    "component_mentions": [],
+    "assets": {}
+  },
+  "rules_hash": "ed50bb10374deb206b55d24e31377825505b5f75712bede1019d33de27ae67df",
+  "changes": [],
+  "issues": [
+    {
+      "code": "parse.completeness",
+      "severity": "warning",
+      "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+      "block_id": ""
+    },
+    {
+      "code": "term.unknown",
+      "severity": "warning",
+      "message": "未登记缩写: PDF",
+      "block_id": "b0001"
+    }
+  ],
+  "status": "review",
+  "reviews": []
+}

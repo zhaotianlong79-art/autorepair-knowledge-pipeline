@@ -1,0 +1,316 @@
+{
+  "document": {
+    "schema_version": "1.0",
+    "doc_id": "doc-f0d8a65470ab",
+    "brand": "aurora",
+    "model": "unknown",
+    "year_range": "unknown",
+    "source_name": "pdf_scan_en.pdf",
+    "source_hash": "f0d8a65470abf126bc53aab82073f14e92512126c35d995447453dde85693496",
+    "parser": "docling/2.151.1",
+    "blocks": [
+      {
+        "block_id": "b0001",
+        "kind": "heading",
+        "original": "Chapter 1 Service",
+        "text": "Chapter 1 Service",
+        "location": {
+          "item_ref": "#/texts/0",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.0,
+              "t": 789.3333333333334,
+              "r": 201.66666666666666,
+              "b": 769.0,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Chapter 1 Service",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0002",
+        "kind": "paragraph",
+        "original": "INTRO_A101",
+        "text": "INTRO_A101",
+        "location": {
+          "item_ref": "#/texts/1",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.0,
+              "t": 760.3333333333334,
+              "r": 123.0,
+              "b": 747.0,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Chapter 1 Service",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0003",
+        "kind": "heading",
+        "original": "1.1 Inspection",
+        "text": "1.1 Inspection",
+        "location": {
+          "item_ref": "#/texts/2",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.666666666666664,
+              "t": 732.3333333333334,
+              "r": 157.33333333333331,
+              "b": 713.0,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1 Inspection",
+        "links": [],
+        "heading_level": 2,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0004",
+        "kind": "paragraph",
+        "original": "BODY_B202",
+        "text": "BODY_B202",
+        "location": {
+          "item_ref": "#/texts/3",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.0,
+              "t": 705.3333333333333,
+              "r": 121.33333333333333,
+              "b": 690.6666666666667,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1 Inspection",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0005",
+        "kind": "heading",
+        "original": "1.1.1 Torque",
+        "text": "1.1.1 Torque",
+        "location": {
+          "item_ref": "#/texts/4",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 57.0,
+              "t": 676.0,
+              "r": 137.66666666666669,
+              "b": 659.0,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1.1 Torque",
+        "links": [],
+        "heading_level": 3,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection",
+          "1.1.1 Torque"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0006",
+        "kind": "table",
+        "original": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Sensor Alpha | PN-F101 | 35 Nm |\n| Valve Beta | PN-F202 | 12.5 Nm |",
+        "text": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Sensor Alpha | PN-F101 | 35 Nm |\n| Valve Beta | PN-F202 | 12.5 Nm |",
+        "location": {
+          "item_ref": "#/tables/0",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 60.25392532348633,
+              "t": 651.0505523681641,
+              "r": 533.8399047851562,
+              "b": 561.5150146484375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1.1 Torque",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection",
+          "1.1.1 Torque"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0007",
+        "kind": "paragraph",
+        "original": "TAIL_Z909",
+        "text": "TAIL_Z909",
+        "location": {
+          "item_ref": "#/texts/5",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.0,
+              "t": 547.3333333333334,
+              "r": 112.66666666666667,
+              "b": 533.3333333333333,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "1.1.1 Torque",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Chapter 1 Service",
+          "1.1 Inspection",
+          "1.1.1 Torque"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      }
+    ],
+    "issues": [
+      {
+        "code": "parse.completeness",
+        "severity": "warning",
+        "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+        "block_id": ""
+      }
+    ],
+    "expected_blocks": null,
+    "component_mentions": [
+      {
+        "part_number": "PN-F101",
+        "descriptions": [],
+        "evidence": "| Sensor Alpha | PN-F101 | 35 Nm |",
+        "block_id": "b0006",
+        "location": {
+          "item_ref": "#/tables/0",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 60.25392532348633,
+              "t": 651.0505523681641,
+              "r": 533.8399047851562,
+              "b": 561.5150146484375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-F202",
+        "descriptions": [],
+        "evidence": "| Valve Beta | PN-F202 | 12.5 Nm |",
+        "block_id": "b0006",
+        "location": {
+          "item_ref": "#/tables/0",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 60.25392532348633,
+              "t": 651.0505523681641,
+              "r": 533.8399047851562,
+              "b": 561.5150146484375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      }
+    ],
+    "assets": {}
+  },
+  "rules_hash": "ed50bb10374deb206b55d24e31377825505b5f75712bede1019d33de27ae67df",
+  "changes": [],
+  "issues": [
+    {
+      "code": "parse.completeness",
+      "severity": "warning",
+      "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+      "block_id": ""
+    }
+  ],
+  "status": "review",
+  "reviews": []
+}

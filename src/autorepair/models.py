@@ -17,6 +17,13 @@ class Block(Model):
     location: dict = Field(default_factory=dict)
     section: str = ""
     links: list[str] = Field(default_factory=list)
+    heading_level: int = Field(default=1, ge=1, le=6)
+    section_path: list[str] = Field(default_factory=list)
+    anchor: str = ""
+    list_depth: int = Field(default=0, ge=0)
+    ordered: bool = False
+    ordinal: int = Field(default=1, ge=1)
+    image_src: str = ""
 
 
 class Issue(Model):
@@ -47,6 +54,7 @@ class Document(Model):
     issues: list[Issue] = Field(default_factory=list)
     expected_blocks: int | None = None
     component_mentions: list[dict] = Field(default_factory=list)
+    assets: dict[str, str] = Field(default_factory=dict)
 
 
 class Result(Model):

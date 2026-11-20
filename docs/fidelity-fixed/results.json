@@ -1,0 +1,1928 @@
+{
+  "scope": "Self-authored source fixtures; content checkpoint recovery is not complete document accuracy. No benchmark threshold was used to hide failures.",
+  "cases": [
+    {
+      "file": "html_basic.html",
+      "group": "HTML",
+      "seconds": 0.009,
+      "status": "passed",
+      "parser": "html-dom/1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "d0c4b3cd6aab13efe9c2e12d73fc5fb677b40f1e7df0e80cf3b74186bf830ec9",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "htm_basic.htm",
+      "group": "HTM",
+      "seconds": 0.002,
+      "status": "passed",
+      "parser": "html-dom/1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "d0c4b3cd6aab13efe9c2e12d73fc5fb677b40f1e7df0e80cf3b74186bf830ec9",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "html_complex.html",
+      "group": "HTML",
+      "seconds": 0.001,
+      "status": "review",
+      "parser": "html-dom/1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "System",
+            "Component",
+            "Value"
+          ],
+          [
+            "Brake",
+            "Unit A",
+            "A|B"
+          ],
+          [
+            "Brake",
+            "Unit B",
+            "LINE_C303 LINE_D404"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "System",
+            "Component",
+            "Value"
+          ],
+          [
+            "Brake",
+            "Unit A",
+            "A|B"
+          ],
+          [
+            "Brake",
+            "Unit B",
+            "LINE_C303 LINE_D404"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "html.table_span",
+          "severity": "warning",
+          "message": "合并单元格已按逻辑网格展开，仍需核对共享范围",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "1385f949fa7cb3a22d5c0e592357886918bf107e035cbf1bbc450bfb57901961",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "html_nested.html",
+      "group": "HTML",
+      "seconds": 0.009,
+      "status": "review",
+      "parser": "html-dom/1",
+      "checkpoints": 9,
+      "recovered": 9,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [],
+      "actual_tables": [],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": 2,
+      "actual_list_depth": 2,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "image.unverified",
+          "severity": "warning",
+          "message": "已保留图片引用与替代文字，图内内容需复核",
+          "block_id": "b0010"
+        }
+      ],
+      "input_sha256": "1b1439974821e7faa3fb53fb064d177159dec8f4d5b0737004d70197fe1e8e86",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "json_content_html.json",
+      "group": "JSON",
+      "seconds": 0.002,
+      "status": "passed",
+      "parser": "json-html/1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "a325e4f4e5b73a5f739b28e7f92c575e1768330441401d263671d3befb5fec70",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "json_html.json",
+      "group": "JSON",
+      "seconds": 0.002,
+      "status": "passed",
+      "parser": "json-html/1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "b12f04d7a1ce49774372a3bf2dd08f8db403947574b022fcf4152f960a1512ef",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "json_body.json",
+      "group": "JSON",
+      "seconds": 0.001,
+      "status": "passed",
+      "parser": "json-html/1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "5ff379260b2415b63c45c7669331185a63f8f7e187caea471d0ce6196487b16a",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "json_content.json",
+      "group": "JSON",
+      "seconds": 0.001,
+      "status": "passed",
+      "parser": "json-html/1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "9214a70028c48a191edc1b00c7c9e54e33e07fc69fc0dfc9cce31ae63aca652e",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "json_zh.json",
+      "group": "JSON",
+      "seconds": 0.001,
+      "status": "passed",
+      "parser": "json-html/1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "3f12c144b709be36fbe3a7d82d099388a998f686fe258d405777ea8b888f5d98",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "json_array.json",
+      "group": "JSON",
+      "seconds": 0.002,
+      "status": "passed",
+      "parser": "json-html/1",
+      "checkpoints": 8,
+      "recovered": 8,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "b08856e89e9bb0952d8abbb24404089acd59d4d886a31d977644f3c414110381",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "json_records.json",
+      "group": "JSON",
+      "seconds": 0.002,
+      "status": "passed",
+      "parser": "json-html/1",
+      "checkpoints": 8,
+      "recovered": 8,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "4abbdbcb448d196af80812e44cb5a2754d3a49f595ce2a432c8689af43cda687",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "json_normalized.json",
+      "group": "JSON",
+      "seconds": 0.001,
+      "status": "passed",
+      "parser": "fixture",
+      "checkpoints": 4,
+      "recovered": 4,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [],
+      "input_sha256": "c534b32c287f9414ff68e6143d65825e5052e2cf12b98959d9d79bb4d536e021",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "docx_basic.docx",
+      "group": "DOCX",
+      "seconds": 1.326,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "672f3b20f40463fc1634029bc1d9ff68b50739f0d091c01747d3df216fcbf998",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "docx_merged.docx",
+      "group": "DOCX",
+      "seconds": 0.008,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 9,
+      "recovered": 9,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "System",
+            "Component",
+            "Value"
+          ],
+          [
+            "Brake",
+            "Unit A",
+            "A|B"
+          ],
+          [
+            "Brake",
+            "Unit B",
+            "LINE_C303 LINE_D404"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "System",
+            "Component",
+            "Value"
+          ],
+          [
+            "Brake",
+            "Unit A",
+            "A|B"
+          ],
+          [
+            "Brake",
+            "Unit B",
+            "LINE_C303 LINE_D404"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "1475794167a5f390679ae6ff790764a197c9cf90e3a011707e543c9686f23489",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "docx_picture.docx",
+      "group": "DOCX",
+      "seconds": 0.571,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 8,
+      "recovered": 8,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "image.unverified",
+          "severity": "warning",
+          "message": "图像及 OCR 需核对原图，不保证文字或隐私信息已完整处理",
+          "block_id": ""
+        },
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "1aba02e050b6b3f8eb0c30d0dea584dc7a32015b97714f30a406351a015ec5d5",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "pdf_digital.pdf",
+      "group": "数字PDF",
+      "seconds": 2.13,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "ec7ea0d8b4c7cf5b2bc91d427dadeda225d717030f93993dc9425723cea2c35a",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "pdf_multipage.pdf",
+      "group": "数字PDF",
+      "seconds": 0.714,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 13,
+      "recovered": 13,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ],
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Pump Gamma",
+            "PN-F303",
+            "88 Nm"
+          ],
+          [
+            "Relay Delta",
+            "PN-F404",
+            "5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ],
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Pump Gamma",
+            "PN-F303",
+            "88 Nm"
+          ],
+          [
+            "Relay Delta",
+            "PN-F404",
+            "5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "37ed6461753538adede9daa15cda8f7744a52c8e4fb0aaf47a34120136e0d8f2",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "pdf_cjk.pdf",
+      "group": "数字PDF",
+      "seconds": 0.426,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 9,
+      "recovered": 9,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "部件",
+            "部件号",
+            "扭矩"
+          ],
+          [
+            "前轮传感器",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "后轮阀门",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "部件",
+            "部件号",
+            "扭矩"
+          ],
+          [
+            "前轮传感器",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "后轮阀门",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "7bc547b967e89a62e3851bc1386c2b5b80a54e826bf18a51c0f8a4696eae20a7",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "pdf_scan_en.pdf",
+      "group": "扫描PDF",
+      "seconds": 1.344,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Sensor Alpha",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "Valve Beta",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "f0d8a65470abf126bc53aab82073f14e92512126c35d995447453dde85693496",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "pdf_scan_zh.pdf",
+      "group": "扫描PDF",
+      "seconds": 0.759,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 9,
+      "recovered": 9,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "部件",
+            "部件号",
+            "扭矩"
+          ],
+          [
+            "前轮传感器",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "后轮阀门",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "部件",
+            "部件号",
+            "扭矩"
+          ],
+          [
+            "前轮传感器",
+            "PN-F101",
+            "35 Nm"
+          ],
+          [
+            "后轮阀门",
+            "PN-F202",
+            "12.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "80534828e7c590ca9e3877c2e461f07d0b02065e66d3e5cc0898027c405d407a",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "pdf_crosspage.pdf",
+      "group": "数字PDF",
+      "seconds": 1.668,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 110,
+      "recovered": 110,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "continuation",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Component 01",
+            "PN-X001",
+            "1.5 Nm"
+          ],
+          [
+            "Component 02",
+            "PN-X002",
+            "2.5 Nm"
+          ],
+          [
+            "Component 03",
+            "PN-X003",
+            "3.5 Nm"
+          ],
+          [
+            "Component 04",
+            "PN-X004",
+            "4.5 Nm"
+          ],
+          [
+            "Component 05",
+            "PN-X005",
+            "5.5 Nm"
+          ],
+          [
+            "Component 06",
+            "PN-X006",
+            "6.5 Nm"
+          ],
+          [
+            "Component 07",
+            "PN-X007",
+            "7.5 Nm"
+          ],
+          [
+            "Component 08",
+            "PN-X008",
+            "8.5 Nm"
+          ],
+          [
+            "Component 09",
+            "PN-X009",
+            "9.5 Nm"
+          ],
+          [
+            "Component 10",
+            "PN-X010",
+            "10.5 Nm"
+          ],
+          [
+            "Component 11",
+            "PN-X011",
+            "11.5 Nm"
+          ],
+          [
+            "Component 12",
+            "PN-X012",
+            "12.5 Nm"
+          ],
+          [
+            "Component 13",
+            "PN-X013",
+            "13.5 Nm"
+          ],
+          [
+            "Component 14",
+            "PN-X014",
+            "14.5 Nm"
+          ],
+          [
+            "Component 15",
+            "PN-X015",
+            "15.5 Nm"
+          ],
+          [
+            "Component 16",
+            "PN-X016",
+            "16.5 Nm"
+          ],
+          [
+            "Component 17",
+            "PN-X017",
+            "17.5 Nm"
+          ],
+          [
+            "Component 18",
+            "PN-X018",
+            "18.5 Nm"
+          ],
+          [
+            "Component 19",
+            "PN-X019",
+            "19.5 Nm"
+          ],
+          [
+            "Component 20",
+            "PN-X020",
+            "20.5 Nm"
+          ],
+          [
+            "Component 21",
+            "PN-X021",
+            "21.5 Nm"
+          ],
+          [
+            "Component 22",
+            "PN-X022",
+            "22.5 Nm"
+          ],
+          [
+            "Component 23",
+            "PN-X023",
+            "23.5 Nm"
+          ],
+          [
+            "Component 24",
+            "PN-X024",
+            "24.5 Nm"
+          ],
+          [
+            "Component 25",
+            "PN-X025",
+            "25.5 Nm"
+          ],
+          [
+            "Component 26",
+            "PN-X026",
+            "26.5 Nm"
+          ],
+          [
+            "Component 27",
+            "PN-X027",
+            "27.5 Nm"
+          ],
+          [
+            "Component 28",
+            "PN-X028",
+            "28.5 Nm"
+          ],
+          [
+            "Component 29",
+            "PN-X029",
+            "29.5 Nm"
+          ],
+          [
+            "Component 30",
+            "PN-X030",
+            "30.5 Nm"
+          ],
+          [
+            "Component 31",
+            "PN-X031",
+            "31.5 Nm"
+          ],
+          [
+            "Component 32",
+            "PN-X032",
+            "32.5 Nm"
+          ],
+          [
+            "Component 33",
+            "PN-X033",
+            "33.5 Nm"
+          ],
+          [
+            "Component 34",
+            "PN-X034",
+            "34.5 Nm"
+          ],
+          [
+            "Component 35",
+            "PN-X035",
+            "35.5 Nm"
+          ],
+          [
+            "Component 36",
+            "PN-X036",
+            "36.5 Nm"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Component 01",
+            "PN-X001",
+            "1.5 Nm"
+          ],
+          [
+            "Component 02",
+            "PN-X002",
+            "2.5 Nm"
+          ],
+          [
+            "Component 03",
+            "PN-X003",
+            "3.5 Nm"
+          ],
+          [
+            "Component 04",
+            "PN-X004",
+            "4.5 Nm"
+          ],
+          [
+            "Component 05",
+            "PN-X005",
+            "5.5 Nm"
+          ],
+          [
+            "Component 06",
+            "PN-X006",
+            "6.5 Nm"
+          ],
+          [
+            "Component 07",
+            "PN-X007",
+            "7.5 Nm"
+          ],
+          [
+            "Component 08",
+            "PN-X008",
+            "8.5 Nm"
+          ],
+          [
+            "Component 09",
+            "PN-X009",
+            "9.5 Nm"
+          ],
+          [
+            "Component 10",
+            "PN-X010",
+            "10.5 Nm"
+          ],
+          [
+            "Component 11",
+            "PN-X011",
+            "11.5 Nm"
+          ],
+          [
+            "Component 12",
+            "PN-X012",
+            "12.5 Nm"
+          ],
+          [
+            "Component 13",
+            "PN-X013",
+            "13.5 Nm"
+          ],
+          [
+            "Component 14",
+            "PN-X014",
+            "14.5 Nm"
+          ],
+          [
+            "Component 15",
+            "PN-X015",
+            "15.5 Nm"
+          ],
+          [
+            "Component 16",
+            "PN-X016",
+            "16.5 Nm"
+          ],
+          [
+            "Component 17",
+            "PN-X017",
+            "17.5 Nm"
+          ],
+          [
+            "Component 18",
+            "PN-X018",
+            "18.5 Nm"
+          ],
+          [
+            "Component 19",
+            "PN-X019",
+            "19.5 Nm"
+          ],
+          [
+            "Component 20",
+            "PN-X020",
+            "20.5 Nm"
+          ],
+          [
+            "Component 21",
+            "PN-X021",
+            "21.5 Nm"
+          ],
+          [
+            "Component 22",
+            "PN-X022",
+            "22.5 Nm"
+          ]
+        ],
+        [
+          [
+            "Component",
+            "Part number",
+            "Torque"
+          ],
+          [
+            "Component 23",
+            "PN-X023",
+            "23.5 Nm"
+          ],
+          [
+            "Component 24",
+            "PN-X024",
+            "24.5 Nm"
+          ],
+          [
+            "Component 25",
+            "PN-X025",
+            "25.5 Nm"
+          ],
+          [
+            "Component 26",
+            "PN-X026",
+            "26.5 Nm"
+          ],
+          [
+            "Component 27",
+            "PN-X027",
+            "27.5 Nm"
+          ],
+          [
+            "Component 28",
+            "PN-X028",
+            "28.5 Nm"
+          ],
+          [
+            "Component 29",
+            "PN-X029",
+            "29.5 Nm"
+          ],
+          [
+            "Component 30",
+            "PN-X030",
+            "30.5 Nm"
+          ],
+          [
+            "Component 31",
+            "PN-X031",
+            "31.5 Nm"
+          ],
+          [
+            "Component 32",
+            "PN-X032",
+            "32.5 Nm"
+          ],
+          [
+            "Component 33",
+            "PN-X033",
+            "33.5 Nm"
+          ],
+          [
+            "Component 34",
+            "PN-X034",
+            "34.5 Nm"
+          ],
+          [
+            "Component 35",
+            "PN-X035",
+            "35.5 Nm"
+          ],
+          [
+            "Component 36",
+            "PN-X036",
+            "36.5 Nm"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        }
+      ],
+      "input_sha256": "481bab603eeb4c77056942b22871554f121bf146b24f1e82ceca95b3d0a12ba1",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    },
+    {
+      "file": "pdf_merged.pdf",
+      "group": "数字PDF",
+      "seconds": 0.4,
+      "status": "review",
+      "parser": "docling/2.151.1",
+      "checkpoints": 7,
+      "recovered": 7,
+      "missing": [],
+      "parser_export_missing": [],
+      "block_text_missing": [],
+      "table_mode": "ordinary",
+      "heading_text_missing": [],
+      "heading_level_mismatches": [],
+      "expected_tables": [
+        [
+          [
+            "System",
+            "Component",
+            "Value"
+          ],
+          [
+            "Brake",
+            "Unit A",
+            "A|B"
+          ],
+          [
+            "Brake",
+            "Unit B",
+            "LINE_C303 LINE_D404"
+          ]
+        ]
+      ],
+      "actual_tables": [
+        [
+          [
+            "System",
+            "Component",
+            "Value"
+          ],
+          [
+            "Brake",
+            "Unit A",
+            "A|B"
+          ],
+          [
+            "Brake",
+            "Unit B",
+            "LINE_C303 LINE_D404"
+          ]
+        ]
+      ],
+      "table_grid_match": true,
+      "missing_links": [],
+      "expected_list_depth": null,
+      "actual_list_depth": 0,
+      "forbidden_visible": [],
+      "issues": [
+        {
+          "code": "parse.completeness",
+          "severity": "warning",
+          "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+          "block_id": ""
+        },
+        {
+          "code": "term.unknown",
+          "severity": "warning",
+          "message": "未登记缩写: PDF",
+          "block_id": "b0001"
+        }
+      ],
+      "input_sha256": "896064e4e2e3db9b45151ca79e259e47a62b9cc68d093cd2ffb5a5d236cff75a",
+      "content_ok": true,
+      "headings_ok": true,
+      "tables_ok": true
+    }
+  ],
+  "summary": {
+    "HTML": {
+      "cases": 3,
+      "converted": 3,
+      "content_ok": 3,
+      "headings_ok": 3,
+      "tables_ok": 3,
+      "checkpoints": 23,
+      "recovered": 23,
+      "table_cases": 2,
+      "table_cases_ok": 2,
+      "multi_level_cases": 2,
+      "multi_level_ok": 2
+    },
+    "HTM": {
+      "cases": 1,
+      "converted": 1,
+      "content_ok": 1,
+      "headings_ok": 1,
+      "tables_ok": 1,
+      "checkpoints": 7,
+      "recovered": 7,
+      "table_cases": 1,
+      "table_cases_ok": 1,
+      "multi_level_cases": 1,
+      "multi_level_ok": 1
+    },
+    "JSON": {
+      "cases": 8,
+      "converted": 8,
+      "content_ok": 8,
+      "headings_ok": 8,
+      "tables_ok": 8,
+      "checkpoints": 55,
+      "recovered": 55,
+      "table_cases": 8,
+      "table_cases_ok": 8,
+      "multi_level_cases": 8,
+      "multi_level_ok": 8
+    },
+    "DOCX": {
+      "cases": 3,
+      "converted": 3,
+      "content_ok": 3,
+      "headings_ok": 3,
+      "tables_ok": 3,
+      "checkpoints": 24,
+      "recovered": 24,
+      "table_cases": 3,
+      "table_cases_ok": 3,
+      "multi_level_cases": 3,
+      "multi_level_ok": 3
+    },
+    "数字PDF": {
+      "cases": 5,
+      "converted": 5,
+      "content_ok": 5,
+      "headings_ok": 5,
+      "tables_ok": 5,
+      "checkpoints": 146,
+      "recovered": 146,
+      "table_cases": 5,
+      "table_cases_ok": 5,
+      "multi_level_cases": 3,
+      "multi_level_ok": 3
+    },
+    "扫描PDF": {
+      "cases": 2,
+      "converted": 2,
+      "content_ok": 2,
+      "headings_ok": 2,
+      "tables_ok": 2,
+      "checkpoints": 16,
+      "recovered": 16,
+      "table_cases": 2,
+      "table_cases_ok": 2,
+      "multi_level_cases": 2,
+      "multi_level_ok": 2
+    }
+  },
+  "production_source_hashes": {
+    "src/autorepair/media.py": "0e20c3d38002d586c12b0d59216e30a8184246889f14550c278e1c904b4dccd7",
+    "src/autorepair/pdf_tables.py": "f5198bf17d84b4cbae93358fa18d3aa43dd20d7f16e58e68a1808930832854f6",
+    "src/autorepair/html_parser.py": "c3b78ad072448fe555106856e4084f64125d8f2919d6fc2119dd3e93dbd09a22",
+    "src/autorepair/config.py": "9483cf7b5195d06a0f6e13c5e814db30ff84b0425270efbc6512aba57662479d",
+    "src/autorepair/models.py": "53b92fd83082c924a56b016c572345f37cb6de8c1665b309363534ffb633a742",
+    "src/autorepair/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/autorepair/parsers.py": "39c3a9d91339a01f653b1ff290d6ad1dd52a55d23e72fc04c537e7580e54d6a4",
+    "src/autorepair/formatting.py": "ac397498963968e784c8bd19de544e7c43946918aa8e97e0bed5454eebe0141d",
+    "src/autorepair/engine.py": "ad2e9de272e8e7a6b7eda001e58e0514e72db528e211707dde6ccf9ea46b1c79",
+    "src/autorepair/cli.py": "98e15d70ee6949ff2cb424369fae2949a5a1ffdcead2ed1a5010b7de3e8df317",
+    "src/autorepair/pipeline.py": "dde08986e7226e61cc914309ebbfa2478bc259fc1500da66345a549a2fb26bdd",
+    "src/autorepair/storage.py": "4b64534f72cb0fe1beced2ba9c8c9b742caaa0d40037e05cee090c0ee2b57ff0",
+    "src/autorepair/search.py": "26039ed76a26a98456f87cb8a19fa753b86e2b69d4242584b3ee04717a39bdd0",
+    "src/autorepair/privacy.py": "e4bedb8310e669c8ef8ac6bc2f1caffedbdd6ffbf43da1fe8917bf7a36052a0f"
+  }
+}

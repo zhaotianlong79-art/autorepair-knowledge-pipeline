@@ -1,4 +1,4 @@
-"""Audit the unchanged production parser and Markdown exporter against source manifests.
+"""Audit the production parser and Markdown exporter against source manifests.
 
 This is an evaluation, not a regression suite expected to pass all cases. Nonzero exit
 indicates a broken runner; findings are written as data for review.
@@ -6,6 +6,7 @@ indicates a broken runner; findings are written as data for review.
 
 import hashlib
 import json
+import os
 import re
 import time
 from collections import defaultdict
@@ -20,7 +21,7 @@ from autorepair.pipeline import markdown
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "examples/fidelity"
-OUT = ROOT / "docs/fidelity"
+OUT = Path(os.environ.get("FIDELITY_OUTPUT", str(ROOT / "docs/fidelity")))
 OUT.mkdir(parents=True, exist_ok=True)
 MD = MarkdownIt("commonmark").enable("table")
 
@@ -90,6 +91,9 @@ for expected in manifest:
     try:
         doc = parse(path, "aurora", ocr=expected.get("ocr", False))
         result = process(doc, cfg)
+        from autorepair.pipeline import write_assets
+
+        write_assets(result.document, OUT)
         md = markdown(result)
         actual = inspect_md(md)
         # Also render a parser-only result to separate extraction loss from domain rules.
@@ -238,3 +242,14 @@ if baseline_path.exists():
     )
 (OUT / "results.json").write_text(json.dumps(report, ensure_ascii=False, indent=2))
 print("SUMMARY", json.dumps(report["summary"], ensure_ascii=False))
+
+if os.environ.get("FIDELITY_REQUIRE_PASS") == "1":
+    failures = [
+        c["file"]
+        for c in report["cases"]
+        if not (c["content_ok"] and c["headings_ok"] and c["tables_ok"])
+        or c.get("missing_links")
+        or (c.get("expected_list_depth") and c["actual_list_depth"] < c["expected_list_depth"])
+    ]
+    if failures:
+        raise SystemExit("Fidelity failures: " + ", ".join(failures))

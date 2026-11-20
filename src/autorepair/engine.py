@@ -101,6 +101,9 @@ def process(
         block.location = scrub_value(block.location)
         block.links = [redact(link) for link in block.links]
         block.section = redact(block.section)
+        block.section_path = [redact(x) for x in block.section_path]
+        block.anchor = redact(block.anchor)
+        block.image_src = redact(block.image_src)
     for rule in cfg.rules:
         for block in doc.blocks:
             before = block.text

@@ -1,0 +1,1064 @@
+{
+  "document": {
+    "schema_version": "1.0",
+    "doc_id": "doc-481bab603eeb",
+    "brand": "aurora",
+    "model": "unknown",
+    "year_range": "unknown",
+    "source_name": "pdf_crosspage.pdf",
+    "source_hash": "481bab603eeb4c77056942b22871554f121bf146b24f1e82ceca95b3d0a12ba1",
+    "parser": "docling/2.151.1",
+    "blocks": [
+      {
+        "block_id": "b0001",
+        "kind": "heading",
+        "original": "Cross-page table",
+        "text": "Cross-page table",
+        "location": {
+          "item_ref": "#/texts/0",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 791.1044914,
+              "r": 191.074212,
+              "b": 774.2207038,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Cross-page table",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Cross-page table"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0002",
+        "kind": "paragraph",
+        "original": "TABLE_START_001",
+        "text": "TABLE_START_001",
+        "location": {
+          "item_ref": "#/texts/1",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 762.0083003,
+              "r": 154.2568336,
+              "b": 751.6904301,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Cross-page table",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Cross-page table"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0003",
+        "kind": "table",
+        "original": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Component 01 | PN-X001 | 1.5 Nm |\n| Component 02 | PN-X002 | 2.5 Nm |\n| Component 03 | PN-X003 | 3.5 Nm |\n| Component 04 | PN-X004 | 4.5 Nm |\n| Component 05 | PN-X005 | 5.5 Nm |\n| Component 06 | PN-X006 | 6.5 Nm |\n| Component 07 | PN-X007 | 7.5 Nm |\n| Component 08 | PN-X008 | 8.5 Nm |\n| Component 09 | PN-X009 | 9.5 Nm |\n| Component 10 | PN-X010 | 10.5 Nm |\n| Component 11 | PN-X011 | 11.5 Nm |\n| Component 12 | PN-X012 | 12.5 Nm |\n| Component 13 | PN-X013 | 13.5 Nm |\n| Component 14 | PN-X014 | 14.5 Nm |\n| Component 15 | PN-X015 | 15.5 Nm |\n| Component 16 | PN-X016 | 16.5 Nm |\n| Component 17 | PN-X017 | 17.5 Nm |\n| Component 18 | PN-X018 | 18.5 Nm |\n| Component 19 | PN-X019 | 19.5 Nm |\n| Component 20 | PN-X020 | 20.5 Nm |\n| Component 21 | PN-X021 | 21.5 Nm |\n| Component 22 | PN-X022 | 22.5 Nm |",
+        "text": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Component 01 | PN-X001 | 1.5 Nm |\n| Component 02 | PN-X002 | 2.5 Nm |\n| Component 03 | PN-X003 | 3.5 Nm |\n| Component 04 | PN-X004 | 4.5 Nm |\n| Component 05 | PN-X005 | 5.5 Nm |\n| Component 06 | PN-X006 | 6.5 Nm |\n| Component 07 | PN-X007 | 7.5 Nm |\n| Component 08 | PN-X008 | 8.5 Nm |\n| Component 09 | PN-X009 | 9.5 Nm |\n| Component 10 | PN-X010 | 10.5 Nm |\n| Component 11 | PN-X011 | 11.5 Nm |\n| Component 12 | PN-X012 | 12.5 Nm |\n| Component 13 | PN-X013 | 13.5 Nm |\n| Component 14 | PN-X014 | 14.5 Nm |\n| Component 15 | PN-X015 | 15.5 Nm |\n| Component 16 | PN-X016 | 16.5 Nm |\n| Component 17 | PN-X017 | 17.5 Nm |\n| Component 18 | PN-X018 | 18.5 Nm |\n| Component 19 | PN-X019 | 19.5 Nm |\n| Component 20 | PN-X020 | 20.5 Nm |\n| Component 21 | PN-X021 | 21.5 Nm |\n| Component 22 | PN-X022 | 22.5 Nm |",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Cross-page table",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Cross-page table"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0004",
+        "kind": "table",
+        "original": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Component 23 | PN-X023 | 23.5 Nm |\n| Component 24 | PN-X024 | 24.5 Nm |\n| Component 25 | PN-X025 | 25.5 Nm |\n| Component 26 | PN-X026 | 26.5 Nm |\n| Component 27 | PN-X027 | 27.5 Nm |\n| Component 28 | PN-X028 | 28.5 Nm |\n| Component 29 | PN-X029 | 29.5 Nm |\n| Component 30 | PN-X030 | 30.5 Nm |\n| Component 31 | PN-X031 | 31.5 Nm |\n| Component 32 | PN-X032 | 32.5 Nm |\n| Component 33 | PN-X033 | 33.5 Nm |\n| Component 34 | PN-X034 | 34.5 Nm |\n| Component 35 | PN-X035 | 35.5 Nm |\n| Component 36 | PN-X036 | 36.5 Nm |",
+        "text": "| Component | Part number | Torque |\n| --- | --- | --- |\n| Component 23 | PN-X023 | 23.5 Nm |\n| Component 24 | PN-X024 | 24.5 Nm |\n| Component 25 | PN-X025 | 25.5 Nm |\n| Component 26 | PN-X026 | 26.5 Nm |\n| Component 27 | PN-X027 | 27.5 Nm |\n| Component 28 | PN-X028 | 28.5 Nm |\n| Component 29 | PN-X029 | 29.5 Nm |\n| Component 30 | PN-X030 | 30.5 Nm |\n| Component 31 | PN-X031 | 31.5 Nm |\n| Component 32 | PN-X032 | 32.5 Nm |\n| Component 33 | PN-X033 | 33.5 Nm |\n| Component 34 | PN-X034 | 34.5 Nm |\n| Component 35 | PN-X035 | 35.5 Nm |\n| Component 36 | PN-X036 | 36.5 Nm |",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Cross-page table",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Cross-page table"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      },
+      {
+        "block_id": "b0005",
+        "kind": "paragraph",
+        "original": "TABLE_END_036",
+        "text": "TABLE_END_036",
+        "location": {
+          "item_ref": "#/texts/2",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 54.0,
+              "t": 343.0083003,
+              "r": 141.42529180000002,
+              "b": 332.6904301,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "section": "Cross-page table",
+        "links": [],
+        "heading_level": 1,
+        "section_path": [
+          "Cross-page table"
+        ],
+        "anchor": "",
+        "list_depth": 0,
+        "ordered": false,
+        "ordinal": 1,
+        "image_src": ""
+      }
+    ],
+    "issues": [
+      {
+        "code": "parse.completeness",
+        "severity": "warning",
+        "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+        "block_id": ""
+      }
+    ],
+    "expected_blocks": null,
+    "component_mentions": [
+      {
+        "part_number": "PN-X001",
+        "descriptions": [],
+        "evidence": "| Component 01 | PN-X001 | 1.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X002",
+        "descriptions": [],
+        "evidence": "| Component 02 | PN-X002 | 2.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X003",
+        "descriptions": [],
+        "evidence": "| Component 03 | PN-X003 | 3.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X004",
+        "descriptions": [],
+        "evidence": "| Component 04 | PN-X004 | 4.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X005",
+        "descriptions": [],
+        "evidence": "| Component 05 | PN-X005 | 5.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X006",
+        "descriptions": [],
+        "evidence": "| Component 06 | PN-X006 | 6.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X007",
+        "descriptions": [],
+        "evidence": "| Component 07 | PN-X007 | 7.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X008",
+        "descriptions": [],
+        "evidence": "| Component 08 | PN-X008 | 8.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X009",
+        "descriptions": [],
+        "evidence": "| Component 09 | PN-X009 | 9.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X010",
+        "descriptions": [],
+        "evidence": "| Component 10 | PN-X010 | 10.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X011",
+        "descriptions": [],
+        "evidence": "| Component 11 | PN-X011 | 11.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X012",
+        "descriptions": [],
+        "evidence": "| Component 12 | PN-X012 | 12.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X013",
+        "descriptions": [],
+        "evidence": "| Component 13 | PN-X013 | 13.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X014",
+        "descriptions": [],
+        "evidence": "| Component 14 | PN-X014 | 14.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X015",
+        "descriptions": [],
+        "evidence": "| Component 15 | PN-X015 | 15.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X016",
+        "descriptions": [],
+        "evidence": "| Component 16 | PN-X016 | 16.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X017",
+        "descriptions": [],
+        "evidence": "| Component 17 | PN-X017 | 17.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X018",
+        "descriptions": [],
+        "evidence": "| Component 18 | PN-X018 | 18.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X019",
+        "descriptions": [],
+        "evidence": "| Component 19 | PN-X019 | 19.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X020",
+        "descriptions": [],
+        "evidence": "| Component 20 | PN-X020 | 20.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X021",
+        "descriptions": [],
+        "evidence": "| Component 21 | PN-X021 | 21.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X022",
+        "descriptions": [],
+        "evidence": "| Component 22 | PN-X022 | 22.5 Nm |",
+        "block_id": "b0003",
+        "location": {
+          "item_ref": "#/tables/0",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            1
+          ],
+          "bboxes": [
+            {
+              "l": 56.50389862060547,
+              "t": 741.9167861938477,
+              "r": 537.953125,
+              "b": 50.16058349609375,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X023",
+        "descriptions": [],
+        "evidence": "| Component 23 | PN-X023 | 23.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X024",
+        "descriptions": [],
+        "evidence": "| Component 24 | PN-X024 | 24.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X025",
+        "descriptions": [],
+        "evidence": "| Component 25 | PN-X025 | 25.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X026",
+        "descriptions": [],
+        "evidence": "| Component 26 | PN-X026 | 26.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X027",
+        "descriptions": [],
+        "evidence": "| Component 27 | PN-X027 | 27.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X028",
+        "descriptions": [],
+        "evidence": "| Component 28 | PN-X028 | 28.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X029",
+        "descriptions": [],
+        "evidence": "| Component 29 | PN-X029 | 29.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X030",
+        "descriptions": [],
+        "evidence": "| Component 30 | PN-X030 | 30.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X031",
+        "descriptions": [],
+        "evidence": "| Component 31 | PN-X031 | 31.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X032",
+        "descriptions": [],
+        "evidence": "| Component 32 | PN-X032 | 32.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X033",
+        "descriptions": [],
+        "evidence": "| Component 33 | PN-X033 | 33.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X034",
+        "descriptions": [],
+        "evidence": "| Component 34 | PN-X034 | 34.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X035",
+        "descriptions": [],
+        "evidence": "| Component 35 | PN-X035 | 35.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      },
+      {
+        "part_number": "PN-X036",
+        "descriptions": [],
+        "evidence": "| Component 36 | PN-X036 | 36.5 Nm |",
+        "block_id": "b0004",
+        "location": {
+          "item_ref": "#/tables/1",
+          "table_method": "vector-cell-geometry",
+          "pages": [
+            2
+          ],
+          "bboxes": [
+            {
+              "l": 56.53586959838867,
+              "t": 797.0007820129395,
+              "r": 537.9418334960938,
+              "b": 345.5549621582031,
+              "coord_origin": "BOTTOMLEFT"
+            }
+          ]
+        },
+        "model": "unknown",
+        "year_range": "unknown"
+      }
+    ],
+    "assets": {}
+  },
+  "rules_hash": "ed50bb10374deb206b55d24e31377825505b5f75712bede1019d33de27ae67df",
+  "changes": [],
+  "issues": [
+    {
+      "code": "parse.completeness",
+      "severity": "warning",
+      "message": "PDF/DOCX 完整性需对照原文复核，解析块数不代表完整率",
+      "block_id": ""
+    }
+  ],
+  "status": "review",
+  "reviews": []
+}

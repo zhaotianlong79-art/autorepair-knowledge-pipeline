@@ -1,0 +1,27 @@
+<!doctype html><meta charset="utf-8"><style>body{max-width:1000px;margin:40px auto;font-family:Arial,sans-serif;line-height:1.65}table{border-collapse:collapse}td,th{border:1px solid #aaa;padding:8px 14px}</style><h1>doc-1b1439974821</h1>
+<p>品牌 aurora · 状态 review</p>
+<!-- source:b0001 {"dom": "/html[1]/body[1]/h1[1]", "link_labels": []} -->
+<p><a id="top"></a></p>
+<h2>Nested document</h2>
+<!-- source:b0002 {"dom": "/html[1]/body[1]/div[1]", "link_labels": []} -->
+<p>LOOSE_FRONT</p>
+<!-- source:b0003 {"dom": "/html[1]/body[1]/div[1]/p[1]", "link_labels": []} -->
+<p>PARA_MIDDLE</p>
+<!-- source:b0004 {"dom": "/html[1]/body[1]/div[1]", "link_labels": []} -->
+<p>LOOSE_TAIL</p>
+<!-- source:b0005 {"dom": "/html[1]/body[1]/h2[1]", "link_labels": []} -->
+<p><a id="sub"></a></p>
+<h3>Nested list</h3>
+<ol>
+<li>STEP_PARENT <!-- source:b0006 {"dom": "/html[1]/body[1]/ol[1]/li[1]", "link_labels": []} -->
+<ul>
+<li>STEP_CHILD <!-- source:b0007 {"dom": "/html[1]/body[1]/ol[1]/li[1]/ul[1]/li[1]", "link_labels": []} --></li>
+</ul>
+</li>
+<li>STEP_SECOND <!-- source:b0008 {"dom": "/html[1]/body[1]/ol[1]/li[2]", "link_labels": []} --></li>
+</ol>
+<!-- source:b0009 {"dom": "/html[1]/body[1]/p[1]", "link_labels": [{"label": "LINK_BACK", "target": "#top"}, {"label": "LINK_EXTERNAL", "target": "https://example.com/manual"}]} -->
+<p><a href="#top">LINK_BACK</a> and <a href="https://example.com/manual">LINK_EXTERNAL</a></p>
+<!-- source:b0010 {"dom": "/html[1]/body[1]/img[1]", "link_labels": []} -->
+<p><img src="assets/7b61fa920a3c2d9a788ae41b09ab5330597b8de8e417579f077a6b596ac81bf0.png" alt="FIGURE_ALT_707" /></p>
+<p>FIGURE_ALT_707</p>

@@ -8,8 +8,9 @@
 
 ## 已实现能力
 
-- Docling 解析 DOCX、数字 PDF、扫描 PDF，保留块、表格及可获得的来源位置。
-- 静态 HTML DOM 提取，处理声明的隐藏内容，保留链接；JSON 字段名统一和内嵌 HTML 提取。
+- Docling 解析 DOCX、数字 PDF、扫描 PDF，保留标题级别、块、表格和来源位置；数字 PDF 可按矢量边框核对合并单元格。
+- 静态 HTML DOM 提取，保留章节、嵌套列表、链接和图片替代文字；展开合并表格。JSON 字段名统一和内嵌 HTML 提取。
+- 本地图像作为附件导出，DOCX 图片文字自动识别；图像与识别内容始终需要复核。
 - 公共规则加独立品牌 YAML；明确覆盖关系、重复 ID、别名歧义及未知配置拒绝运行。
 - 九阶段有序加工：结构、专名、引用、工具、部件、文风、长尾术语、联系信息脱敏、检索准备。
 - 同一个 `BCM` 在 Aurora 下规范为“制动控制模块”，在 Atlas 下规范为“车身控制模块”。
@@ -36,7 +37,7 @@ uv sync --frozen --extra docling
 HF_HOME="$PWD/work/huggingface" uv run --extra docling streamlit run app.py --server.address 127.0.0.1 --browser.gatherUsageStats false
 ```
 
-首次处理 PDF 会下载模型；首次验证在本机耗时约三分钟，之后复用缓存。当前验证环境依赖约 1.4 GB，Hub 模型缓存约 506 MB，完整 OCR 验证进程峰值 RSS 约 2097 MiB。这些是小样例实测，文件规模与机器不同会变化。扫描 PDF 必须勾选扫描识别。默认 CPU，不需要 LLM API Key。
+首次处理 PDF 会下载模型；首次验证在本机耗时约三分钟，之后复用缓存。初版验证环境依赖约 1.4 GB，Hub 模型缓存约 506 MB，完整 OCR 验证进程峰值 RSS 约 2097 MiB。这些是小样例实测，文件规模与机器不同会变化。扫描 PDF 必须勾选扫描识别。默认 CPU，不需要 LLM API Key。
 
 macOS 可运行项目内 `启动工作台.command`，它会使用本地虚拟环境，不自动重新安装依赖。
 
@@ -67,7 +68,7 @@ artifacts/
   knowledge.sqlite             # 运行历史和映射库
   <run_id>/
     passed/                    # 已通过 Markdown 和规范 JSON
-    review/                    # 待复核候选
+    review/                    # 待复核候选，图片资源在其 assets/ 内
     failed/                    # 失败诊断
     knowledge.jsonl            # 仅已通过文档
     results.json               # 含修改、问题与复核记录
@@ -101,7 +102,7 @@ rules:
 
 `overrides: true` 必须对应已经存在的公共规则 ID。动作只允许注册的九个阶段，不执行 YAML 中的 Python。规则版本或词表改变会改变规则摘要。规范 JSON 可以作为再次加工的输入，用于验证幂等性。
 
-核心模块：`parsers.py` 接入，`config.py` 校验，`engine.py` 加工及门禁，`storage.py` 持久化，`pipeline.py` 编排输出，`search.py` 证据检索。
+核心模块：`html_parser.py` 处理 DOM，`formatting.py` 处理 Markdown 转义，`media.py` 处理图像，`pdf_tables.py` 核对矢量网格，`parsers.py` 接入，`config.py` 校验，`engine.py` 加工及门禁，`storage.py` 持久化，`pipeline.py` 编排输出，`search.py` 证据检索。
 
 ## 验证与已知限制
 
@@ -119,7 +120,8 @@ uv run --extra docling pytest -q
 第一版测试与界面验证已通过。固定题集为两个虚构品牌共 30 题，前五证据命中由加工前 20/30 变为加工后 30/30；候选检索包括待复核文档。8 份 DOCX/PDF 恢复了指定的 32 个文字锚点，数字 PDF 和 DOCX 保留了样例表格。详见 [实测报告](docs/第一版验证结果.md) 和 [解析原始结果](docs/converter-results.json)。
 
 - 开发与验收样例共享生成结构，尚不构成独立真实业务评测。没有宣称已达到决策文档中的真实转换完整率或术语准确率目标。
-- Word 首版支持 DOCX；旧版 DOC、动态网页、外部 CSS 计算、复杂合并单元格和跨页表格需另行验证。
+- Word 支持 DOCX；旧版 DOC、动态网页、外部 CSS 计算尚不支持。复杂、无边框或扫描合并表格仍需真实材料验证。
+- 图像保留不等于图像内容可靠或已脱敏；图片文字和原图均须复核，不会自动通过质量门禁。
 - 静态 HTML 的 `aria-hidden` 按配置语义视为排除项，它不等同于浏览器视觉隐藏的完整判断。
 - 未知术语检测只覆盖有限的全大写缩写；中文未知词和语义歧义需要人工术语表。
 - 脱敏只覆盖有“电话／手机／phone／mobile”上下文的中国大陆手机号及有“车牌／plate”上下文的示例中国车牌，不能识别全部个人信息。
@@ -137,4 +139,12 @@ uv run --extra docling pytest -q
 
 ## 转 Markdown 保真专项测试
 
-后续 22 个专项样例均能生成 Markdown，但发现多级章节扁平、HTML 复杂表格错位、PDF 合并单元格关联丢失和嵌入图像内容遗漏。基础功能测试通过不代表结构无损。详见 [专项报告](docs/全格式转Markdown质量测试报告.md)；本轮记录问题，尚未修改转换逻辑。
+0.2.0 已修复 0.1.0 专项测试发现的章节扁平、HTML 表格错位、PDF 合并关系、图片遗漏、列表和链接问题。同一批 22 个样例复测：271/271 个内容检查点、21/21 个表格网格和 19/19 个多级章节通过。
+
+修复前后证据分别保存在 `docs/fidelity/` 与 `docs/fidelity-fixed/`。详见 [修复验证报告](docs/Markdown保真修复验证.md)；历史问题报告仍保留。以上结果仅适用于本组自制样例，不代表真实手册无损转换。
+
+```bash
+FIDELITY_REQUIRE_PASS=1 FIDELITY_OUTPUT="$PWD/docs/fidelity-fixed" \
+  HF_HOME="$PWD/work/huggingface" HF_HUB_OFFLINE=1 \
+  uv run --extra docling python scripts/test_markdown_fidelity.py
+```
